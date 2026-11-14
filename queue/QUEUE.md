@@ -14,6 +14,7 @@ whose host permits fetching. Order = current estimate of (chance of a real find)
 | Q-06 | **Riemann** — Cod. Ms. B. Riemann bundles without transcripts (compare `data/riemann/transcripts/` against the SUB catalogue) | unknown | German | IIIF | partial | — |
 | Q-07 | **Hilbert** — Cod. Ms. D. Hilbert beyond 600 (lecture notes, correspondence) | ~10,000 | German | IIIF | 600/1–3 done (419 pp) | — |
 | Q-08 | **Dedekind** — remaining Nachlass bundles | unknown | German | IIIF | 7 bundles done (100 pp) | — |
+| Q-09 | **Matematicheskii Sbornik 1866–1917** — Math-Net.ru (www.mathnet.ru, journal id `sm`); printed journal, article-level scan PDFs. Take only articles whose author died before 1946 (check each author: Russian term is life + 70, longer for wartime authors). Novelty baseline = *Jahrbuch über die Fortschritte der Mathematik* reviews (from 1868); start with articles whose review is thin or missing | ~20,000–25,000 (estimate from memory, not counted) | Russian (pre-reform spelling) | PDF per article. 2026-11-14: `robots.txt` has no blanket disallow (bans named scrapers, crawl delays for some bots), but every content page returned 403 / connection reset from the cloud container — fetch from a non-cloud machine, slowly | not started; ranked below Leibniz and Harriot (not yet queued); page count, per-article access and licence unverified | — |
 
 ## Not queued (and why)
 - Peirce, Nash, von Neumann, Cantor, Lagrange: considered; not started. Peirce's manuscripts (Harvard) are
