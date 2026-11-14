@@ -16,6 +16,7 @@ MIN = int(sys.argv[sys.argv.index("--min") + 1]) if "--min" in sys.argv else 5
 
 def main():
     ledger = (ROOT / "ledger" / "LEADS.md").read_text(encoding="utf-8")
+    ledger_lines = ledger.split("\n")
     rows = []
     for ddir in sorted(ROOT.glob("data/*/deep")):
         author = ddir.parent.name
@@ -31,8 +32,19 @@ def main():
             bundle = rec.get("bundle") or rec.get("cote") or f.stem.split("_")[0]
             page = rec.get("page") or f.stem.split("_", 1)[-1]
             label = rec.get("label") or page
-            # "mentioned" = the bundle name and the page label/stem both occur in the ledger
-            seen = bundle in ledger and (str(label) in ledger or str(page) in ledger)
+            # "mentioned" = the scan id occurs in the ledger, or the bundle name and the page label/stem occur on
+            # the same ledger line. (Matching anywhere in the file marked pages nobody had looked at, once a bundle
+            # name appeared in any entry.) Montpellier cotes are bare numbers and the ledger writes them several
+            # ways ("cote 142 p.38", "Also 13 p.9"), so for those the old file-wide rule is kept.
+            m = re.search(r"HS-\d+:\d+", rec.get("image", "") or "")
+            terms = {str(label).strip("[]"), str(page)}
+            if re.fullmatch(r"[\d-]+", str(bundle)):
+                seen = bundle in ledger and (str(label) in ledger or str(page) in ledger)
+            else:
+                seen = bool(m and m.group(0) in ledger) or any(
+                    bundle in line.replace("Math. ", "Math.")
+                    and any(re.search(r"(?<!\w)" + re.escape(t) + r"(?!\w)", line) for t in terms)
+                    for line in ledger_lines)
             reason = (d.get("surprise_reason") or d.get("reason") or "").replace("\n", " ")[:220]
             res = d.get("results") or d.get("ideas") or []
             names = "; ".join(str((r.get("modern_name") or r.get("what") or ""))[:60] for r in res[:3] if isinstance(r, dict))
