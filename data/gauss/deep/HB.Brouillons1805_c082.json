@@ -3,8 +3,92 @@
  "page": "c082",
  "label": "77",
  "image": "https://images.sub.uni-goettingen.de/iiif/image/gdz:DE-611-HS-3351872:00000083/full/1300,/0/default.jpg",
- "stop_reason": "refusal",
+ "stop_reason": "end_turn",
+ "redo": {
+  "date": "2026-11-15",
+  "reader": "Sonnet subagent run from a Claude Code session, same prompt as src/deep.py (not the pipeline model; scores may not be comparable)",
+  "previous_stop_reason": "refusal"
+ },
  "deep": {
-  "raw": ""
+  "reconstruction": "Folio 77 (old number 103 struck), Litt. K, headed 'Berechnung der elliptischen Elemente. Als Beispiel die [planet symbol] 1806 nach diesen Elementen' (calculation of the elliptic elements; as an example, the planet marked with a sickle-like symbol, 1806, computed from these elements). The preceding page has a node and inclination determination with i = 10 deg 37' 30.5\" and node about 80 deg 56' 22.6\", which fits Ceres (a about 2.77, e about 0.08, node about 80.9 deg). So this is most likely Ceres, but the identification rests on the numbers and is not certain. The page is a worked numerical test: from a set of orbital elements, compute an ephemeris position for the date 1806 March 17, 4h 312777 (= day 76.17969907 of the year count used), and compare with an observation. It is the forward (ephemeris) direction of the method of Theoria Motus.\n\n1. Left column (top): numbers 0,4157328 / 0,4071810 / 0,0085518 / 0,0021379 1/2 and 0 deg 8' 27\" 29.5/42, 0.16.55 17/42 (53), 7.14.37 8/87 are interpolation work: differences of logarithms carried over from the previous page (the r values 0,4157595, 0,4106122, 0,4072165), with fractional parts of an interpolation interval. Their exact role is unclear. Then a chain of logarithms (7.6922176, 9.1006765, 5.3844352, 8.2013530, ...) leads to 8.2160480, then 0,8333333.33 (log of 1/... = a constant, 0.8333 = 5/6) and 164455.34, then 0,8497789, +111, 0,4114569 (log r, heliocentric distance, r about 2.58) and 9.7130035, 0.6984534. These are the usual log-table steps for the radius vector and the quantity (1+e cos)/... The details of each multiplication are not fully legible to me.\n\n2. Central struck-out block (two big X's): an earlier attempt at the same reduction with the numbers 4.2176468 (= log of e in seconds, e*206265\"), 8.9032217 (= log e, e = 0.08002), 9.66..., 1111208, 0,4419747 (= log a, a = 2.7668), 0,4099380, 74564, then angle sums 8.52.50,33 + 16.18.53,22 = 25.11.43,55, +2.6.19.80 = 27.17.53,65, etc., ending 176.7.51.05. This block is crossed out; I read it as an abandoned or superseded computation, replaced by the clean block immediately to the right.\n\n3. Right block (kept): columns of logarithms with angle sums 9 deg 4' 30.33\" + 16.18.53,22 = 25.23.23,55; +2.7.3,64 = 27.30.27,19; +2.11.56,36 = 29.42.23,55; + 65.37.4.49 = 95.19.28,04 ... + 80 56 33,06 = 176.21.33,51; heliocentric longitude 17 deg 7' 57\".39 (mod 360 shown as 17.7.57,39). Written: 'Error long. hel. +4\".0, latit. geoc: -5\".5', i.e. the computed ephemeris differs from the observation by +4\".0 in heliocentric longitude and -5\".5 in geocentric latitude. Interpretation (mine): the sums are mean anomaly at epoch + motion + equation of centre (angle for the true anomaly) + perihelion argument + node, giving longitude, with the log columns giving sin/cos factors for reduction to the ecliptic and latitude.\n\n4. Middle block, Kepler's equation. '8,9032217 e' with 'Med. ex. 29 deg 21' 23\".085' (the eccentric anomaly E = 29 deg 21' 23.085\"). Two columns of logs multiply e (in seconds, 4.2176468, and 2e, 4.5186768, since 4.5186768 - 4.2176468 = 0.30103 = log 2) by trigonometric factors, giving 3.8958348 and 3.8280913 (log seconds). The result 27.30.29,68 / 1 52.11 18 / 25.38.18\"50 'Motus' appears to be a step of an iterative solution of E - e sin E = M for the mean anomaly. Below this, tg(phi/2) and sin lines: 9.4122599 tg 1/2 phi, 9.0680737 1/2 sin, 8.4803336, 8.4817287 and 9.3982264 'sin', 0,4114569 (log r), 9067850, 4.9487967, 4.0704599, 0.4419747, 0.6629620 1/2, 'Bon', 7867465: these produce the true anomaly from the eccentric anomaly (tan(v/2) = sqrt((1+e)/(1-e)) tan(E/2)), and the distance r = a(1 - e cos E). Note: e = sin phi with phi = 4 deg 35' 29\".86 (written '= phi'), which is the standard Gaussian angle of eccentricity (Theoria Motus uses phi with e = sin phi).\n\n5. Left lower block: 'half epsilon 6 deg 45' 52\".4195'; 7.14.37.9925; 14.0.29.6156; 0.28.44.6734; further logs 7.6922176, 9.9999848, 9.9868886 ... 9.3843627 'Gut' leading to 2 deg 17' 40\".29 and 4.35.29.86 = phi. This is the determination of phi (hence e) and the mean-anomaly pieces from the preceding elements; 'Gut' means 'good' (check agrees).\n\n6. Lower right, final elements: 'Anom. verae' 46.6.16.350 (value unclear), 68 16 39 15, 114.22.55.50; 65.37.4.47 and 65.37.4.50 (argument of perihelion, two slightly different values compared); node 80.56.22.685; 'Perihel. 146.33.27.10' = node + argument of perihelion (146 33 27.15 when added; the page gives .10, which fits the lower value used); 'Motus d. in. 770\".9825' (daily mean motion, 770.9825 arcsec per day); 29 deg 21' 23\".085 minus 2 11 7.465 = 27 10 15.62 'Epocha anom. m.' (epoch mean anomaly); 'Motus 65845.29' ; 9.4.30,33 'Epocha 1805'; 146.33.27,10 + 9.4.30,33 = 155.37.57,43 'Epocha der Laenge' (epoch of the longitude, mean longitude at the epoch). Far right: 14.38.10.47 (-0\".12) and 14.20.17.90 (-0\".05), comparison numbers for the previous page's third-hypothesis result (14.38.10,59 and 14.20.17,95), apparently residuals of 0.12 and 0.05 arcsec, i.e. the new elements reproduce the earlier hypothesis values to about a tenth of an arcsecond.\n\nProblem served: converting the fitted orbit (from the three 'Hypotheses' tested on the previous page) into the standard set of elliptic elements: epoch, mean motion, longitude of perihelion, node, inclination, e and a, and verifying them by recomputing one observed place (1806 March 17) with a residual of a few arcseconds. This is a routine numerical consistency check in the workflow of the Theoria motus corporum coelestium (1809), written in logarithms to seven places.",
+  "errors": [
+   "Possible slip or an unresolved arithmetic step: e sin E using e = 0.080024 (log 8.9032217) and E = 29 deg 21' 23.085\" gives e sin E = 8092\" = 2 deg 14' 52\", so M = E - e sin E should be 27 deg 6' 31\". The page subtracts 2 deg 11' 7.465\" (7867.465\") and gets 27 deg 10' 15.62\" Epocha anom. m. The 7867.465 corresponds to a sine factor log 9.678188 (sin about 0.4767), not log sin E = 9.6904. This may mean the quantity subtracted is not simply e sin E at this E (for instance a correction in an iteration, or E being a different intermediate), or a misreading of mine. I cannot resolve it from the page; flagged as a discrepancy to check, not a confirmed error.",
+   "Mean daily motion 770.9825 arcsec versus 770.9765 from k/a^(3/2) with Gauss's k = 3548.18761\" and log a = 0.4419747 (a = 2.76678). The difference is about 8e-6 in relative terms, which is plausible if the planet mass term or a more precise a was used, but is not reproduced from the numbers visible here.",
+   "Two values 65.37.4.47 and 65.37.4.50 are written for the argument of perihelion; they differ by 0.03\", harmless but unreconciled.",
+   "Summation 80.56.22.685 + 65.37.4.47 = 146.33.27.155 while the page gives 146.33.27.10; this matches only with 22.62 + 4.48, so the node value used is nearer 80.56.22.62 (previous page gives 80.56.22.60 / 80 56 22.615). Minor rounding level.",
+   "The identification of the planet as Ceres is inferred from the elements; the page itself shows only a symbol."
+  ],
+  "results": [
+   {
+    "what": "Worked ephemeris check: compute heliocentric and geocentric place of a minor planet for 1806 March 17 from fitted elements and compare with an observation (residuals +4.0\" in heliocentric longitude, -5.5\" in geocentric latitude)",
+    "modern_name": "Ephemeris computation / orbit residual check from Keplerian elements",
+    "usually_credited_to": "Gauss, Theoria motus corporum coelestium (1809); Gauss's method of orbit determination (1801-1809)",
+    "already_credited_to_author": "yes",
+    "routine": true
+   },
+   {
+    "what": "Solution of Kepler's equation with the eccentric anomaly, e given as sin phi (phi = 4 deg 35' 29.86\"), true anomaly via tan(v/2) = sqrt((1+e)/(1-e)) tan(E/2), and radius r = a(1 - e cos E)",
+    "modern_name": "Kepler's equation and Gauss's angle of eccentricity",
+    "usually_credited_to": "Kepler (1609), Gauss (phi notation, Theoria Motus 1809)",
+    "already_credited_to_author": "yes",
+    "routine": true
+   },
+   {
+    "what": "Assembly of elements: perihelion longitude = node + argument of perihelion = 146 deg 33' 27.10\"; epoch longitude 155 deg 37' 57.43\"; daily mean motion 770.9825\"",
+    "modern_name": "Classical elements (varpi, Omega, epoch mean longitude, n)",
+    "usually_credited_to": "Standard 18th-19th c. celestial mechanics",
+    "already_credited_to_author": "yes",
+    "routine": true
+   }
+  ],
+  "surprise": 0,
+  "surprise_reason": "A routine numerical working page in the Ceres/Theoria Motus workflow: elements to ephemeris, with logarithmic multiplications and a residual check. It contains no new method or result beyond what Gauss published in 1809, and the one anomaly (the e sin E value) looks like an intermediate step or a reading problem, not a mathematical novelty.",
+  "checkable": [
+   {
+    "sympy": "10**0.4419747",
+    "asserts": "log10(a)=0.4419747 gives a approx 2.7668 AU (Ceres-like semi-major axis)"
+   },
+   {
+    "sympy": "10**(8.9032217-10)",
+    "asserts": "log e = 8.9032217 (minus 10) gives e approx 0.08002"
+   },
+   {
+    "sympy": "sin(Rational(4)*pi/180 + 35*pi/(180*60) + 29.86*pi/(180*3600)).evalf()",
+    "asserts": "sin(phi) with phi = 4 deg 35' 29.86\" is approx 0.08005, consistent with e = 0.08002 to about 3e-5"
+   },
+   {
+    "sympy": "(10**(4.2176468) , 206264.806*10**(8.9032217-10))",
+    "asserts": "4.2176468 is log10 of e in arcseconds (about 16504)"
+   },
+   {
+    "sympy": "(29+21/60+23.085/3600) - degrees(10**(8.9032217-10)*sin(radians(29+21/60+23.085/3600)))",
+    "asserts": "E - e sin E in degrees evaluates to about 27.1086, versus the page's 27 deg 10' 15.62\" = 27.1710, so the page's Epocha anom. m. disagrees by about 3.7 arcmin unless the subtracted term is not e sin E at this E"
+   },
+   {
+    "sympy": "(146+33/60+27.10/3600) - (155+37/60+57.43/3600) + (9+4/60+30.33/3600)",
+    "asserts": "epoch longitude 155.37.57.43 = perihelion 146.33.27.10 + 9.4.30.33 (should be 0 up to rounding)"
+   },
+   {
+    "sympy": "(17+7/60+47.98/3600)+(65+37/60+4.47/3600) - (82+44/60+52.45/3600)",
+    "asserts": "17.7.47.98 + 65.37.4.47 = 82.44.52.45 (should be 0)"
+   },
+   {
+    "sympy": "(80+56/60+22.62/3600)+(65+37/60+4.48/3600) - (146+33/60+27.10/3600)",
+    "asserts": "node + argument of perihelion = perihelion longitude (should be 0)"
+   },
+   {
+    "sympy": "3548.18761/(10**0.4419747)**1.5",
+    "asserts": "mean daily motion from Gauss's k and a is about 770.977 arcsec, compared with the page's 770.9825"
+   }
+  ],
+  "transcription_corrections": [
+   "The title planet symbol is a sickle-like glyph transcribed as '8'; read as a planet symbol (probably Ceres), not the numeral 8.",
+   "Right block first angle sum reads 9 deg 4' 30.33\" (matches 146.33.27.10 + 9.4.30.33 = 155.37.57.43); the line near the bottom transcribed as '9.14.30,33 Epocha 1805' is probably 9.4.30,33.",
+   "Line '17. 7. 57'39' should be 17 deg 7' 57\".39; 'Error long. hel. +4\"0' means +4.0 arcsec.",
+   "'Perihel. 146.33.27.10' and 'Bo. 56.22.685' are read as node 80.56.22.685 (Bo = Knoten sign).",
+   "Bottom right '14.38.10.47 -0\"12' and '14.20.17.90 -0\"05' are residuals relative to the 14.38.10,59 and 14.20.17,95 on the previous page.",
+   "'Motus d.in. 770\" 9825' is the daily mean motion 770.9825 arcsec.",
+   "Struck-out brackets in the transcription ([-...-]) mark the crossed-out earlier computation block, whose numbers are legible but cancelled on the page."
+  ]
  }
 }

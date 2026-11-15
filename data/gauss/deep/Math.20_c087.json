@@ -3,8 +3,117 @@
  "page": "c087",
  "label": "44v",
  "image": "https://images.sub.uni-goettingen.de/iiif/image/gdz:DE-611-HS-3381608:00000088/full/1300,/0/default.jpg",
- "stop_reason": "refusal",
+ "stop_reason": "end_turn",
+ "redo": {
+  "date": "2026-11-15",
+  "reader": "Sonnet subagent run from a Claude Code session, same prompt as src/deep.py (not the pipeline model; scores may not be comparable)",
+  "previous_stop_reason": "refusal"
+ },
  "deep": {
-  "raw": ""
+  "reconstruction": "Context: this is part of Gauss's numerical study of the roots of a septic with a trinomial-like left side, x^7 -/+ 28x^4 + const, as the right-hand side is carried round a closed ellipse (a 'Zug', train/path) in the complex plane. The next page (Math 20) treats x^7 - 28x^4 + 280 + 200 cos(theta) = 0, where the node x = 16^(1/3) = 2.5198 is the double root (zero of the derivative 7x^6 - 112x^3), and the ellipse is chosen to pass through the corresponding critical value. The page under study treats 'the last Zug', whose points are the roots of x^7 + 28x^4 - 280 - 681.52985 cos(phi) +/- 651.52373 i sin(phi) = 0 (the sign of 28x^4 is partly overwritten in the scan and is unclear; the numbers below are consistent with x^7 + 28x^4 = 280 + 681.52985 cos(phi) - 651.52373 i sin(phi), i.e. with a plus sign on the 28x^4 term). Logs of the semi-axes are given in brackets: log 681.52985 = 2.8334849 and log 651.52373 = 2.8139302 (both correct). Dividing by 681.52985 the right side becomes 0.4108438 + cos(phi) - 0.95597 i sin(phi); the bracketed 9.9804453 is log(651.52373/681.52985) - 10 (correct). The ratio 280/681.52985 is 0.41084 (Gauss's 0.4108438 is off in the 6th decimal; the true value is 0.4108404).\n\nPhi = 0: right side = 681.52985 * 1.4108438 = 961.53, log 2.9829627. The real root is found by the fixed-point iteration x^7 = N/(1 + 28/x^3), i.e. log x = (log N - log(1 + 28/x^3))/7: 2.98296 - 0.54818 = 2.43478, /7 = 0.34783, x = 2.22755 (the 'c 0.54818' is a cologarithm-type entry). The remaining six roots at phi = 0 are said to be computed on 'Blatt A' (not on this page). The lines 2.9829627 / 8.9488881 / 10.1301062 / 1.1812181 above this are a preliminary step whose purpose I cannot identify with certainty (1.1812181 = 10.1301062 - 8.9488881).\n\nPhi = 7 deg 30': the complex right side is 681.53*(1.40229 - 0.12478 i). Gauss forms the real part 0.4108438 + cos(7.5 deg) = 0.4108438 + 0.9914449 -> log 0.14684, the imaginary part log(0.95597)+log(sin 7.5 deg) = 9.98045 + 9.11570 = 9.09615, then the angle lambda = 5 deg 5' 5\" (tan lambda = 0.0890) and modulus log r' = 0.14684 - log cos(lambda) = 0.14855, giving log|RHS| = 2.83348 + 0.14855 = 2.98203. He then uses polar form: x = r e^{i rho} with rho = 1 deg 2' 56\"; the scribbled '(7 rho + lambda)^7 (4 rho + lambda)^4 (3 rho)^3' is shorthand for the angles of the terms x^7, x^4 and x^3 in the iteration x^4 (x^3 + 28) = RHS. Result: log r = 0.34766, real part 2.22668, imaginary part 0.04675 i (the logs 0.34766 + 8.26252 give 0.04075, see errors).\n\nPhi = 180 deg: right side = 681.52985 (0.4108438 - 1) = -401.53, log 401.53 = 2.6037178 (correct). Lines 7.8111534 / 10.1301062 / 2.3189529 give 2.3189529 = 10.1301062 - 7.8111534 (labelled '= 3A - 4B', apparently a log combination used in the iteration, details unclear). The real root I is -3.1734474 (check: x^4(x^3 + 28) = 101.43*(-3.9626) = -401.5, correct). The three complex roots in the upper half plane are found by Newton-type refinement in polar form, each with a block of angle multiples and logs of cos/sin with small second-order corrections written as '-41x' etc. (the 'x' marks unit corrections in the 7th decimal): II: arg 40 deg 57' 46.252\", 4*arg = 163 deg 51', 7*arg = 286 deg 44' 22\"; root 1.5185469 + 1.3183246 i. III: arg 63 deg 22' 32.042\", 4*arg = 253 deg 30' 8\" , 7*arg = 190 deg 7' 36\" (sic order); root 1.3446551 + 2.6823568 i. IV: arg 46 deg 47' 7.593\" (clearly this is the complement angle bookkeeping; the final root is -1.2764779 - 1.3586191 i whose argument is about 226.8 deg, i.e. 180 + 46.8), 4*arg = 187 deg 8' 28\", 7*arg = 327 deg 29' 49\". The seven roots are -3.1734474 and the conjugate pairs of II, III, IV (the pairs are implicit), and their sum is zero as it must be since the x^6 coefficient vanishes (sum check 8e-7).\n\nTop right of the previous page shows the same type of table (VI, VII) for another phase value; those are context only.",
+  "errors": [
+   "Imaginary part at phi = 7.5 deg: the page reads +0.04675 i, but Gauss's own logs (0.34766 + 8.26252 -> 10^-1.38982) give 0.04075, and an independent root solve of x^7+28x^4 = 681.52985(0.4108404+cos phi - 0.95597 i sin phi) gives x = 2.22633 - 0.04076 i. So 0.04675 is a copying slip (6 for 0), and the sign of the imaginary part is the opposite of the independent solution (conjugate branch, depends on the +/- in the heading).",
+   "Real part at phi = 7.5 deg: Gauss gives 2.22668; direct solution gives 2.22633, a discrepancy of about 3.5e-4, larger than his usual 5-digit accuracy, probably from the coarse angle approximation rho = 1 deg 2' 56\".",
+   "280/681.52985 = 0.4108404 but Gauss uses 0.4108438 (difference 3.4e-6); this slightly affects the 6th-7th digits of the roots computed from it.",
+   "Roots at phi = 180 deg: all four values agree with an independent solution to about 1e-6 (true: 1.518547 +/- 1.318325 i, 1.344655 +/- 2.682357 i, -1.276478 +/- 1.358620 i, -3.173448); Gauss's 6th decimal digits differ at the 1e-6 level only. Residuals of his roots in x^7+28x^4+401.53 are about 5e-4 (relative 1e-6).",
+   "The sign of the x^4 term in the heading is overwritten in the scan; the numerical content only works with + 28x^4 (with -28x^4 the real root at phi = 180 deg would not be -3.17345). This is a presentational ambiguity rather than a computational error.",
+   "Angle labelled IV 46.47.7,593 combined with the root -1.276 - 1.359 i is inconsistent if read as the argument of the root (which is 226.8 deg); the figure is presumably a reduced angle (argument minus 180 deg). I am not certain how Gauss defines it."
+  ],
+  "results": [
+   {
+    "what": "Numerical continuation of the roots of a septic x^7 + 28x^4 = f(phi) with f traversing an ellipse 280 + 681.53 cos phi - 651.52 i sin phi, giving the root pattern at phi = 0, 7.5 deg and 180 deg",
+    "modern_name": "Numerical analytic continuation / monodromy tracking of roots of a one-parameter polynomial family along a closed path",
+    "usually_credited_to": "Puiseux (1850) for monodromy of algebraic functions; Riemann (1851-57) for the Riemann surface; numerical homotopy methods much later (20th century)",
+    "already_credited_to_author": "unsure",
+    "routine": false
+   },
+   {
+    "what": "Fixed-point iteration x^7 = N/(1+28/x^3) carried out in logarithms for the real root, and polar-form Newton refinement for complex roots using logs of cos/sin and tabulated small corrections",
+    "modern_name": "Fixed-point and Newton iteration in complex arithmetic with logarithm tables",
+    "usually_credited_to": "Newton/Raphson (17th c.); logarithmic complex arithmetic: Euler/Gauss era standard practice",
+    "already_credited_to_author": "yes",
+    "routine": true
+   },
+   {
+    "what": "Choosing the ellipse so that it passes through the critical value of the polynomial (node x = 16^(1/3)), with semi-axes in the ratio determined by the branch point (next page)",
+    "modern_name": "Path of the parameter through a branch point (critical value) of the discriminant locus of a trinomial",
+    "usually_credited_to": "Branch-point/discriminant analysis: Riemann, Puiseux, Weierstrass (mid-19th c.)",
+    "already_credited_to_author": "unsure",
+    "routine": false
+   },
+   {
+    "what": "Check that the roots sum to zero (x^6 coefficient absent) implicitly in the seven roots at phi = 180 deg",
+    "modern_name": "Vieta relation for the sum of roots",
+    "usually_credited_to": "Vieta/Girard",
+    "already_credited_to_author": "yes",
+    "routine": true
+   }
+  ],
+  "surprise": 1,
+  "surprise_reason": "The page is a page of hand numerical arithmetic: logarithmic root-finding for a septic at three parameter values on an elliptic path of the right-hand side. Gauss's interest in tracing roots of an equation as a parameter moves round a closed curve (branch points, permutations of roots) is plausible given his work on the fundamental theorem and complex function theory, but the page itself shows no theoretical result, only numerics. The only mildly non-routine feature is the apparent systematic root-permutation experiment with ellipses through a critical value, which anticipates later monodromy ideas, but the purpose is not stated on this page and its significance cannot be verified from it.",
+  "checkable": [
+   {
+    "sympy": "abs(log(681.52985,10) - 2.8334849) < 1e-6",
+    "asserts": "log10 of the larger semi-axis is 2.8334849"
+   },
+   {
+    "sympy": "abs(log(651.52373,10) - 2.8139302) < 1e-6",
+    "asserts": "log10 of the smaller semi-axis is 2.8139302"
+   },
+   {
+    "sympy": "abs(280/681.52985 - 0.4108438) < 1e-5",
+    "asserts": "ratio 280/681.52985 is 0.41084 (true 0.4108404; Gauss writes 0.4108438)"
+   },
+   {
+    "sympy": "abs(log(651.52373/681.52985,10) + 0.0195547) < 1e-6",
+    "asserts": "bracketed 9.9804453 is log10 of the axis ratio minus 10"
+   },
+   {
+    "sympy": "abs(2.22754778**7 + 28*2.22754778**4 - 681.52985*(280/681.52985+1)) < 1e-3",
+    "asserts": "x = 2.22755 is the real root at phi = 0 of x^7+28x^4 = 280+681.52985"
+   },
+   {
+    "sympy": "abs((-3.1734474)**7 + 28*(-3.1734474)**4 - (280 - 681.52985)) < 1e-2",
+    "asserts": "x = -3.1734474 is a root at phi = 180 deg of x^7+28x^4 = 280 - 681.52985"
+   },
+   {
+    "sympy": "abs((1.5185469+1.3183246*I)**7 + 28*(1.5185469+1.3183246*I)**4 - (280-681.52985)) < 1e-2",
+    "asserts": "root II at phi = 180 deg"
+   },
+   {
+    "sympy": "abs((1.3446551+2.6823568*I)**7 + 28*(1.3446551+2.6823568*I)**4 - (280-681.52985)) < 1e-2",
+    "asserts": "root III at phi = 180 deg"
+   },
+   {
+    "sympy": "abs((-1.2764779-1.3586191*I)**7 + 28*(-1.2764779-1.3586191*I)**4 - (280-681.52985)) < 1e-2",
+    "asserts": "root IV at phi = 180 deg"
+   },
+   {
+    "sympy": "abs(-3.1734474 + 2*(1.5185469+1.3446551-1.2764779)) < 1e-5",
+    "asserts": "the seven roots at phi = 180 deg sum to zero"
+   },
+   {
+    "sympy": "abs(atan(1.3183246/1.5185469)*180/pi - (40+57/60+46.252/3600)) < 1e-3",
+    "asserts": "argument of root II is 40 deg 57' 46.25\""
+   },
+   {
+    "sympy": "abs(log(1+28/2.22755**3,10) - 0.54818) < 1e-4",
+    "asserts": "the correction term 0.54818 in the iteration at phi = 0"
+   },
+   {
+    "sympy": "abs(nsolve(x**7+28*x**4-(955.6992676553639-85.04091161790498*I), x, 2.2263-0.0407*I) - (2.2263327-0.0407584*I)) < 1e-4",
+    "asserts": "root near x = 2.2263 - 0.0408 i at phi = 7.5 deg (Gauss writes 2.22668 + 0.04675 i; imaginary part should be 0.04075)"
+   }
+  ],
+  "transcription_corrections": [
+   "Heading equation: the machine text has x^7+28x^4-280; the image shows a crossed-out or overwritten sign before 28x^4, so the sign is unclear; the printed 681.52985 and 651.52373 are correct.",
+   "'+0.04675 i' at phi = 7 deg 30' is in the image 0.04675 but should probably be 0.04075 (see errors).",
+   "'rho = 1 deg 2' 56' : image reads 1 deg 2' 56\".",
+   "'0.3037[?] 4037' near the end of block II is a overwritten entry reading 0.30337 or 0.3037 -> 4037; unclear.",
+   "Block IV: the first line '46.47.7,593' is correct, the line '140.21.21[?]' is a overwritten digit group (looks like 140.21.21 or 140.21.24); 187.8.28 and 327.29.49 are as in the machine text.",
+   "Block II: '163.51.24[?]' is overwritten; the sum '163.51.24' and the 7x entry '286.44.22' are consistent with 4*40 deg 57' 46.25\" = 163 deg 51' 5\" so possibly the last digits are different; unclear.",
+   "'9.9241399 -41x' etc.: the machine text drops the overwritten digits; the image shows digits written over each other (e.g. 9.9241399 over 9.9241299); I cannot resolve every overwritten digit.",
+   "Line '10,1301062' near the top reads 10.1301062 in both columns; the lines 'L 2.98203' and 'Lk 2,3189529' are as in the machine text; 'I. - 3,1734474' is as written."
+  ]
  }
 }

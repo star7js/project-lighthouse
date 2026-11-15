@@ -3,8 +3,64 @@
  "page": "c223",
  "label": "110v",
  "image": "https://images.sub.uni-goettingen.de/iiif/image/gdz:DE-611-HS-3206670:00000224/full/1300,/0/default.jpg",
- "stop_reason": "refusal",
+ "stop_reason": "end_turn",
+ "redo": {
+  "date": "2026-11-15",
+  "reader": "Sonnet subagent run from a Claude Code session, same prompt as src/deep.py (not the pipeline model; scores may not be comparable)",
+  "previous_stop_reason": "refusal"
+ },
  "deep": {
-  "raw": "```json\n{\"reconstruction\": \"Context. On the previous page Riemann shows that if ϑ(Σ_1^m α^μ − Σ_1^m u^μ + r) vanishes identically, then all derivatives of ϑ at r up to order m vanish. He then starts the converse. This page sets up the key identity for that converse. The next page finishes it: with Ψ = √A·χ, Ψ is computed by a 0/0 limit through the m‑th derivatives ϑ^{(m)}((r)), and an induction on m follows.\\n\\nNotation (Riemann's, stated at the top of the page). When theta arguments differ only by their component index, he writes ϑ((v)) for ϑ(v_1,…,v_p).\\n\\nData.\\n- u^μ = u(η_μ) is the vector of the p normalized abelian integrals of the first kind at η_μ = (s_μ, z_μ), μ = 1..m.\\n- α^μ = u(ε_μ) at ε_μ = (𝔰_μ, 𝔷_μ). These are the Fraktur letters that the machine transcription renders as γ / ε.\\n- r is the point under study.\\n- t keeps 'die frühere Voraussetzung' (the earlier assumption) [my reading: t is an odd half‑period with ϑ(t) = 0 but (ϑ'_ν(t))_ν ≠ 0, as in the previous page's Σϑ'_ν(t)φ_ν].\\n\\nHypothesis. ϑ((Σ_1^{m−1} α − Σ_1^{m−1} u + r)) ≡ 0 identically"
+  "reconstruction": "Context: this is a draft of Riemann's work on the vanishing of theta functions of a genus-p Riemann surface (published form: 'Ueber das Verschwinden der Theta-Functionen', Crelle 65, 1866). The previous page shows, for the m=1 case, that a ratio of theta products equals a ratio of sums of first derivatives of theta times the abelian differentials phi_nu, and concludes that if all first derivatives of theta vanish at v=r then theta(alpha'-alpha+r) vanishes identically; by induction (letting z_m=zeta_m etc.) theta(sum_1^m alpha - sum_1^m alpha' + r) vanishing identically forces all derivatives of order < m of theta to vanish at r. The present page (folio 110v, numbered '4') starts the converse and the general-m identity.\n\n(1) Notation. Riemann abbreviates theta(v_1,...,v_p) as theta((v)), writing only a generic argument and dropping indices (double brackets).\n\n(2) Hypothesis (his): theta((sum_1^m u - sum_1^m alpha + r)) vanishes identically in the u, alpha, but theta((sum_1^{m+1} ...)) does not; the earlier assumption on the t's (t are constants chosen so that the first derivatives of theta at t do not all vanish; this is my reading of 'die frühere Voraussetzung', partly unclear).\n\n(3) The expression. With points u^1..u^m (variable) and alpha^1..alpha^m (fixed), and arguments v, t (constants), he forms\nE = theta((sum u - sum alpha + v)) * theta((sum alpha - sum u + v)) * prod_{nu != nu'} theta((u^nu - u^nu' + t)) * prod_{nu != nu'} theta((alpha^nu - alpha^nu' + t)) / [ prod_{mu,nu'} theta((u^mu - alpha^nu' + t)) * prod_{nu,mu'} theta((alpha^nu - u^mu' + t)) ],\nproducts over 1..m, numerator excluding nu=nu'. (Here sum u means the vector sum of abelian integrals from fixed origin to the points; the 'z_k' are the upper limits.)\n\n(4) Argument that E is algebraic in z_1: (a) across the period cuts each theta factor picks up exponential multipliers; these cancel between numerator and denominator, so E has multiplier 1 and is single-valued on the surface, hence (with controlled singularities) algebraic. (b) At z_1 = gamma_nu (and the companion points, the transcription 'epsilon_nu' is unclear) numerator and denominator both have infinities of second order, so E stays finite. (Reading: the gamma, epsilon seem to be the endpoints of the second set of points; unclear.) (c) The remaining zeros of numerator and denominator in z_1 are determined by z_2..z_m, v, t alone and so do not depend on the gamma's. Hence E = (algebraic function of z_1 independent of gamma) x (constant in z_1). Repeating in z_2, ..., z_m: E = chi(z_1..z_m) * (factor independent of z). By the symmetry z <-> gamma, that factor is chi(gamma_1..gamma_m) times a constant A independent of both. So E = A chi(z) chi(gamma). The next page (letter fragment begins there) sets Psi = sqrt(A) chi and gets E = Psi(z) Psi(zeta), then evaluates Psi by letting zeta collapse onto the points z (0/0 form, giving m-th derivatives of theta at r contracted with du's).\n\n(5) Purpose: obtain a closed formula showing that if theta and derivatives up to order n-1... vanish at r and the n-th order derivatives do not all vanish, the identity holds for m <= n but fails at m = n+1; this yields the order-of-vanishing statement of the vanishing theorem (theta(sum_1^m alpha - sum alpha' + r) vanishes identically iff all derivatives of order < m vanish at r).\n\nMarked as mine: the interpretation of sums as vector Abel sums, the multiplier-cancellation, and the symbol reading of gamma/epsilon. The page is heavily corrected pencil, many words illegible.",
+  "errors": [
+   "Possible slip or transcription issue: the text says 'Nenner und Zähler werden unendlich von der zweiten Ordnung' at z_1 = gamma_nu, epsilon_nu; which points are meant is unclear from the scan, so the claim of finiteness cannot be fully checked.",
+   "No definite computational error found; the count of z_1-dependent theta factors balances (2m in numerator, 2m in denominator), consistent with the claim that the multiplier is 1 on the cuts.",
+   "Step 'E is algebraic' relies on E having no essential singularities and being single-valued on the cut surface; this is asserted, not detailed, but is standard.",
+   "The constant A is asserted independent of z and gamma by the symmetry argument; the logic needs that E is symmetric under exchange, which holds visibly from the form of E up to the choice of v sign."
+  ],
+  "results": [
+   {
+    "what": "Product of theta functions with u,alpha arguments is, in each variable, an algebraic function times a constant, so factorises as Psi(z)Psi(gamma) (cross-ratio-type / Prym-Fay-style factorisation)",
+    "modern_name": "Factorisation of the theta quotient into prime-form-type function of two point sets; precursor of Fay's trisecant/ addition identities and of the vanishing theorem proof",
+    "usually_credited_to": "Riemann (1865-66 vanishing theorem); Fay 1973 for trisecant type identities",
+    "already_credited_to_author": "yes",
+    "routine": false
+   },
+   {
+    "what": "Theta(sum_1^m alpha - sum alpha' + r) vanishes identically iff all derivatives of theta of order < m vanish at r, and equation of E form holds for m up to the order of vanishing",
+    "modern_name": "Riemann vanishing theorem / Riemann singularity theorem (multiplicity of theta at a point equals dimension of the linear system, Riemann-Kempf)",
+    "usually_credited_to": "Riemann 1865; Kempf 1973 for the multiplicity statement",
+    "already_credited_to_author": "yes",
+    "routine": true
+   },
+   {
+    "what": "Notational abbreviation theta((v)) for theta(v_1..v_p)",
+    "modern_name": "vector notation theta(v)",
+    "usually_credited_to": "Riemann",
+    "already_credited_to_author": "yes",
+    "routine": true
+   }
+  ],
+  "surprise": 1,
+  "surprise_reason": "The page is a working draft of the argument in the published 1865/66 Crelle paper on the vanishing of theta functions; the multiplicity-of-vanishing induction and the factorised theta quotient are the content of that paper (though an unpublished draft detail such as the explicit quotient E may differ in form). Nothing here attributes a later result to him.",
+  "checkable": [
+   {
+    "sympy": "m=symbols('m',positive=True,integer=True); simplify((2 + 2*m*(m-1)) - (2*m**2) + 2*(m-1))",
+    "asserts": "Total theta factors in numerator is 2+2m(m-1), in denominator 2m^2; difference is -(2m-2), so the total counts differ, but the counts depending on u^1 balance: 2 + 2(m-1) = 2m = m + m. Expression should simplify to 0 only in the balanced z_1-dependent count (check by hand: 2+2*(m-1)-2*m == 0)."
+   },
+   {
+    "sympy": "simplify(2 + 2*(m-1) - 2*m)",
+    "asserts": "The number of theta factors depending on z_1=u^1 is 2m in the numerator and 2m in the denominator."
+   },
+   {
+    "sympy": "(m*(m-1))*2 + 2 - 2*m**2 == 2 - 2*m",
+    "asserts": "Numerator minus denominator total theta count equals 2-2m (not zero), so cancellation of multipliers must come from z-dependence rather than total counts."
+   }
+  ],
+  "transcription_corrections": [
+   "Line 'Zur Abkürzung möge es jedoch erlaubt sein' reading is uncertain ('jedoch' not clear on the scan).",
+   "The symbols z_1 = gamma_nu and 'epsilon_nu' in the finiteness sentence are unclear; the scan may read 'z_1 = gamma_nu u. z_1 = epsilon_nu' or 'z_1 = zeta_nu'.",
+   "'v' in the sum arguments should likely be a Greek/Latin v vs nu; indices are very small and sometimes ambiguous.",
+   "The numerator exponents on the products are likely 'nu, nu'' lower limits; the denominator products are written with exponent m^2 meaning pairs (mu, nu') over 1..m."
+  ]
  }
 }

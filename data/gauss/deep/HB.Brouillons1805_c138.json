@@ -3,8 +3,100 @@
  "page": "c138",
  "label": "133",
  "image": "https://images.sub.uni-goettingen.de/iiif/image/gdz:DE-611-HS-3351872:00000139/full/1300,/0/default.jpg",
- "stop_reason": "refusal",
+ "stop_reason": "end_turn",
+ "redo": {
+  "date": "2026-11-15",
+  "reader": "Sonnet subagent run from a Claude Code session, same prompt as src/deep.py (not the pipeline model; scores may not be comparable)",
+  "previous_stop_reason": "refusal"
+ },
  "deep": {
-  "raw": ""
+  "reconstruction": "Folio 133 (headed 'Litt. C.', old number 171 struck through) is a dense page of seven-place logarithmic arithmetic: a working sheet for an orbit determination of a minor planet from several observations (the next page carries the labels 'Zweiter Ort', 'Dritter Ort', 'Perih:', 'Epoche 31 Marz Paris', phi = 4 deg 57'51.77'' and a table with G and F). There is no prose and no symbolic derivation; the algorithm has to be inferred from the numbers, so everything below about method is my inference and the target body is unclear.\n\n(1) Top left, three columns of time/anomaly-type data: angular or time quantities such as 5.3.24,67 / 5.12.56,775 / 5.28.14,465 and halves 2.31.42,335 / 2.36.28,3875 / 2.44.7,2325 (these are exactly half of the first row), then integers 55783 / 50301 / 43353 and quarter-fractions 13945 3/4 etc. (a quarter of the integers), then sexagesimal values (5.31 9/56 ...) and logarithms 7.5066452 / 7.4617323 / 7.3971922 and 8.6445867 / 8.6580159 / 8.6787241. Next come 7.5777406.5 / 7.5995661.5 / 7.6367847.5 and 9.9218411.5 etc., then 45.2793 / 47.6009 / 51.8528 and 0,0043351+ / 0,0045555+ / 0,0049588+. This looks like a repeated tabular calculation at three epochs (three-column table, same pattern as on the previous page, here with refined values: compare the previous page's 5.2.23,985 / 5.12.54,265 / 5.28.12,29). The right-hand block continues with logs (5.0132904, 7.2891734, 9.9983063 ...), sums 19537.4 + 103.5 = 19640.9 etc., and log columns 0,3515761.5 / 0,3462719.5 / 0,3415892.5 (these are log r type values, r about 2.24, 2.22, 2.19). A small multiplication/addition scratch (34957, 70180, 105137 ...) and the final four logs 'log P' = 0,0026853, log P'' = 9.9888874, log Q' = 9.2377607, log Q'' = 9.2522811' are the outputs carried to the next stage. P', P'', Q', Q'' are, in the notation of Gauss's later Theoria Motus (1809) treatment of the ratios of triangle areas / sector-to-triangle ratios for an elliptic orbit, the standard auxiliary quantities of the iteration; that identification is my inference from the notation and layout, not stated on the page.\n\n(2) Middle: with those four logs the page runs the iteration for the two unknowns x', x''. Two stacked sums give x' = 8,5509454 - 6,4556566 = 2,0952888 (as log) and then 0,8099404 + 0,8200762 = 1,6300166; minus 0,0066968 = 1,6233198 = log 42,006818; 43,977136 - 42,006818 = 1,970318 = the other unknown (x''). The second stack starts from 1,970318 and 5,3744895 - 3,4041718 = 1,9703177, again giving x'' = 1,970318, and ends with 2,0952888 = x'. This is a fixed-point iteration: the previous page shows successive pairs (x', x'') = (2,0953782; 1,9705433), (2,0953541; 1,9704060) and this page (2,0952888; 1,970318), converging slowly. The constant 43,977136 appears as 'c'' (for c' with an earlier struck-out 0,8200762) and is carried unchanged except in the last digits.\n\n(3) Angles: 20.11.11,17 = 14.57.24,81 + 5.13.46,36; 26.45.43,67 = 11.11.10,24 + 15.34.33,43; 10.24.9,895 and 5.10.23,535 are the half-sum and half-difference (sum 15.34.33,43, difference 5.13.46,36). These are used to form the angles u', u'' = 167.19.26,66 and 175.43.41,62 and the half-sum/difference combinations 1/2(y''+u'') = 173.22.22,74, 1/2(y''-u'') = 2.21.18,88 and 1/2(y'+u) = 166.22.29,895, 1/2(y'-u) = 0.56.56,165, plus 1/2 Q' - ... = 14.47.43,73. Interpretation: sum-and-difference (Mollweide/tangent-half-angle type) solutions of spherical or plane triangles, used with y, u as auxiliary angles (probably the eccentric-anomaly-type auxiliaries for the elliptic sector formula). Exact meanings of y and u are unclear.\n\n(4) Lower half: further log columns (9.6066183, 9.6015848, 9.7070074, 9.7005438 ... 80.23.32,75 and 111.52.50,48 with difference 31.29.17,73), values 10.6.50,89 / 10.25.55,24 / 10.56.31,60 with logs 0,3543512 / 0,3487750 / 0,3437415 / 0,3393936 (log r at four moments, about 2.26 to 2.18), an interpolation of 15.44.38,865 and 7.52.19,4325 (a half-value) and a final 7 deg 27'7.8975'' added to 7.52.19,4325 giving 15.19.27,330. Lower left is a heavily crossed-out cluster of trial computations (9.3721139, 8.7793128 ... 7 deg 8'17''04, 103.7.32,07 / 103.7.32,12, 3.34.8,52), with 103 deg 7'32'' recurring and reappearing on the next page (103.7.32,095), i.e. a quantity that was refined by cancelling and recomputing. Also visible: 0,0149576, 0,0037394, 14'48''00, 0,0195089.28, 0,8333333 (= 5/6), 9.1365988, 8.2731976, 9.9833931, and a log sum 0,3468724 / 0,2844231 / 0,6312955 / 0,4960738 / 1,8938865 / 8,6021873 / 9.9308821 / 0,0419131 / 8,5602742. The last two (8.6021873 and 8.5602742 ... ) feed the 'Zweiter Ort' block on the next page, so this page is its preparation.\n\nSummary: a numerical iteration for the ratios x', x'' (areas/sector ratios), with the final angles feeding the position and elements computed on the next page. It is pure working: no new formula is stated.",
+  "errors": [
+   "Possible arithmetic slip: 1/2(y'+u) = 166.22.29,895 plus 1/2(y'-u) = 0.56.56,165 sums to 167.19.26,060, but u' is written 167.19.26,66 (0.6'' discrepancy). This may be a misreading of the ink or a real slip in a cell; unclear.",
+   "The large crossed-out blocks at lower left, and several overwritten digits (x'', 3.4041718, 0,7052084, 0.3320145 with question marks), show that trial values were corrected during the page; the final x'' = 1,970318 is consistent in the two independent subtractions I checked (43,977136-42,006818 and 5,3744895-3,4041718).",
+   "Row labels such as u'' versus 1/2(y''+u'') are ambiguous: 173.22.22,74 + 2.21.18,88 = 175.43.41,62 which is the value written as u'', so the labelling of the pair is unclear."
+  ],
+  "results": [
+   {
+    "what": "Iterative (fixed-point) solution for the pair x', x'' (about 2.0952888 and 1.970318) from the logs of P', P'', Q', Q'' in an orbit determination for a minor planet",
+    "modern_name": "Iterative determination of triangle/sector area ratios in Gauss's method of orbit determination from three or more observations (Theoria Motus, 1809)",
+    "usually_credited_to": "Gauss (Theoria Motus 1809; method developed 1801-1809)",
+    "already_credited_to_author": "yes",
+    "routine": true
+   },
+   {
+    "what": "Sum-and-difference (half-angle) calculation of auxiliary angles u', u'', y', y'' and anomalies by seven-place logarithms",
+    "modern_name": "Solution of plane/spherical triangles by half-angle formulas; Kepler-equation related anomaly computation",
+    "usually_credited_to": "classical (Mollweide, Euler, Delambre); applied to orbits by Gauss",
+    "already_credited_to_author": "yes",
+    "routine": true
+   },
+   {
+    "what": "Preparation for the 'Zweiter Ort' / 'Dritter Ort' computations and elliptic elements (phi, perihelion, epoch 31 March Paris) on the next page",
+    "modern_name": "Elliptical orbital elements from heliocentric positions; computation of ephemeris from elements",
+    "usually_credited_to": "Gauss",
+    "already_credited_to_author": "yes",
+    "routine": true
+   }
+  ],
+  "surprise": 1,
+  "surprise_reason": "Pure logarithmic work for an orbit calculation of c. 1805 in a bundle of Brouillons, consistent with the well-documented Gauss orbit-determination method; no new formula or unexpected result is visible. Only mild interest is the documentation of the successive iterations and the cancelled trials.",
+  "checkable": [
+   {
+    "sympy": "Rational('43.977136') - Rational('42.006818') == Rational('1.970318')",
+    "asserts": "The two numbers on the x' stack difference to x'' = 1.970318"
+   },
+   {
+    "sympy": "Rational('5.3744895') - Rational('3.4041718') == Rational('1.9703177')",
+    "asserts": "The second stack gives x'' = 1.9703177, agreeing with 1.970318 to rounding"
+   },
+   {
+    "sympy": "Rational('8.5509454') - Rational('6.4556566') == Rational('2.0952888')",
+    "asserts": "log difference giving x' = 2.0952888 as written"
+   },
+   {
+    "sympy": "Rational('0.8099404') + Rational('0.8200762') - Rational('0.0066968') == Rational('1.6233198')",
+    "asserts": "stack of three entries leading to 1.6233198"
+   },
+   {
+    "sympy": "abs(10**1.6233198 - 42.006818) < 1e-4",
+    "asserts": "1.6233198 is log10 of 42.006818 (the stack is a logarithm of the value on the next line)"
+   },
+   {
+    "sympy": "Rational('10.24')+Rational('0') == Rational('10.24')  # placeholder angle sum not meaningful",
+    "asserts": "not meaningful; ignore"
+   },
+   {
+    "sympy": "(14*3600+57*60+24.81)+(5*3600+13*60+46.36)-(20*3600+11*60+11.17) == 0",
+    "asserts": "14.57.24,81 + 5.13.46,36 = 20.11.11,17 (angle arithmetic in seconds of arc)"
+   },
+   {
+    "sympy": "(11*3600+11*60+10.24)+(15*3600+34*60+33.43)-(26*3600+45*60+43.67) == 0",
+    "asserts": "11.11.10,24 + 15.34.33,43 = 26.45.43,67"
+   },
+   {
+    "sympy": "(80*3600+23*60+32.75)+(31*3600+29*60+17.73)-(111*3600+52*60+50.48) == 0",
+    "asserts": "80.23.32,75 + 31.29.17,73 = 111.52.50,48"
+   },
+   {
+    "sympy": "(7*3600+52*60+19.4325)+(7*3600+27*60+7.8975)-(15*3600+19*60+27.330) == 0",
+    "asserts": "7.52.19,4325 + 7.27.7,8975 = 15.19.27,330"
+   },
+   {
+    "sympy": "(166*3600+22*60+29.895)+(0*3600+56*60+56.165)-(167*3600+19*60+26.66)",
+    "asserts": "Should be 0 if u' = 167.19.26,66 is the sum of the two half-angles; it equals -0.6 arcsec, a discrepancy to inspect (my reading of the ink may also be at fault)"
+   },
+   {
+    "sympy": "(173*3600+22*60+22.74)+(2*3600+21*60+18.88)-(175*3600+43*60+41.62) == 0",
+    "asserts": "173.22.22,74 + 2.21.18,88 = 175.43.41,62 (the value written as u'')"
+   }
+  ],
+  "transcription_corrections": [
+   "Line 'x' =' block: the machine text has '5.3744895 / 3.4041718[?] / 0.3320145[?]'; image reads 5.3744895, 3.4041718 (with overwriting), and 0.3320145 appears heavily overwritten; unclear.",
+   "Heading: image shows 'Litt. C.' and old folio number 171 struck through in red with 133 written; the first-line fragment at upper left ('Mor. nah' or similar) is illegible bleed-through from the facing page.",
+   "Top right: digits are 34957 44453 / 37847 47572 with 70180 5482 / 75982 6948 and 105137, 113829; the transcription is consistent.",
+   "'9.9888874' and '0,0026853' appear in the lower-middle block as 9.9888874 / 0,0026853; machine text used both comma and period as decimal separator; this is the author's inconsistent notation, not an error.",
+   "In the lower-left cluster most entries are struck out; the transcription's bracketed deletions (e.g. [-5.44.60-], [-14.23.4.51-], [-7.6339905-], [-19257-], [-48.91429-]) are consistent with the image, but several digits there are partly overwritten and cannot be read reliably."
+  ]
  }
 }

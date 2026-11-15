@@ -3,8 +3,84 @@
  "page": "c028",
  "label": "15r",
  "image": "https://images.sub.uni-goettingen.de/iiif/image/gdz:DE-611-HS-3376168:00000029/full/1300,/0/default.jpg",
- "stop_reason": "max_tokens",
+ "stop_reason": "end_turn",
+ "redo": {
+  "date": "2026-11-15",
+  "reader": "Sonnet subagent run from a Claude Code session, same prompt as src/deep.py (not the pipeline model; scores may not be comparable)",
+  "previous_stop_reason": "max_tokens"
+ },
  "deep": {
-  "raw": ""
+  "reconstruction": "This folio (15r) is a dense scratch sheet of number-theoretic computation, with no connected prose and no stated problem. The previous page (12) holds similar material: lists of residues grouped by braces, numbered 990-1000, with factorizations such as 3.5.11. The next page carries headings such as 'Ord. 1, 2, 3, 6', determinants like -102, -104, -115, -119 and -123, and continued-fraction style forms (b+sqrt D)/a. The context therefore looks like Gauss's work on classes, orders and genera of binary quadratic forms (Disquisitiones Arithmeticae, Section V) and on tables of reduced forms for negative determinants. That reading is my inference from context, not something stated on the page.\n\nLeft block (about 40% of the page): five columns of headed number groups. The headings run 137-142 in column 1, 43 (probably a mis-transcribed or re-written 143), 144-148 in column 2, and 149 and 150 in column 3. Under each heading is a short list of small integers (1, 2, 3, 5, 6, 7, 9, 10, 11, 12, 13...) bracketed in groups by curly braces. A dash or a small product follows some braces (for example 147, 8, 8.25, 4.8.4, 8.47, 11.13, 8.29, 73, 7, 149, 4.8). The first entry is always 1. The most natural reading is that for a modulus or determinant numbered 137-150 Gauss lists residues or classes, groups them into cosets or cycles under a multiplier, and records the group order or the cycle lengths (the products such as 4.8 or 8.29). I cannot determine the exact rule from this page alone. Some of the right-hand annotations, such as 8.25, 8.47 and 8.29, may be struck through, so they are unclear.\n\nMiddle and right blocks: loose arithmetic jottings. Examples are 43.29 with 1717 (=17.101) and 40841, 52441, 53429; 988 with 2.13.19; 1044 and 984 and 980; 1756, 194, 2916 (=54^2), 108, 9604 (=98^2), 10584 (=2^3.3^3.7^2), 392, 49; 874; 1269, 14, 37, 2349 (=3^4.29), 87; 2.11.437 and 2.11.19.23 (=9614, with 437=19.23); 5639, 321, 351; 15390 (=2.3^4.5.19), 190, 125.63; and the final run 9614, 9630, 1070, 10098, 9774, 9775. These are factorizations and trial computations, probably checking that particular numbers are represented by, or are norms of, forms of a given determinant. Several entries look like quantities of the form x^2+D y^2 or a product of small primes, but I cannot tell the determinant.\n\nTwo pair-tables of 'x,y' values appear, such as 1,0 / 3,1 / 9,1 / 27,10 / 4,0 / 12,4 / 29,8 / 5,0 / 8,2 / 24,22 / 15,5 / 24,10 / 23,3. A second one reads 1,0 4,4 27,22 81,76 70,46 ... 25,19 75,19 and so on. They are likely pairs (a, b) or (x, y) tracing orbits or chains of reduced forms, or powers of a form (3, 9, 27 ... in the first slot suggest successive powers or cyclic composition). A vertical bar table with entries 1, 4, 24, 24, 9, 29, 5, 20 beside 8, 3, 12, 23, 27, 15 with circled (5) and (7) looks like a partition of residues into two classes and a cycle structure. The labels (5) and (7) are probably primes. A final block of prime numbers is not present on this page. It occurs on the next page, which lists primes with 7, 5, 3 labels.\n\nNo derivation is stated, so nothing here can be restated as a proof. I mark everything above as interpretation, not reading. The page is best described as raw computational data for class-structure tables of binary quadratic forms or for residue-cycle structure of moduli 137-150.",
+  "errors": [
+   "No derivations are present, so there are no verifiable logical errors. Arithmetic checks on legible products found no slips: 1717=17*101, 9614=2*11*19*23, 2349=3^4*29, 1269=3^3*47, 10584=2^3*3^3*7^2, 15390=2*3^4*5*19, 2916=54^2 and 9604=98^2 are all correct. 43*29=1247 is the product written on the page (43.29), and its relation to the neighbouring 40841, 52441 and 53429 is unclear.",
+   "The heading '43' in column 2 is probably a slip or a different number rather than a true heading (the sequence is 137-142, 143?, 144-150). It could be a misread 143, which is 11.13 and matches the '11.13' annotation beside it, so this is likely 143."
+  ],
+  "results": [
+   {
+    "what": "Tables of residue or class groupings for moduli or determinants 137-150, with group-order or cycle-length products",
+    "modern_name": "Class or genus structure computations for binary quadratic forms, or orbit decompositions of residues (exact interpretation unclear)",
+    "usually_credited_to": "Gauss (Disquisitiones Arithmeticae, 1801) for the theory of forms and composition",
+    "already_credited_to_author": "yes",
+    "routine": true
+   },
+   {
+    "what": "Integer factorizations of numbers in the 800-15000 range (e.g. 9614 = 2.11.19.23, 15390 = 2.3^4.5.19)",
+    "modern_name": "Trial-division factoring, probably checking representation or norm values",
+    "usually_credited_to": "Classical (Gauss's factor-table work; compare Disquisitiones Art. 329-332)",
+    "already_credited_to_author": "yes",
+    "routine": true
+   },
+   {
+    "what": "Pair tables (x,y) such as 3,1 / 9,1 / 27,10 / 29,8 that look like orbits, powers or chains of forms",
+    "modern_name": "Powers of a form class or reduction cycles of quadratic forms (unclear)",
+    "usually_credited_to": "Gauss (composition of forms, 1801)",
+    "already_credited_to_author": "yes",
+    "routine": true
+   }
+  ],
+  "surprise": 1,
+  "surprise_reason": "The page is raw scratch computation consistent with Gauss's known work on quadratic forms and factoring. No novel result is visible, and the content cannot be tied to any claim beyond the standard theory.",
+  "checkable": [
+   {
+    "sympy": "sympy.factorint(9614) == {2:1, 11:1, 19:1, 23:1}",
+    "asserts": "9614 = 2.11.19.23, matching the written 2.11.437 and 2.11.19.23"
+   },
+   {
+    "sympy": "sympy.factorint(15390) == {2:1, 3:4, 5:1, 19:1}",
+    "asserts": "15390 = 2.3^4.5.19"
+   },
+   {
+    "sympy": "sympy.factorint(2349) == {3:4, 29:1}",
+    "asserts": "2349 = 81.29"
+   },
+   {
+    "sympy": "sympy.factorint(1269) == {3:3, 47:1}",
+    "asserts": "1269 = 27.47"
+   },
+   {
+    "sympy": "sympy.factorint(10584) == {2:3, 3:3, 7:2}",
+    "asserts": "10584 = 8.27.49"
+   },
+   {
+    "sympy": "sympy.factorint(1717) == {17:1, 101:1}",
+    "asserts": "1717 = 17.101"
+   },
+   {
+    "sympy": "sympy.factorint(874) == {2:1, 19:1, 23:1}",
+    "asserts": "874 = 2.19.23"
+   },
+   {
+    "sympy": "43*29 == 1247",
+    "asserts": "the product written as 43.29 near the top right"
+   }
+  ],
+  "transcription_corrections": [
+   "Heading '43' in column 2 is probably 143 (annotation 11.13 matches 143 = 11.13).",
+   "Transcription line '1,0 4,4 27,22 81,76 [-70-],46 ...' is a second pair table, partly overwritten; the entries 70,46 and 47,34 are unclear.",
+   "Right-hand '4.8.4[?]' and '8.4[?]' in the 140 block are read more plausibly as 4.8.7 and 8.7 in the image, but remain unclear.",
+   "The note '8.47' under 141 and 142 is crossed out in the image, and the '8.25' beside 138 and 145 is also struck through.",
+   "'3.07.119' near the bottom centre is unclear and may be '3.49.119' or similar.",
+   "Several digits in the stacked column near the top right (40841, 52441, 53429) are hard to read."
+  ]
  }
 }

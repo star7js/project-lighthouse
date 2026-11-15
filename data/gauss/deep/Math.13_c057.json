@@ -3,8 +3,45 @@
  "page": "c057",
  "label": "27v",
  "image": "https://images.sub.uni-goettingen.de/iiif/image/gdz:DE-611-HS-3376633:00000058/full/1300,/0/default.jpg",
- "stop_reason": "refusal",
+ "stop_reason": "end_turn",
+ "redo": {
+  "date": "2026-11-15",
+  "reader": "Sonnet subagent run from a Claude Code session, same prompt as src/deep.py (not the pipeline model; scores may not be comparable)",
+  "previous_stop_reason": "refusal"
+ },
  "deep": {
-  "raw": "```json\n{\"reconstruction\": \"Context. The previous page tabulates, for Gaussian primes P (with p = 1+2i), how many numbers k fall into biquadratic-residue classes 0, 1, 2, 3. That is a Gauss-lemma-type lattice-point count. The next page sums -(alpha ... l)^2 over the lattice points x+iy in a triangle, where alpha + i l = floor((1+i)(x+iy)(A+iB)/(a+ib)). That is a Gaussian-integer analogue of the floor-function sums sum floor(kx/p) used in Gauss's 3rd and 5th proofs of quadratic reciprocity. This page is the auxiliary rational computation: evaluating such a sum recursively along a continued-fraction-like chain.\\n\\nNotation on the page (my interpretation):\\n- a, b, c, d, e, f, g is a descending chain of integers: 379, 107, 70, 31, 4, 1, 0.\\n- A, B, C, D, E, F, G are their residues mod 2: 1, 1, 0, 1, 0, 1, 0. These agree exactly with the parities of 379, 107, 70, 31, 4, 1, 0.\\n- Fraktur-b, gamma, delta, epsilon, phi = 2, 1, 2, 8, 4 are the partial quotients of the chain (as read).\\n- n = 6 is the length.\\n\\nStep 1. The quantity to evaluate is written as an alternating sum of n-1 = 5 terms:\\nS = +1/4 (B-b)(A - bB - C + 2b) - 1/4 (C-c)(B - gC + D + 2g) + 1/4 (D-d)(C - dD - E + 2d) - 1/4 (E-e)(D - eE - F + 2e) + 1/4 (F-f)(E - fF - G + 2f).\\nIn each factor the 'b', 'g', 'd', 'e', 'f' inside the brackets are the partial quotients fraktur-b, gamma, delta, epsilon, phi. A struck-out leading 'AB' sh"
+  "reconstruction": "The page is a narrow paper strip (folio 27v) of scratch algebra with no prose, so the purpose is not stated and my reading is tentative. Context from the neighbouring pages: the previous page tabulates, for Gaussian primes P and a modulus p = 1+2i, counts k^0..k''' of residues falling in each biquadratic residue class, together with a short list of values of (a+bi) pairs and small integers. The next page begins a sum over Gaussian-integer points x+iy in a region (Delta), with a floor-type bracket [ (1+i)(x+iy)(A+iB)/(a+ib) ] = alpha + i*l and a sum of squares of the resulting parts. This page looks like the algebraic bookkeeping for a reciprocity-type lattice-point sum of the kind used for Gauss's biquadratic (quartic) reciprocity work, evaluated by a continued-fraction style chain.\n\n(1) Top block: a five-line alternating-sign sum with weights 1/4. Line k has the form +/- (1/4)(X - x)(Y - g*X' - Z + 2g) with consecutive letters (A,B,C,D,E,F,G) and the corresponding lowercase letters (a,b,c,d,e,f,g), with Gothic b, gamma, delta, epsilon, phi as additional multipliers (apparently small integer partial quotients of a chain, since the lower-right table lists values 2,1,2,8?,4 for them and 1/2 for the first). Signs alternate +,-,+,-,+. Below it is the grouped form (1/4)(b'B - gamma C + delta D - eps E + phi F) + (1/4)(AB - BC + 2CD - 2DE + 2EF - FG), which seems to be the result of expanding the products and collecting the terms that do not involve the lowercase letters.\n\n(2) Middle block: the telescoping pieces -a/4 + b/4, -f/4 (+g/4), -bA/4 + aB/4, -gF/4 + fG/4 are boundary terms of the chain. Then the column AB-BC, -BC+CD, +CD-DE, -DE+EF, +EF-FG is the term by term listing of products of adjacent capital letters; adding these five rows gives AB - 2BC + 2CD - 2DE + 2EF - FG. The page's collected line (item 1) shows a single BC in the transcription, so either the image has a coefficient I cannot read or there is a slip; I flag this as unclear. Next to it are the mixed terms bA/4 + bC, b'B - cD, -dC + dE, +eD - eF, -fE + fG, and a second line 1/2 - b'b + gamma c - delta d + eps e - phi f.\n\n(3) A small stack of signed lowercase terms (-a+c, +b-d, -c+e, +d-f, -e-g) is the same pattern of alternating differences with step 2, probably the linear terms of the same sum.\n\n(4) Numerical evaluation on the right: a=379, b=107, c=70, d=31, e=4, f=1, g=0; capitals A=1, B=1, C=0, D=1, E=0, F=1, G=0; multipliers 1/2, 2, 1, 2, 8, 4 for the Gothic letters; n=6. Partial results written below: +9/4, +1/4, -138, -1/2 and +69. These look like the evaluated pieces of the formula with the total about -138 + 69 = -69 plus small fractions. I cannot reliably connect the list to the symbolic block, since a..g (379, 107, 70, 31, 4, 1, 0) do not form an obvious Euclidean remainder sequence. Bottom-left: a 0/1 pattern (1 0 1 1 0; 1 1 1 0) of unclear meaning, perhaps a parity check.\n\nSo the page is a worked evaluation of a six-step alternating continued-fraction sum with explicit numerical data, apparently a Dedekind-sum or lattice-point-count reciprocity formula for Gaussian integers. I could not recover the exact definition of the quantities, so I do not claim more.",
+  "errors": [
+   "No definite error found, but the symbolic expansion cannot be fully verified: the collected line has AB - BC + 2CD ..., whereas adding the listed column gives AB - 2BC + 2CD - 2DE + 2EF - FG; either the image carries a coefficient I cannot read or there is a slip.",
+   "The definitions of the letters are not on the page, so the numerical evaluation (379, 107, 70, ... giving -138, +69) is unverified.",
+   "Several readings (the 8 for epsilon, the Gothic letters, the final 0/1 pattern) are uncertain."
+  ],
+  "results": [
+   {
+    "what": "Alternating-sign weighted sum over a six-term chain of partial quantities, reduced by telescoping of adjacent products",
+    "modern_name": "Continued-fraction/Dedekind-sum style reciprocity computation for Gaussian integers (tentative)",
+    "usually_credited_to": "Dedekind (sums, 1850s-1870s); Gauss for biquadratic reciprocity lattice-point method (1828-1832)",
+    "already_credited_to_author": "unsure",
+    "routine": true
+   }
+  ],
+  "surprise": 1,
+  "surprise_reason": "Appears to be scratch computation supporting Gauss's known biquadratic-residue and Gaussian-integer lattice-point work; the exact aim cannot be recovered and nothing evidently new is visible.",
+  "checkable": [
+   {
+    "sympy": "simplify((A*B-B*C)+(-B*C+C*D)+(C*D-D*E)+(-D*E+E*F)+(E*F-F*G) - (A*B-2*B*C+2*C*D-2*D*E+2*E*F-F*G))",
+    "asserts": "The five listed rows sum to AB-2BC+2CD-2DE+2EF-FG (result 0), which differs from the page's collected line only in the BC coefficient"
+   },
+   {
+    "sympy": "Rational(9,4)+Rational(1,4)-138-Rational(1,2)+69",
+    "asserts": "Arithmetic of the final partial results on the page (gives -66.5 exactly; compare with how the page combines them, unclear)"
+   }
+  ],
+  "transcription_corrections": [
+   "Line 66: the machine text AB-BC+2CD... may have a modified symbol (Gothic b or similar) in front of BC in the image; unclear.",
+   "Line 59: the machine text '[-AB-]' is a crossed-out term at the start of the first line, followed by +1/4 in front of (B-b).",
+   "The stamp in the middle of the page (library stamp) is not mathematical content.",
+   "The 0/1 pattern at the bottom is partly unreadable; the 'x' and backslash marks are doubtful."
+  ]
  }
 }

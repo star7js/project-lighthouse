@@ -3,8 +3,92 @@
  "page": "c083",
  "label": "[78]",
  "image": "https://images.sub.uni-goettingen.de/iiif/image/gdz:DE-611-HS-3351872:00000084/full/1300,/0/default.jpg",
- "stop_reason": "refusal",
+ "stop_reason": "end_turn",
+ "redo": {
+  "date": "2026-11-15",
+  "reader": "Sonnet subagent run from a Claude Code session, same prompt as src/deep.py (not the pipeline model; scores may not be comparable)",
+  "previous_stop_reason": "refusal"
+ },
  "deep": {
-  "raw": ""
+  "reconstruction": "Page headed 'Litt. K' (folio [78], Brouillons 1805). It is a numerical working page, in logarithms and in arcseconds, whose aim is to fix a constant e for a correction formula by a maximum/minimax condition. The overall physical problem is not stated on the page; the notation (omega/lambda, tan psi, F, e) suggests an astronomical orbit-computation or interpolation-correction context, but this is my guess and is unclear.\n\n(1) Top: the expression (omega/lambda) tan(psi) * [ cosF (1+3e sinF) / (e - cosF)^2 ] 'soll Maximum seyn' (is to be a maximum, in F). The transcription reads 'cos F^2 + 3e cosF sinF' in the numerator, but the stationarity equation Gauss writes next only follows if the numerator is cosF(1+3e sinF); I read it that way (my inference). Taking the logarithmic derivative in F: -tanF + 3e cosF/(1+3e sinF) - 2 sinF/(e-cosF) = 0. This is exactly the line on the page. He rearranges it to 3e cosF/(1+3e sinF) = sinF{ 2/(e-cosF) + 1/cosF } (correct, since tanF = sinF/cosF). Small side scribbles (3ee - 3ex sqrt(1-(e-x)^2), ee-2ex+xx, 1/cosF) look like an attempt to eliminate F by substituting x = cosF; unfinished.\n\n(2) Numerical specialisation, right-hand column. Writing 2G for an auxiliary angle, the next page states the general equation (2 - 1/2 sec2G) e - 3/2 = sec2G (e-1)(e-cos2G){ 1/(2e+2) + 1/(e + 1/3 cot2G) }. This page carries out the case 2G = 10 degrees. Coefficients: 1/2 sec10deg = 0.5077133 (so 2 - 0.5077133 = 1.4922867); log 1.5 = 0.1760913, log 1.4922867 = 0.1738522, difference 0.0022391 = log of 1.5/1.4922867, hence e - 1.005169 after dividing through; 1/1.0154266 = 0.984809 = cos10deg; log sec10deg = 0.0066481; so the coefficient sec2G/1.4922867 = 0.68042 (log 9.8327959-10); 1/3 cot10deg = 1.8904 (written 1.89...). The equation becomes (e-1.005169)/((e-1)(e-0.984809)) = 0.68042 { 1/(2e+2) + 1/(e+1.89..) }. (The sign of the left-hand numerator: the two lines 0.5077133e-0.5 and -2e+2 sum to -(1.4922867e-1.5); Gauss writes the positive form, harmless since both sides are divided consistently - my reading.)\n\n(3) Solving for e near 1: set e = 1+x; a few trial/approximation scribbles in x follow (1/(2x)+0.25, +0.35, 1/(2x)+0.6, x = 0.003 ...); these are unclear. He then iterates with logarithms: log(e-1) = 7.71697, log(0.0204..) = 8.30964, log 0.68042 = 9.83280, sum 5.85941 (= 7.235e-5), minus log(e+1.89) etc., arriving at e = 1.005212 (first guess 1.005169, corrected by about 4.3e-5). I verified that e = 1.005212 satisfies the equation to the shown precision (left side numerator 4.3e-5, right side 4.30e-5).\n\n(4) Error table. In the column at lower right: 2G = 10, 20, 30, 40 degrees give e = 1.005212, 1.022916, 1.062882, 1.172047 and a second column 8''86, 1.38, 0.47, 0.20 (arcseconds). The 8''86 at 10 degrees is computed just above: logs 8.37561 (= log omega/lambda), 9.01916, 7.39477, ..., 0.46174 (= log(e+1.8904)), 0.94727 giving 8''86. The next page shows the same computation at 20, 30, 40 degrees with the pattern (3/2)(omega/lambda) sin4G (sec2G - 1), giving 1''38, 0''47, 0''20, consistent with this table. So the second column is the size of a residual correction or error, in arcseconds, that results when e takes the optimal value; omega/lambda = 10^(8.3756108-10) (log omega = 8.0133951, log lambda = 9.6377843, difference 8.3756108 correct).\n\n(5) Left-hand column. An iteration for F by trial: input F = 0, 30, 18 30', 16, 15 30, 15 21' gives output 0 51'30'35'', 10 24', 14 11', 15 5', 15 17', 15 20.5', converging to F of about 15 degrees 21'. Then (sin2F cotF + 3e)/(e - cosF)^2 is evaluated with 7-digit logs at F = 15 21' (the second-derivative-like quantity, to confirm a maximum or to estimate the error) ending at 0''337; the exact meaning of the two columns 7542891/7547047 and 3356732/3355963 is unclear. Also '1/2 omega/lambda tan psi' with log 8.0745808 (correct: 8.3756108 minus log 2 = 8.0745808).\n\n(6) Bottom right: a two-column mini-table for 30 and 60 degrees with rows labelled c, t1/2, e (values 0.06695/0.18546, 0.12494/0.31500, ..., 0.02115/0.12060, final 0''47). Meaning unclear; the 0''47 coincides with the 30 degree entry of the error column, so it is probably a cross-check of the same quantity by a different route.\n\nWhat problem it serves: determining, for several values of an angle, the optimal constant e in a correction formula so that its maximum error over F is minimised, and tabulating the resulting error in arcseconds. The next page then reduces the equation to a quadratic in e (A x^2 - 2Bx - C = 0 solved by an auxiliary angle psi) for exact solution.",
+  "errors": [
+   "The numerator of the quantity to be maximised as transcribed (cos F^2 + 3e cosF sinF) is inconsistent with the stationarity equation on the page; the equation corresponds to cosF(1+3e sinF). Either a transcription slip or Gauss's shorthand.",
+   "The line '1.4922867 e - 1.5' is the negative of the sum of the two lines above it (-1.4922867e + 1.5); an overall sign, no consequence for the root.",
+   "Log (e-1) is written 7.71697 in one place and 7.71700 in another: a consistent refinement of the iteration, not an error.",
+   "The scribbled substitution x = cosF (3ee - 3ex sqrt(1-(e-x)^2) etc.) is incomplete and cannot be checked.",
+   "The x-series approximation scribbles (x = 0.003, 1.0499) are unclear and do not obviously agree with the final e = 1.005212 (x = 0.0052)."
+  ],
+  "results": [
+   {
+    "what": "Stationarity condition for F of cosF(1+3e sinF)/(e-cosF)^2: -tanF + 3e cosF/(1+3e sinF) - 2 sinF/(e-cosF) = 0",
+    "modern_name": "Maximisation of a function by setting the logarithmic derivative to zero",
+    "usually_credited_to": "Calculus (Newton, Leibniz, Fermat)",
+    "already_credited_to_author": "yes",
+    "routine": true
+   },
+   {
+    "what": "Specialisation of the F-stationarity condition to (2 - 1/2 sec2G)e - 3/2 = sec2G (e-1)(e-cos2G){1/(2e+2)+1/(e+1/3 cot2G)} and numerical solution for 2G = 10, 20, 30, 40 degrees (e = 1.005212, 1.022916, 1.062882, 1.172047)",
+    "modern_name": "Numerical solution of a nonlinear equation by trial and logarithmic iteration; tabulation of an optimal parameter (minimax-type choice)",
+    "usually_credited_to": "No specific attribution; unknown source problem",
+    "already_credited_to_author": "unsure",
+    "routine": true
+   },
+   {
+    "what": "Error column in arcseconds (8''86, 1''38, 0''47, 0''20) from (3/2)(omega/lambda) sin4G (sec2G - 1)",
+    "modern_name": "Residual error estimate for an approximate correction formula",
+    "usually_credited_to": "unclear",
+    "already_credited_to_author": "unsure",
+    "routine": true
+   }
+  ],
+  "surprise": 1,
+  "surprise_reason": "Careful hand computation of an optimal-parameter table with seven-digit logarithms, typical of Gauss's working style in orbit and interpolation computations. No new theory or major result is visible; the underlying problem is not identified on the page.",
+  "checkable": [
+   {
+    "sympy": "simplify(diff(log(cos(F)*(1+3*e*sin(F))/(e-cos(F))**2),F) - (-tan(F)+3*e*cos(F)/(1+3*e*sin(F))-2*sin(F)/(e-cos(F))))",
+    "asserts": "Equals 0: the page's stationarity equation is the logarithmic derivative of cosF(1+3e sinF)/(e-cosF)^2."
+   },
+   {
+    "sympy": "simplify(-tan(F)+3*e*cos(F)/(1+3*e*sin(F)) - 2*sin(F)/(e-cos(F)) - (3*e*cos(F)/(1+3*e*sin(F)) - sin(F)*(2/(e-cos(F))+1/cos(F))))",
+    "asserts": "Equals 0: the rearranged form 3e cosF/(1+3e sinF) = sinF{2/(e-cosF)+1/cosF} is equivalent."
+   },
+   {
+    "sympy": "N(1/2*sec(10*pi/180), 8)",
+    "asserts": "About 0.5077133 (the coefficient 0.5077133)."
+   },
+   {
+    "sympy": "N(1/3*cot(10*pi/180), 6)",
+    "asserts": "About 1.8904 (Gauss's 'e+1.89...')."
+   },
+   {
+    "sympy": "N(1.5/1.4922867, 7)",
+    "asserts": "About 1.005169, the constant in e - 1.005169."
+   },
+   {
+    "sympy": "N(1/1.0154266, 7)",
+    "asserts": "About 0.984809 = cos 10 degrees."
+   },
+   {
+    "sympy": "N((1.0154266/1.4922867), 6)",
+    "asserts": "About 0.68042 = 10^(9.8327959-10)."
+   },
+   {
+    "sympy": "N(((e0-1.005169)/((e0-1)*(e0-0.984809)) - 0.68042*(1/(2*e0+2)+1/(e0+1.8904))).subs(e0,1.005212), 6)",
+    "asserts": "Close to 0: e = 1.005212 solves the 10 degree equation to the shown precision (residual small compared with the terms of size ~10)."
+   },
+   {
+    "sympy": "N(10**(8.0133951-10)/10**(9.6377843-10), 7)",
+    "asserts": "Equals 10**(8.3756108-10), about 0.0237: omega/lambda ratio of logs is consistent."
+   },
+   {
+    "sympy": "N(log(2.005212,10), 5)",
+    "asserts": "About 0.30216, matching the logged log(e+1) for e = 1.005212."
+   }
+  ],
+  "transcription_corrections": [
+   "Top formula numerator read as cosF(1+3e sinF) rather than 'cos F^2 + 3e cosF sinF', to agree with the stationarity equation.",
+   "'Gut' and the table headers at lower right are read as 'c', 't1/2', 'e' (unclear what they abbreviate).",
+   "'e-1.89...' in the braces is read as 'e+1.89...' (= e + 1/3 cot 10 degrees)."
+  ]
  }
 }

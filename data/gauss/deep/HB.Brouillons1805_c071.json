@@ -3,8 +3,115 @@
  "page": "c071",
  "label": "[66]",
  "image": "https://images.sub.uni-goettingen.de/iiif/image/gdz:DE-611-HS-3351872:00000072/full/1300,/0/default.jpg",
- "stop_reason": "refusal",
+ "stop_reason": "end_turn",
+ "redo": {
+  "date": "2026-11-15",
+  "reader": "Sonnet subagent run from a Claude Code session, same prompt as src/deep.py (not the pipeline model; scores may not be comparable)",
+  "previous_stop_reason": "refusal"
+ },
  "deep": {
-  "raw": "```json\n{\"reconstruction\": \"CONTEXT. These are Gauss's working sheets 'Litt. H' (ff. 65-67) for an orbit determined from three observations by trial hypotheses. The next page reaches an ellipse with log a = 0.5065288 (a = 3.21), e = 0.7168 and q = 0.909. In late 1805 this is very probably the comet of 1805 (later 3D/Biela); that identification is mine and not certain. The page mixes Gauss's notation and mine as follows.\\n- Radii: log r, log r', log r''.\\n- Heliocentric angles: 2f'' between r and r', 2f between r' and r'', 2f' between r and r''.\\n- f, f', f'': labels for the logs of the triangle-type quantities.\\n- y, y'': ratios of sector to triangle for the arcs (r',r'') and (r,r').\\n- The trial parameter is an angle T (176 deg 45' first, 176 deg 28' 9.67\\\" second, 176 deg 36' 'Neue Hypothese', 176 deg 35' 13\\\" 'wahre' on the next page).\\n\\nA. LEFT COLUMN: completion of the 'Zweite Hypothese' (T = 176 deg 28' 9.67\\\"). Input: log r = 0.0565039, log r' = 0.0119027, log r'' = 9.9928926, 2f'' = 14 deg 53' 32.54\\\", 2f = 8 deg 21' 2.58\\\". Each arc is treated by the method later printed as Theoria Motus arts. 88-90.\\n1. Auxiliary angle. log tan(45 deg + w) = (log r - log r')/4 = 0.0111503, giving w = 0 deg 44' 7.7\\\". For the other arc, 0.00475252 gives w = 18' 48.6\\\". 2w = 1 deg 28' 15.44\\\" and 37' 37.1\\\". The quarter angles are 3 deg 43' 23.135\\\" and 2 deg 5' 15.645\\\".\\n2. l = (sin^2(2f''/4) + tan^2 2w)/cos(2f''/2).\\n   - log tan 2w = 8.4095723 and log sin(quarter angle) = 8.8124756; doubled, these are 6.8191446 and 7.6249512.\\n   - Their antilog ratio is 0.1563844. The Gaussian addition log is 0.0631140 and -log cos 7 deg 26' 46\\\" = 0.0036779.\\n   - So log l = 7.6917431 and l = 0.00491749. Then 5/6 + l = 0.8382508.\\n   - Right arc: log l = 7.1615670, l = 0.00145066, 5/6 + l = 0.8347840.\\n3. Combination 2 sqrt(rr') cos(half angle).\\n   - (log r + log r')/2 = 0.0342033 and -log(2 cos 7 deg 26' 46\\\") = 9.7026479. Their difference, log(2 sqrt(rr') cos), is 0.3315554, and three times it is 0.9946662.\\n   - log m^2 = 8.7634202 - 0.9946662 = 7.7687540, where 8.7634202 = log(k tau)^2 is constant over all hypotheses.\\n   - Right arc: 0.0023976.5, 9.7001242, 0.3022734.5, 0.9068203.5, constant 8.1357182, giving log m^2 = 7.2288978.5.\\n4. h = m^2/(5/6 + l), with log(5/6 + l) = 9.9233740 and 9.9215741.\\n   - h = 0.00700455, written as 7.00455.\\n   - Right arc: h = 0.0020292. The transcription's 2.01919 should be 2.02919.\\n5. y is solved from (y-1) y^2/(y + 1/9) = h, the Theoria Motus cubic. Gauss records log y^2: 0.0066774 (arc r,r') and 0.0019514 (arc r',r''). I checked numerically that these satisfy the cubic.\\n6. Check of the assumed ratio log(y''/y).\\n   - Supposed: 0.0033379 - 0.0009759 = 0.0023620 (values assumed on the previous page).\\n   - Found ('inuent.'): (0.0066774 - 0.0019514)/2 = 0.0023630. 'Error -10', counted as supposed minus found.\\n7. Second check quantity M.\\n   - 9.9744089 + 48321 + 89958 - 43144 (net +95135, units of 1e-7) gives M_inv = 9.9839224. M_supp = 9.9836330 from the previous page. 'Error -2894', again supposed minus found.\\n   - By my identification, -43144 = -(log y + log y'') = -(0.0009757 + 0.0033387).\\n   - The analogous Neue-column terms are -log cos f' (89320) and -log(cos f cos f'') (48042).\\n   - The leading term 9.97... depends on the hypothesis; I have not identified it.\\n8. Bottom left: 14 deg 52' 4.32\\\" and 8 deg 17' 35.82\\\". These belong to the Neue Hypothese: the two partial angles, whose sum is 23 deg 9' 40.14\\\" = 2f'.\\n\\nB. TOP BLOCK: three columns, each a left/right pair of arcs. Column 1 is the zweite hypothesis, since its first row repeats l x 1e7 = 49174.85 and 14506.65.\\n- Row 2 is m^2/y^2 (57819.80 and 16863.45; checked).\\n- Row 3 is x = m^2/y^2 - l = 0.00086449 and 0.00023568, i.e. Gauss's x = sin^2(g/2) from y^2 = m^2/(l + x).\\n- Row 4 is log x. Row 5 is log(1-x) (9.9996244 = log(1 - 0.00086449), checked). Row 6 is log x(1-x) = log(sin^2 g/4).\\n- The further steps (8.2935826 ... 8.6428043 against 8.6430536, with additive terms 9.1162659 + 0.0305254 etc.) evidently reduce each arc's x to a common orbital quantity, presumably 1/a (my inference). The two arcs must agree.\\n- Discrepancies: +2493 (column 1), -1096, +895. These match the second error column of the table on the next page, keyed by the parameter 180 deg - T (3 deg 31' 50\\\" for T = 176 deg 28' 10\\\", etc.).\\n\\nC. 'NEUE HYPOTHESE', T = 176 deg 36' 0\\\". Subtracting the fixed angles 122 deg 36' 1.00\\\", 124 deg 1' 49.02\\\", 3 deg 30' 16.04\\\" and -21 deg 12' 39.41\\\" gives 53 deg 59' 59\\\", 52 deg 34' 10.98\\\", 173 deg 5' 43.96\\\", 197 deg 48' 39.41\\\" (all checked).\\n1. Triangle quantities.\\n   - f = 9.0678591 - 0.0009780 = 9.0668811 and f'' = 9.3817101 - 0.0033735 = 9.3783366. The subtracted terms are the trial log y and log y''.\\n   - Constants 9.9360110 and 0.0091458 are added, then further steps follow.\\n   - The result is log r' = 9.9191376 - 9.9079561 = 0.0111815.\\n2. M_supp.\\n   - f + f'' = log(10^f + 10^f'') = 9.3783366 + 0.1726438 = 9.5509804. Minus f' = 9.5455516 this gives 0.0054288; Gauss wrote 0.0054293.\\n   - 10^(..) - 1 = 0.01257995, whose log is 8.0996790. Subtracting 8.1485392 gives 9.9511398.\n   - Adding 3 log r' = 0.0335446 gives M_supp = 9.9846843. In the zweite hypothesis this term is exactly 3 x 0.0119027 = 0.0357081.\\n3. r and r''. From r' and the constants 0.4786700/0.1672145, 9.8313070/9.7549136 one gets log r = 0.0541933 and log r'' = 9.9928925. The intermediate angle reads 33 deg 16' 32\\\"; the angle 133 deg 52' 43.96\\\" is fixed across hypotheses.\\n4. Heliocentric places and angles. From the places 167 deg 9' 23.08\\\", 195 deg 27' 57.04\\\", 181 deg 18' 40.06\\\" and 14 deg 9' 16.98\\\" the spherical-trigonometry logs give f' = 11 deg 34' 50.07\\\", i.e. 2f' = 23 deg 9' 40.15\\\".\\n5. Sector-triangle ratios (right column), repeating A for the new data.\\n   - Quarter angles 3 deg 43' 1.08\\\" and 2 deg 4' 23.955\\\". Quarter log differences 0.0107529.5 and 0.0045722.5. w = 0 deg 42' 33.3\\\" and 18' 5.7\\\".\\n   - log l = 7.6863348 and 7.1533399, so 5/6 + l = 0.8381899 and 0.8347567.5.\\n   - log 2 sqrt(rr')cos = 0.3300516 and 0.3019286. log m^2 = 7.7732654 and 7.2299324.\\n   - h = 0.0070783 and 0.0020341. log y^2 = 0.0067468 and 0.0019560.\\n   - Ratio check: supposed 23955, found (0.0067468 - 0.0019560)/2 = 23954. 'Error +1'. The y-iteration has converged.\\n6. M_inv = 9.9752772 + 48042 + 89320 - 43514 = 9.9846620. Here 43514 = log y + log y'' = 0.0009780 + 0.0033734.\\n   - Compared with M_supp = 9.9846843, the difference is 223 units. In Gauss's convention (supposed minus found) it is +223, which agrees with the '+223' on the next page.\\n7. a-consistency check repeated (bottom right).\\n   - m^2/y^2 = 0.0058414 and 0.0016903; minus l gives x = 0.00098486 and 0.00026690.\\n   - log x = 6.9933705 and 6.4263593. Adding log(1-x) gives 6.9929426 and 6.4262434.\\n   - Final 8.7038174 against 8.7037800: discrepancy 374 (the '+374' of the next page).\\n8. Top right marginalia. 012936, 011903, 010358, 009865 are log r' values from successive hypotheses (0.0119027 zweite, 0.0103578 erste), apparently set up for interpolation of T.\\n\\nOUTCOME. With residuals +223 and 374 at T = 176 deg 36', compared with the other trials, Gauss interpolates on the next page to the 'wahre Hypothese' T = 176 deg 35' 13\\\". The elliptic elements follow from there.\",\n\"errors\": [\n\"Neue Hypothese: 9.5509804 - 9.5455516 = 0.0054288, but 0.0054293 is written. The following 1.01257995 and 8.0996790 are consistent with 0.0054293, so either f' was really 9.5455511 or this is a 5-unit slip. In the latter case M_supp shifts by about -0.0000403, i.e. about 400 units in the M check. This cannot be resolved from the transcription alone.\",\n\"Neue Hypothese: (0.0541933 + 0.0111815)/2 = 0.0326874; the transcription reads 0.0326864. The following 0.3300516 requires 0.0326874, so this is a transcription error or a pen slip with no effect.\",\n\"Zweite (left column): h for the right-hand arc is 0.0020292. The '2.01919' is probably a misreading of 2.02919 (it is not used further).\",\n\"Sign conventions: 'Error' is consistently supposed minus found (-10, -2894, +1). Hence the Neue M-error is +223, not '-1223' as transcribed.\",\n\"Neue Hypothese: 9.5947445 - 0.0111815 = 9.5835630, against 9.5835620 as transcribed (probably a transcription issue).\",\n\"The quarter-angle fractions of seconds for w (57/168, 111/168) do not reproduce exactly the 2w values written (1 deg 25' 6.50\\\"); I recompute w = 0 deg 42' 33.26\\\", consistent with 6.50\\\". This is harmless.\"\n],\n\"results\": [\n{\"what\": \"Ratio of sector to triangle from two radii, the included angle and the time: auxiliary angle tan(45+w) = (r'/r)^(1/4), l = (sin^2(v/4) + tan^2 2w)/cos(v/2), m^2 = k^2 tau^2/(2 sqrt(rr') cos(v/2))^3, h = m^2/(5/6 + l), and y from (y-1)y^2/(y+1/9) = h\", \"modern_name\": \"Gauss's sector-triangle ratio method (Theoria Motus arts. 88-90)\", \"usually_credited_to\": \"Gauss (Theoria Motus 1809; in use from c. 1801-1802)\", \"already_credited_to_author\": \"yes\", \"routine\": true},\n{\"what\": \"Recovery of x = sin^2(g/2) = m^2/y^2 - l (g = half the difference of eccentric anomalies). x(1-x) is formed for each arc, and the two arcs are required to give the same orbit (presumably the same semi-major axis)\", \"modern_name\": \"Gauss's determination of eccentric-anomaly difference / semi-major axis from two positions (Theoria Motus art. 95ff.)\", \"usually_credited_to\": \"Gauss\", \"already_credited_to_author\": \"yes\", \"routine\": true},\n{\"what\": \"Iterative 'hypothesis' scheme: a trial angle fixes r, r', r''; assumed sector-triangle ratios are corrected until supposed equals found; residual checks (M, a-consistency) are then interpolated over the trial values\", \"modern_name\": \"Gauss's method of orbit determination from three observations with successive hypotheses (regula falsi on residuals)\", \"usually_credited_to\": \"Gauss\", \"already_credited_to_author\": \"yes\", \"routine\": true},\n{\"what\": \"Use of Gaussian addition/subtraction logarithms, e.g. log(10^a + 10^b) = 0.1726438 + 9.3783366\", \"modern_name\": \"Gaussian logarithms\", \"usually_credited_to\": \"Leonelli (1802 tables), popularized by Gauss (1812)\", \"already_credited_to_author\": \"yes\", \"routine\": true}\n],\n\"surprise\": 1,\n\"surprise_reason\": \"This is routine computational orbit work: Gauss's sector-to-triangle machinery exactly as printed in Theoria Motus, applied iteratively to a (probably cometary, 1805) orbit. It is a nice dated instance of the Theoria Motus formulas in use about four years before publication, but Gauss's use of them from 1801 on is well documented. No new mathematics.\",\n\"checkable\": [\n{\"sympy\": \"atan((10**0.0111503-1)/(10**0.0111503+1))*180/pi*3600\", \"asserts\": \"w with log tan(45+w) = 0.0111503 is about 2647.7 arcsec = 0 deg 44'"
+  "reconstruction": "Page: Litt. H, folio [66] of bundle Brouillons1805, a dense page of seven-place logarithmic arithmetic with almost no prose. German labels only: Erste/Zweite/Neue/Wahre Hypothese, suppos./invent., Error, Minu, M suppos. It is a trial-and-error (hypothesis-and-correct) determination of an orbit, apparently an elliptic orbit of the 1805 comet, from three observations. This is inferred from the bundle title and from the 'elliptische Elemente' (e = sin phi = 0.7168, a 'Parabel' comparison) on the next page; I cannot confirm which body from this page alone.\n\n(1) Left column: the end of the 'Zweite Hypothese' (the trial value 176 deg 28' 9.67'', i.e. 3 deg 31' 50'' as the supplement). Table: 0.0565039 and 0.0119027 are logs, and their differences and quarters (0.0446012 -> 0.0111503 etc.) are converted to angles (0 deg 44' 7'' ...; 0 deg 18' 48''). Angles and tabular logs (8.4095723, 8.0391488 ...) feed a series. The additive constant 0.8333333.3 (= 5/6) plus small terms (49174.9 and 14506.6 in units of 1e-7) gives 0.8382508 and 0.8347840. These look like the 5/6-based series for a sector/triangle ratio, but I am unsure of the exact formula. Then 0.0342033 / 0.0023976 are differences, 9.7026479 / 9.7001242 and 8.7634202 / 8.1357182 are log factors, and 7.00455 / 2.01919 are the resulting small quantities. The control quantity is k''/k: supposed 0.0023620, found 0.0023630, Error -10 (units 1e-7, sign = supposed minus found). Second control: 9.9744089 + (48321 + 89958 - 43144 = 95135) units gives 9.9839224 ('Minu', the found M) against 9.9836330 ('M supp.'); Error -2894. The marginal 14.52.4''32 / 8.17.35''82 are two angles obtained from this hypothesis.\n\n(2) Middle top: a three-column side computation (49174.85/14506.65; 47888.43/13928.90; 47492.79/13748.49). Differences are formed (8644.95, 2356.80; 11214.44, 3020.36; 12026.62, 3228.23), logged (6.9367626 etc.), multiplied by log cos-type factors (9.9996244 ...), then combined with 8.2935826 etc. to give pairs 8.6428043/8.6430536, 8.7652987/8.7651871, 8.7986989/8.7987884. Their differences (+2493, -1096 or -1066, +895) are error residuals for three trial values; the same numbers (+895, -1066) reappear on the next page in the table of trial angles 3 deg 9'35'', 3 deg 15', 3 deg 24', 3 deg 31'50''. The remaining lines (9.1162659 ..., 0.0305254 ..., 9.1467913 ...) add and subtract logs for the three trials. Exact meaning of each log is unclear to me.\n\n(3) 'Neue Hypothese': trial angle 176 deg 36' 0''. The four angle differences are 176 deg 36' minus the three longitudes-type angles 122 36 1.00, 124 1 49.02, 3 30 16.04, and plus 21 12 39.41: 53 59 59.00, 52 34 10.98, 173 5 43.96, 197 48 39.41 (all correct). Constant logs 9.0678591 and 9.3817101 (carried from the previous page) are corrected by 0.0009780 and 0.0033735 to give f = 9.0668811 and f'' = 9.3783366 (my reading: these are log values). Then log sin 53 59 59'' = 9.9079561 is subtracted from the constant 9.9191376 to give r' = 0.0111815 (the page reads 0.0111865 in the ink but the later arithmetic uses 0.0111815). f' = 9.5455516. f + f'' = 9.5509804 (check: 0.11665 + 0.23897 = 0.35562 gives log 9.5509 OK). The ratio (f+f'')/f' = 10^0.0054293 = 1.012579953 (correct). Then 8.0996790 (log of the 1/ratio-type correction, unclear), 8.1485392 (a constant), 9.9511398, and 0.0335446; sum 9.9846843 = M supposed.\n\nA second chain (0.4786700, 0.1672145; 9.8313070, 9.7549136 ...) computes r'' = 9.9928925 and the angles 33 16 32.12, 139 52 43.96 (+ 9.5947445 etc.) and the angles 167 9 23.08, 195 27 57.04, 181 18 40.06, 14 9 16.98; sines of the angle sums lead to the angle 11 deg 34' 50'' and 23 deg 9' 40.15''. The long 'half-angle' block (3.43.1.68 / 2.4.23.955; 0.0541933 - 0.0111815 = 0.0430118, divided by 4 = 0.0107529; 0 deg 42'33'', 1.25.6.50, 0.36.11.50) turns log differences into arcs, whose log tan or log sin (8.3937869, 8.0223507, 8.8117614, 8.5584491) enter the same series as before: 0.8333333.3 + 48565.72 (units 1e-7) = 0.8381899, 0.8333333 + 14234.47 = 0.8347567.5. Results: k''/k supposed 23955, found 23954, Error +1 (units 1e-7). The 'M' line: 9.9752772 + (48042 + 89320 - 43514 = 93848) = 9.9846620 ('Minu'); compared with M supposed 9.9846843 the difference is -223 in 1e-7 units (supposed minus found = +223). The page seems to read -1223 (possibly a slip or a misread). The lower-right block repeats the evaluation of 48565.72 and 14234.44 with logs 6.9933705 / 6.4263593, 9.9995721 / 9.9998841, 8.2891252 / 7.7224634 for a check of the Neue values (digits partly illegible).\n\nPurpose: the unknown is an angle (here the supplement 3 deg 24' of 176 deg 36'). For each trial value the two controls (k''/k and M) are computed twice, once 'supposed' (assumed) and once 'invented' (found); the residuals are collected (see the next page: +4436/+895, +3357/-1066, 3 deg 31'50'' -2894/+1493) and the 'Wahre Hypothese' 3 deg 15' 47'' (176 deg 35' 13'') is obtained by interpolation. This is a Newton/regula falsi style iteration done by hand with seven-place logs.",
+  "errors": [
+   "Subtraction slip: 16976.72 - 13748.49 = 3228.23, but the page writes 3228.53 and its log 6.5090048 matches 3228.53 (log of 3228.23 would be 6.5089645). Effect about 4e-5 in the log, small.",
+   "Possible slip: 59102.87 - 47888.43 = 11214.44; the page seems to show 11214.34 (digit overwritten). Resulting log 7.0497767 lies between the two values, so unclear which was used.",
+   "Residual in the second column of the middle table: 8.7651871 - 8.7652987 = -1116 in 1e-7 units, but the page (and the next page) give -1066 (or -1096). Digits are overwritten; may be a slip or a misreading on my side.",
+   "Neue Hypothese: 9.9846620 - 9.9846843 = -223 (units 1e-7); the page writes 'Error -1223' (or +1223 / -223 crossed out on the next page). The magnitude disagrees with the arithmetic, so either a slip or a scan reading problem.",
+   "The log 8.8117614 is stated next to 3 deg 43' 1.68''; log sin of that angle is 8.8117808, a difference of about 2e-5, equivalent to an angle slip of about 0.17''. May be a small slip or an unreliable reading.",
+   "r' is written 0.0111865 in several places while 9.9191376 - 9.9079561 = 0.0111815 and the later 0.0430118 = 0.0541933 - 0.0111815 use 0.0111815; the digit looks overwritten, so probably only a reading issue.",
+   "Nothing else checked fully; many log values on the page were not independently verified."
+  ],
+  "results": [
+   {
+    "what": "Trial-and-error (regula falsi) solution for the angle fixing an elliptic orbit from three observations, with 'supposed' vs 'found' control quantities (k''/k and M) and interpolation of errors to a 'Wahre Hypothese'",
+    "modern_name": "Iterative (fixed-point / secant) orbit determination from three observations; differential correction by interpolation of residuals",
+    "usually_credited_to": "Gauss (Theoria motus corporum coelestium, 1809; Ceres work 1801); Olbers for the comet method",
+    "already_credited_to_author": "yes",
+    "routine": true
+   },
+   {
+    "what": "Seven-place logarithmic evaluation of the sector/triangle-type series (5/6 + small terms) and half-angle log-to-arc conversions",
+    "modern_name": "Series for the ratio of sector to triangle in Kepler motion (Euler-Lambert / Gauss y-series); hyperbolic-type log-to-arc conversion",
+    "usually_credited_to": "Euler, Lambert, Gauss",
+    "already_credited_to_author": "unsure",
+    "routine": true
+   },
+   {
+    "what": "Result of the iteration: true hypothesis 176 deg 35' 13'' (3 deg 15' 47'') and elliptic elements (e = sin phi = 0.7168) on the next page",
+    "modern_name": "Orbital elements of a short-period comet orbit (elliptic) from three-observation determination",
+    "usually_credited_to": "Gauss (computed for the 1805 comet)",
+    "already_credited_to_author": "unsure",
+    "routine": true
+   }
+  ],
+  "surprise": 1,
+  "surprise_reason": "Routine hand computation in Gauss's own established orbit-determination style (trial hypotheses, supposed vs found controls, interpolation of the error); no new method visible. The page is only the working of one hypothesis, and what is computed is not fully recoverable without the neighbouring pages.",
+  "checkable": [
+   {
+    "sympy": "abs(N(log(sin((53+Rational(59,60)+Rational(59,3600))*pi/180),10))+10-9.9079561) < 2e-7",
+    "asserts": "log10 sin(53 deg 59' 59'') + 10 = 9.9079561 (used for r')"
+   },
+   {
+    "sympy": "abs(N(log(sin((173+Rational(5,60)+Rational(4396,360000))*pi/180),10))+10-9.0799552) < 2e-7",
+    "asserts": "log10 sin(173 deg 5' 43.96'') + 10 = 9.0799552 (angle 176 deg 36' - 3 deg 30' 16.04'')"
+   },
+   {
+    "sympy": "abs(Rational(99191376,10**7)-Rational(99079561,10**7)-Rational(111815,10**7))<1e-12",
+    "asserts": "9.9191376 - 9.9079561 = 0.0111815 = r' (page may read 0.0111865)"
+   },
+   {
+    "sympy": "abs(N(10**0.0054293)-1.012579953) < 1e-8",
+    "asserts": "(f+f'')/f' ratio: 10^0.0054293 = 1.012579953"
+   },
+   {
+    "sympy": "abs(N(Rational(5,6)+Rational(4856572,10**9)*10)-0.8381899) < 1e-7",
+    "asserts": "5/6 + 48565.72e-7 = 0.8381899 (sector/triangle-type series term)"
+   },
+   {
+    "sympy": "48042+89320-43514 == 93848",
+    "asserts": "sum of corrections in the Neue Hypothese M line"
+   },
+   {
+    "sympy": "abs(9.9752772+0.0093848-9.9846620) < 1e-9",
+    "asserts": "found M ('Minu') = 9.9846620"
+   },
+   {
+    "sympy": "abs(9.9846620-9.9846843+0.0000223) < 1e-9",
+    "asserts": "found minus supposed M = -223e-7 (page says -1223)"
+   },
+   {
+    "sympy": "abs(59102.87-47888.43-11214.44) < 1e-9 and abs(16976.72-13748.49-3228.23) < 1e-9",
+    "asserts": "correct differences; the page has 11214.34 and 3228.53 (possible slips)"
+   },
+   {
+    "sympy": "abs(N(log(tan((1+Rational(25,60)+Rational(65,36000))*pi/180),10))+10-8.3937869) < 2e-7",
+    "asserts": "log tan(1 deg 25' 6.50'') + 10 = 8.3937869"
+   },
+   {
+    "sympy": "abs(N(log(sin((2+Rational(4,60)+Rational(23955,3600000))*pi/180),10))+10-8.5584491) < 2e-7",
+    "asserts": "log sin(2 deg 4' 23.955'') + 10 = 8.5584491"
+   },
+   {
+    "sympy": "abs(N(log(sin((3+Rational(43,60)+Rational(168,360000)*100)*pi/180),10))+10-8.8117614) < 2e-7",
+    "asserts": "log sin(3 deg 43' 1.68'') + 10 vs 8.8117614 (expected small mismatch about 2e-5)"
+   },
+   {
+    "sympy": "abs(N(Rational(107529,10**7)/(2*log(10,E)**-1*0+2*N(log(E,10)))*180/pi*3600)-2553.5) < 1.0",
+    "asserts": "0.0107529 / (2 log10 e) rad = about 42' 33'' (log-ratio to arc conversion)"
+   }
+  ],
+  "transcription_corrections": [
+   "Top corners: faded ink '86 Mo... / Nro noth...' on the left, and right margin faded 'Nro noth'; pencil numbers 012936, 011903, 010358, 009865 and '13.7...' in the upper margin (scribbled sums).",
+   "'r' 0.0111865' (Neue Hypothese) should likely read 0.0111815 (see 9.9191376 - 9.9079561).",
+   "'9.4655471' in the Neue Hypothese first chain should read 9.4855471 (= log sin of 197 deg 48' 39.41'').",
+   "'0.008644.95' is 8644.95 (stray leading '0.').",
+   "'11214.34' (second column of the middle table) may be an overwritten 11214.44.",
+   "'-1096' / '-1066' in the middle table is overwritten; next page reads -1066.",
+   "'-1223 Error' may be -223 (strike-through/overwriting visible).",
+   "'9.9744089' line reads 9.9744089 with +48321 +89958 -43144 +95135 (95135 is the sum).",
+   "'Minu' is probably the abbreviation of the found M; 'inuent.' = 'invent.' (inventum, found).",
+   "'Neue Hypothese' first column '3.43.1,68 2.4.23,955' appear above the 0.0541933 block; the transcription ordering of lines in the lower right block is unreliable.",
+   "'7.00455 2.01919' / '7.078293 2.034101' are separate results for the Zweite and Neue hypothesis; first digits '7.0' in the scan are clear but the decimals are partly overwritten.",
+   "Last lines '9.9935...' in the lower-right block (6.9933705 / 6.4263593 etc.) are partly overwritten with bold digits; the transcription is uncertain."
+  ]
  }
 }

@@ -3,8 +3,71 @@
  "page": "c073",
  "label": "[68]",
  "image": "https://images.sub.uni-goettingen.de/iiif/image/gdz:DE-611-HS-3351872:00000074/full/1300,/0/default.jpg",
- "stop_reason": "refusal",
+ "stop_reason": "end_turn",
+ "redo": {
+  "date": "2026-11-15",
+  "reader": "Sonnet subagent run from a Claude Code session, same prompt as src/deep.py (not the pipeline model; scores may not be comparable)",
+  "previous_stop_reason": "refusal"
+ },
  "deep": {
-  "raw": ""
+  "reconstruction": "A page of pure numerical work (mostly 7-place logarithms) from Gauss's 1805 orbit-determination notebook, headed 'Litt. F.', almost certainly for the newly found minor planet Pallas (the symbol used for the inner body in 'Distantia' is the Pallas sign; the other is Jupiter). The page has four blocks. (a) Top left: completion of a calculation of the form log(a)-log(b) pairs ending in 'Tempus Perihel.' (time of perihelion passage, 63.16594 in days from some epoch, built from 17.5 / 45.66594 / 38.29637 / 24.86957); the details are only partly legible and I cannot reconstruct the exact formula. (b) 'Relation zur Jupitersbahn': a comparison of the Pallas orbit with Jupiter's orbit. Two numbered cases, 1. with angles 98 deg 25' / 55 13 41 / 43 11 19 and 2. 'fuer gegenwaertige Hypothese' with 167 deg 8' 11.16\" + 6 deg 0' 1.60\" = 173 deg 8' 12.76\", each with a small triangle sketch (planet, Sun, Jupiter-orbit point; notation op''/op', or/p' = (op'/p)(pi r/pi p)). Plane/spherical triangles are solved with logarithms of sines and cosines to get the heliocentric distances. Results written: Distantia Jupiter = 5.3085 and Distantia Pallas = 3.7321 (check: log 5.3085 = 0.72497 and log 3.7321 = 0.57195, both written on the page), with Jupiter's anomaly 62 deg 34' 14\" and Pallas 35 deg 44' 30\" 'ante Aphel.' (before aphelion). The purpose is to find how closely the Pallas orbit approaches Jupiter's orbit (minimum and maximum distance), relevant to perturbations. (c) 'Rechnung bei der andern Hypothese wo 176 deg 28' 9\"67 zum Grunde gelegt war': the same chain of computations repeated for the alternative hypothesis (a different assumed value of the angle), giving 1/2 epsilon = 5 deg 7' 45.36\", epsilon-related angles 2 deg 33' 52.59\", 5 deg 48' 38.79\", and then a lengthy iterative solution with many overwritten digits for angles 32 deg 50' 7.68\", 48 deg 21' 43.75\", 13 deg 57' 39.12\", 11 deg 37' 17.58\", ending in the page writes '0,5550616 = a' and '9,8735256 = lg e', apparently the logarithms of the semi-major axis and of the eccentricity (unclear which exact relation is used), with auxiliary quantities b and p (0.3775093, 0.1999573) as auxiliary quantities. (d) Throughout, the sketches and the 'Error' / 'invent.' vs 'suppos.' comparisons on neighbouring pages show Gauss comparing the elements he derives against the elements he assumed (a consistency check of the hypothesis), which is standard iterative orbit improvement. I could read the headings and a minority of the numbers with confidence; many digits are overwritten or crossed out and I do not attempt a full recomputation.",
+  "errors": [
+   "No definite arithmetic error identified; most numbers are intermediate logarithms that I did not recompute in full.",
+   "Several values are visibly corrected or overwritten in the manuscript (e.g. 9.9513482 vs struck 9.9513461, 9.8224776/9.8224476, 8.7533036 vs 8.7533069), indicating Gauss caught his own slips; the final adopted values appear to be the overwriting ones.",
+   "The triangle angles 39 32 4, 6 51 47, 126 54 11 in the sketch do not sum to 180 as plain interior angles (they relate through an exterior angle / different triangle); I could not tell which triangle they belong to, so I flag this as unclear rather than an error."
+  ],
+  "results": [
+   {
+    "what": "Closest approach / relative position of the Pallas orbit with respect to Jupiter's orbit, via logarithmic solution of triangles (heliocentric distances 5.3085 for Jupiter, 3.7321 for Pallas at the chosen anomalies)",
+    "modern_name": "Orbit-crossing / minimum orbit intersection distance estimate by hand; planar triangle solution with logarithmic tables",
+    "usually_credited_to": "Routine celestial mechanics; Gauss's 1809 Theoria motus",
+    "already_credited_to_author": "yes",
+    "routine": true
+   },
+   {
+    "what": "Two competing orbit hypotheses for Pallas computed in parallel and compared (assumed angle 176 deg 28' 9.67\" vs the 'present' hypothesis), with elements (a, e via sin phi, epsilon) recomputed and checked against assumed values",
+    "modern_name": "Iterative differential orbit correction / trial-and-error orbit improvement",
+    "usually_credited_to": "Gauss (method of orbit determination, 1801-1809)",
+    "already_credited_to_author": "yes",
+    "routine": true
+   },
+   {
+    "what": "Elements of an elliptic orbit from position data: e from sin phi, semi-major axis and perihelion time ('Tempus Perihel.')",
+    "modern_name": "Classical Keplerian element computation",
+    "usually_credited_to": "Kepler / Euler / Lagrange; Gauss's own method",
+    "already_credited_to_author": "yes",
+    "routine": true
+   }
+  ],
+  "surprise": 0,
+  "surprise_reason": "This is routine astronomical number-crunching from Gauss's 1805 work on the orbit of Pallas, a context already well documented (Theoria motus, Pallas orbit papers); no new mathematical result or method is visible on the page.",
+  "checkable": [
+   {
+    "sympy": "abs((167*3600+8*60+11.16)+(6*3600+0*60+1.60)-(173*3600+8*60+12.76)) < 1e-6",
+    "asserts": "Angle sum 167 deg 8' 11.16\" + 6 deg 0' 1.60\" = 173 deg 8' 12.76\" (case 2 of the Jupiter-orbit relation)"
+   },
+   {
+    "sympy": "abs(log(5.3085,10)-0.72497) < 1e-4",
+    "asserts": "log10 of Jupiter's distance 5.3085 equals the logged 0.72497"
+   },
+   {
+    "sympy": "abs(log(3.7321,10)-0.57195) < 1e-4",
+    "asserts": "log10 of Pallas's distance 3.7321 equals the logged 0.57195"
+   },
+   {
+    "sympy": "abs(10**0.0112534 - 1.02625) < 1e-4",
+    "asserts": "The recurring constant log 0.0112534 (appearing as the 'M. suppos.' factor) corresponds to a multiplier of about 1.0263"
+   }
+  ],
+  "transcription_corrections": [
+   "Machine transcription line '1469367 852380 1232331' etc. belong to the previous page, not this one; this page begins with '9.7463654 9.5003580'.",
+   "Second row at top: image reads 9.4927308 and 9.0007160 (consistent with transcription) and the third row 9.2172904 twice, with a 'delta' marker at the left.",
+   "'Relation zur Jupitersbahn' first angle reads 98 deg 25' 0\"0 with a struck digit at the start (looks like '98' written over another number); transcription '98°25'0''0' is acceptable.",
+   "The word under the second sketch heading reads 'fuer gegenwaertige Hypothese' (the transcription has the umlaut form 'für'), correct.",
+   "The date/angle in the 'Rechnung bei der andern Hypothese' heading reads 176 deg 28' 9\"67 as transcribed.",
+   "Right-hand figures near the lower right: '0,5550616 = a' and '9,8735256 = lg e' are correct; the line '0.1999573 p' is partly overwritten in the image (transcription gives 0.1999573 p).",
+   "The planet sign next to 'Distantia' lines: the first (5,3085) is Jupiter, the second (3,7321) the Pallas sign; the transcription renders them with astrological glyphs which is right.",
+   "Many numbers in the lower half are heavily overwritten; where the transcription gives a single value, the image often shows two layers of digits (original struck out, correction above), so exact final digits there are unclear."
+  ]
  }
 }

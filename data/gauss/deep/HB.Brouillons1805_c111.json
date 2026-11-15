@@ -3,8 +3,95 @@
  "page": "c111",
  "label": "[106]",
  "image": "https://images.sub.uni-goettingen.de/iiif/image/gdz:DE-611-HS-3351872:00000112/full/1300,/0/default.jpg",
- "stop_reason": "refusal",
+ "stop_reason": "end_turn",
+ "redo": {
+  "date": "2026-11-15",
+  "reader": "Sonnet subagent run from a Claude Code session, same prompt as src/deep.py (not the pipeline model; scores may not be comparable)",
+  "previous_stop_reason": "refusal"
+ },
  "deep": {
-  "raw": ""
+  "reconstruction": "Folio 140 (modern folio [106]) of the 1805 Brouillons, headed 'Zweite Hypothese' (second hypothesis), apparently with 'Litt. N.' in the header. The page is almost entirely columns of 7-digit logarithms and angles in sexagesimal notation. It is a numerical iteration in the orbit determination of a minor planet (very probably Pallas, given the previous page's 'Pall.'). The previous page carries out the first hypothesis; this page repeats the cycle with changed starting values and then does a further correction (a third pass, labelled with primes '''). I describe the structure and note where my reading is inferred.\n\n(1) Left block, 'z'' = 2,550584'. A trial value of a distance-type quantity z'' (with the constant 0,588501 added on the first line) is used to find an angle: log 2.550584-type entries are combined with logs 0,4968031 + 9,9355774 = 0,4323805 and 0,0131560, giving 2,6255753 and, after subtracting 2147064 (= 0.2147064, the e'' of the previous page), 2,4108689. Then 4,8469619 and further log lines give 0,3866939 / 0,8186050 / 1,2052989 and 0,0111900. The sums 15,635396 + 2,550587 = 18,185983 show the closing of a linear relation (z'' + 15.635396 = 18.185983, i.e. e' = -18.185983 of the previous page used with opposite sign). The reproduced z'' = 2.550587 compared with the starting 2.550584 is the convergence check of the hypothesis. The adjacent column (7°31'5\"75, 9.5271398, 0.4066397, 9.9962503, 0.4103894, 9.7191039, 1.2311682, 19.11.5,75) is a trigonometric reduction: an angle 7°31'5\"75 is turned into 19°11'5\"75 via log sin/cos style entries (9.9236804 appears repeatedly as a constant log). Below it, 13°14'17\"04 = 8°12'15.72 + 5°2'1.32, and 3°10'14\"40 = 8°12'15.72 - 5°2'1.32: that is half-sum and half-difference of two angles (a standard sum/difference device, as in Gauss's equations for eccentric anomaly differences).\n\n(2) Below that, two three-fold column groups of log sines/cosines (9.1544373 / 9.9146600 / 9.9955323 etc., giving 66°53'46\"62 and 55°4'21\"53, and 7°19'24\"19) are further spherical/plane-triangle reductions leading to 14°38'48\"38 for the second angle. The three values 14°38'48\"38, 12°18'38\"48, 14°20'53\"32 (with logs 0.4056985, 0.4069887, 0.4103894, 0.4155380) are three trial values of a quantity (probably an eccentric-anomaly-like angle or a logarithmic quantity) for neighbouring parameters, used for interpolation.\n\n(3) Middle block: for each of the three trial values a small correction in seconds (1'16\"59, 3'21\"90, 5'5\"66, and doubled 2'33\"18, 6'43\"80, 10'11\"32) is added to give angles 3°4'39\"62, 3°39'42\"095, 3°35'13\"39. These look like the mean anomaly interval M for the time interval between observations (the time-interval column in the previous page gave 3°40'36\"7365 etc.), so this is solving the Kepler equation M = E - e sin E by trial: the following lines (6.87078.., 8.7298909, 3.74156.., 7.4597818 ...; 0.8333333.3; 0.8362332, +3; 0.4063436, 9.7014810; 0.7048626 ...) compute logs of sin E, e sin E in seconds (the constant 0.8333333.3 is the log of 206264.8..? Not exactly: 5.3144251 would be; instead 0.8333333 = 5/6, so it is probably a term proportional to 1/6 or 5/6 in a series expansion, unclear) and arrive at 0.0062062 / 0.0088386 / 0.0085664 and 65.0457 / 93.0858 / 90.1740, which are the residuals of the Kepler equation for the three trials. These are used for linear interpolation: log P''' = 0.0787904 and 0.0001888 (from 0.0801066 - 0.0013162 and 0.0003249 - 0.0001361), where P' and P'' of the previous page are corrected to P''' (the ratio of triangle areas or the correcting factor in Gauss's method of areas).\n\n(4) Lower middle: e''' = 19.026031 - 0.838558 = 18.187473; log(1+P''') = 0.3422095, + 0.4764140 = log d''' = 0.8186235; and 0.3011244 + 9.6344448 = 9.9355692. These feed the next pass, the right-hand block, which starts again with z'' = 2.550333 (588501 added, 7°31'8\"54, 19°11'11\"16, 13°14'22\"45, 3°10'17\"19, 8°12'19\"82, 5°2'2\"63, 66°53'51\"62, 55°4'21\"29, 7°19'27\"545, 14°38'55\"09). The next page begins with 14°38'55\"09 (0.4069560) and so the iteration is considered closed after this third pass (z'' changes from 2.550587 to 2.550333, i.e. 2.5e-4).\n\n(5) Middle-bottom columns with 60683 21105 / 121248 75224 / 181981 and 96329 / 85652 / 9.6377762 log b' and 69706 17479 / 140534 87025 / 210240 / 104504 / 9.7089927 / 105736 / 9.7195663 log b'' are long-hand multiplications (partial products) for the logs of the coefficients b', b'' (the previous page had log b' 9.6376168, log b'' 9.7191039). Scattered figures in the lower margin (e.g. 4046661-42, 70-96, 31-38, 30-82) are scratch arithmetic.\n\nWhat problem: this is the ordinary iterative solution of an elliptic-orbit determination for a small planet from three observations, with the hypothesis on the ratio of two geocentric distances corrected by successive passes until z'' agrees (Gauss's method of 1801-05, later in Theoria Motus Book II sec. 3). The surprising content is nil: the whole page is routine numerical labour, with the specific interpretation of individual columns uncertain from the image alone.",
+  "errors": [
+   "Several additions that I could check by hand are correct: 15.635396 + 2.550587 = 18.185983; 15.637140 + 2.550333 = 18.187473; 19.026031 - 0.838558 = 18.187473; 0.0801066 - 0.0013162 = 0.0787904; 0.0003249 - 0.0001361 = 0.0001888; 0.3422095 + 0.4764140 = 0.8186235; 0.3011244 + 9.6344448 = 9.9355692; 8°12'19.82 + 5°2'2.63 = 13°14'22.45; 8°12'19.82 - 5°2'2.63 = 3°10'17.19.",
+   "The first-pass hypothesis z'' = 2.550584 and the recomputed value 2.550587 differ by 3 units in the last place, which is the normal convergence discrepancy rather than an error; the second trial agrees to about 2.5e-4 after the changed e'' (18.185983 -> 18.187473).",
+   "One cell in the lower-left block (the line after 0.0621121) was overwritten: the printed 9.6602458 is struck through and replaced by 9.6564176 (then written 9.656413? partly unclear); the struck-out value is the abandoned figure. Not an error in the final result.",
+   "I could not independently verify every logarithm line from the scan alone; the verification claims above are limited to sums that I could check.",
+   "The meaning of the constant 0.8333333.3 is uncertain from this page alone."
+  ],
+  "results": [
+   {
+    "what": "Iterative correction of an orbit-determination hypothesis (z'' and e'' passes) for a minor planet, with logs of P', P''', d''', b', b''",
+    "modern_name": "Fixed-point iteration for the Gauss method of orbit determination from three observations (ratio-of-triangle-areas iteration)",
+    "usually_credited_to": "Gauss, 1801-1809 (Theoria Motus corporum coelestium, 1809)",
+    "already_credited_to_author": "yes",
+    "routine": true
+   },
+   {
+    "what": "Solution of the Kepler equation by trying three values of the eccentric anomaly and interpolating linearly on the residuals",
+    "modern_name": "Kepler equation by trial-and-interpolation (regula falsi / secant)",
+    "usually_credited_to": "Standard practice, 18th-19th century astronomers; Gauss's own Theoria Motus",
+    "already_credited_to_author": "yes",
+    "routine": true
+   },
+   {
+    "what": "Half-sum and half-difference of angle pairs (13°14'22\"45 = 8°12'19\"82 + 5°2'2\"63; 3°10'17\"19 = difference)",
+    "modern_name": "Sum-difference trigonometric device (Mollweide/Delambre-type)",
+    "usually_credited_to": "Standard, used by Gauss throughout",
+    "already_credited_to_author": "yes",
+    "routine": true
+   }
+  ],
+  "surprise": 0,
+  "surprise_reason": "Purely numerical working for a minor-planet orbit (Pallas) using Gauss's well-documented logarithmic methods. Nothing here is a new result; the 'Zweite Hypothese' shows the iteration being repeated, which is exactly what is described in his published orbit-determination work.",
+  "checkable": [
+   {
+    "sympy": "Rational('15.635396') + Rational('2.550587') == Rational('18.185983')",
+    "asserts": "Closure of the first-pass linear relation in the left block"
+   },
+   {
+    "sympy": "Rational('15.637140') + Rational('2.550333') == Rational('18.187473')",
+    "asserts": "Closure of the third-pass linear relation in the right block"
+   },
+   {
+    "sympy": "Rational('19.026031') - Rational('0.838558') == Rational('18.187473')",
+    "asserts": "e''' = 18.187473"
+   },
+   {
+    "sympy": "Rational('0.0801066') - Rational('0.0013162') == Rational('0.0787904')",
+    "asserts": "log P''' correction"
+   },
+   {
+    "sympy": "Rational('0.0003249') - Rational('0.0001361') == Rational('0.0001888')",
+    "asserts": "second log correction"
+   },
+   {
+    "sympy": "Rational('0.3422095') + Rational('0.4764140') == Rational('0.8186235')",
+    "asserts": "log delta''' = log(1+P''') + 0.4764140"
+   },
+   {
+    "sympy": "Rational('0.4968031') + Rational('9.9355774') - 10 == Rational('0.4323805')",
+    "asserts": "Left-block log addition (confirms the reading 0.4968031, not 0.4468031)"
+   },
+   {
+    "sympy": "Rational('0.4967683') + Rational('9.9355692') - 10 == Rational('0.4323375')",
+    "asserts": "Right-block log addition"
+   },
+   {
+    "sympy": "Rational(8*3600+12*60)+Rational('19.82')+Rational(5*3600+2*60)+Rational('2.63') == Rational(13*3600+14*60)+Rational('22.45')",
+    "asserts": "Sum of 8°12'19.82\" and 5°2'2.63\" is 13°14'22.45\" (in arcseconds)"
+   },
+   {
+    "sympy": "Rational(8*3600+12*60)+Rational('19.82')-Rational(5*3600+2*60)-Rational('2.63') == Rational(3*3600+10*60)+Rational('17.19')",
+    "asserts": "Difference is 3°10'17.19\""
+   }
+  ],
+  "transcription_corrections": [
+   "Header: 'Zweite Hypotese' should read 'Zweite Hypothese'.",
+   "Left block line 4: '0,4468031' should read '0,4968031' (consistent with 0.4968031 + 9.9355774 = 10.4323805).",
+   "Left block: the machine transcription's '+ 0,588501' sign appears as a plus/arrow in the image; the z'' = 2,550584 reading is correct.",
+   "Struck-through entry '9.6602458' is cancelled in the image and replaced by 9.6564176 or similar (last digits partly unclear).",
+   "Header 'Mo. Nov. nach.' reading is uncertain; the image shows 'Mo.' and 'Nov. nach.'/'Nro. nach.' in light ink.",
+   "Right block: '8,7542463' in the transcription appears as '8,7542463' in the image, while the corresponding left-block entry is 9.7542465; the right-block entry is probably a slip for 9.7542463 by Gauss or an OCR confusion, unclear."
+  ]
  }
 }

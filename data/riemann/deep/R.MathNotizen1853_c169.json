@@ -3,8 +3,66 @@
  "page": "c169",
  "label": "85r",
  "image": "https://images.sub.uni-goettingen.de/iiif/image/gdz:DE-611-HS-3206190:00000170/full/1300,/0/default.jpg",
- "stop_reason": "refusal",
+ "stop_reason": "end_turn",
+ "redo": {
+  "date": "2026-11-15",
+  "reader": "Sonnet subagent run from a Claude Code session, same prompt as src/deep.py (not the pipeline model; scores may not be comparable)",
+  "previous_stop_reason": "refusal"
+ },
  "deep": {
-  "raw": ""
+  "reconstruction": "The page has two parts. (a) The upper two thirds is a heavily struck-through pencil draft of a letter beginning 'Lieber Vater!'. The legible surviving text says that when he wrote at Easter that he would like to stay until Pfingsten (Whitsun) in [a place, unclear; transcription reads 'Akademie' but this is doubtful], he had intended to work there for the Colloquium, and that he could not get finished here. He says he had proposed a topic and, since his Vortrag (talk) was ready, hoped the elaboration would not take much effort. Much of the text is crossed out or illegible; the letter is personal and not mathematical. (b) The lower part, starting at 'I Mit Einschluss der Ausnahmefaelle', is a counting of conditions for a polyhedron, apparently to decide how many conditions of a 'second class' remain when polyhedra are specified by their angles. Data in the case marked I: total number of angles = 25 (reading uncertain), conditions of the first class = 7+p, conditions 'elements' = 2(p-2), hence conditions of the second class = 7 (the '7+' is underlined and the result 7 is written beside it). Then: z = 63, f = 36, p = 29, conditions of the second class 7. Case II: taking some points as edge points (Kantenpunkte, reading unclear), total number of angles = 23 (reading uncertain). The verso/next page (bound with it in the transcription, not this scan) works the same numbers: with s = 63 edges, p = 29 points, f = 36 faces, 2s = 126 is the number of face angles; 2s - p - f - 2(p-2) = 126 - 29 - 36 - 54 = 7; and 'first class' conditions f + c = 90 (c = 54 = 2(p-2)), 126 - 90 = 36, 36 - 29 = 7. My reading (marked as mine, not certain): z/s = number of edges, p = vertices, f = faces; the numbers satisfy Euler's relation p - z + f = 29 - 63 + 36 = 2, so the object is a convex-type polyhedron of genus 0. The count appears to be a dimension count: 126 face angles minus relations among them (one angle-sum relation per face, plus 2(p-2) relations, perhaps spherical-link conditions at the vertices) minus p leaves 7 free 'second class' conditions. What problem this serves (e.g. determining a polyhedron from its angles, or a Colloquium topic) is unclear from the page.",
+  "errors": [
+   "The counts p=29, z=63, f=36 satisfy Euler's formula, so no arithmetic error was found in the legible numbers.",
+   "The identification of 'z', 's', 'p', 'f', 'c', 'a' as edges, vertices, faces, etc. is my inference, not stated on the page.",
+   "The legibility of 'Gesammtzahl Winkel = 25' and '= 23' is poor; the meaning of these totals is not established.",
+   "The reason for subtracting p (and the meaning of 'first/second class' conditions) is not recoverable from this page, so correctness of the method cannot be judged."
+  ],
+  "results": [
+   {
+    "what": "Dimension/condition count for a polyhedron with 29 vertices, 63 edges, 36 faces using angles (conditions of first and second class, 7 remaining)",
+    "modern_name": "Parameter count for polyhedra specified by face angles (Euler-formula based degrees-of-freedom count; cf. Steinitz/Cauchy rigidity-type counting)",
+    "usually_credited_to": "Euler (formula, 1750s); Cauchy 1813, Steinitz (realization of polyhedra); angle-data problems studied later by Alexandrov",
+    "already_credited_to_author": "unsure",
+    "routine": true
+   },
+   {
+    "what": "Personal letter draft to his father about travel plans and a Colloquium talk",
+    "modern_name": "Biographical correspondence",
+    "usually_credited_to": "n/a",
+    "already_credited_to_author": "yes",
+    "routine": true
+   }
+  ],
+  "surprise": 1,
+  "surprise_reason": "The page is mainly a crossed-out family letter plus a small, routine Euler-formula-type counting of conditions; the material is elementary and nothing here suggests a major unpublished result.",
+  "checkable": [
+   {
+    "sympy": "29 - 63 + 36 == 2",
+    "asserts": "Euler characteristic p - z + f = 2 for p=29, z=63, f=36"
+   },
+   {
+    "sympy": "2*63 - 29 - 36 - 2*(29-2) == 7",
+    "asserts": "2s - p - f - 2(p-2) = 7 for the page's data"
+   },
+   {
+    "sympy": "2*(29-2) == 54",
+    "asserts": "2(p-2) = 54"
+   },
+   {
+    "sympy": "36 + 54 == 90",
+    "asserts": "f + c = 90 with c = 2(p-2)"
+   },
+   {
+    "sympy": "126 - 90 - 29 == 7",
+    "asserts": "126 - 90 = 36 and 36 - 29 = 7"
+   }
+  ],
+  "transcription_corrections": [
+   "The machine transcription's 'Akademie' (line 'in d. Akademie') is doubtful; the place name is unclear in the scan.",
+   "'Ich hatte drei Th.' is uncertain; the abbreviation may mean something else.",
+   "The first line reads 'Lieber Vater!' (correctly identified by the transcriber), followed by struck-through text.",
+   "The 'Gesammtzahl Winkel = 25' and '= 23' readings are plausible but not certain.",
+   "The page number '85' is circled at the right margin; the 'next page' transcription (starting 'Lieber Wolfskehl') is a different leaf and was not seen in the scan."
+  ]
  }
 }

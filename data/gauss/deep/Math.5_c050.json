@@ -3,8 +3,81 @@
  "page": "c050",
  "label": "25r",
  "image": "https://images.sub.uni-goettingen.de/iiif/image/gdz:DE-611-HS-3376170:00000051/full/1300,/0/default.jpg",
- "stop_reason": "refusal",
+ "stop_reason": "end_turn",
+ "redo": {
+  "date": "2026-11-15",
+  "reader": "Sonnet subagent run from a Claude Code session, same prompt as src/deep.py (not the pipeline model; scores may not be comparable)",
+  "previous_stop_reason": "refusal"
+ },
  "deep": {
-  "raw": ""
+  "reconstruction": "This is a crowded scrap page (folio 25r of Math.5) with several unrelated layers: (a) At left, a ruled table with row labels 5-22 and lists of four-digit numbers (1003-1099), some boxed (1075), some struck or overwritten. It looks like a cross-reference or tally index for a numbered series of items; its purpose is unclear from the page. (b) Centre column: a block of relations among symbols D, d, d', phi: Daa = d'aa; Da'a' = da'a'; Dcc = d'cc; Dc'c' = dc'c'; +-Daa' = sqrt(dd'+phi) aa'; +-Dcc' = sqrt(dd'+phi) cc'; Dac = d'ac + phi; Da'c' = da'c' + phi; then 0 = 2d'ac phi + phi^2; 0 = 2da'c' phi + phi^2; 0 = (d'ac + da'c') phi + phi^2 - aca'c'; and finally 0 = -bb'ac. The meaning of D is not stated on the page. The pattern (a,b,c) and (a',b',c') together with d, d' strongly suggests the coefficient bookkeeping for the composition or transformation of two binary quadratic forms, in which D plays the role of a determinant or discriminant-like quantity of a product. The derivation is a set of conditions on an unknown phi, which is eliminated by subtracting the equations; the last line looks like a consequence. I cannot verify the chain because D and phi are not defined here. (c) Upper right and top: a 2x4 array of Greek letters alpha beta gamma delta / epsilon zeta eta theta = alpha', with a left-hand expression 'mu alpha delta - delta epsilon' (partly unclear), the relations b alpha + b epsilon = alpha' epsilon' and b beta + b zeta = beta' zeta' (as transcribed; the primes and which letters are Latin b versus Greek beta are hard to read), and alpha' zeta - beta' epsilon. This looks like minors of a 2x4 coefficient array, in the style of the 2x2 determinant products on the neighbouring pages. (d) Right-hand rotated lines: aa'b'b'c'cc, -da'b'b'c + bba'b'b'c, -d'a'b'c, +a'a'b'b'c + bba'b'b'c, -bba'b'b'c, b'b' zeta' + b' zeta', aa'/bb' and 'm. s. meth.' ('mit sofortiger Methode' is only a guess). These are symbolic products among the same coefficient letters; I cannot reconstruct a derivation from them. (e) Left bottom: alpha alpha' zeta zeta' + beta beta' epsilon epsilon' - alpha zeta beta' epsilon' - beta epsilon alpha' zeta' (the transcription shows a struck-through line), which is the expansion of (alpha zeta ... ) products; indeed alpha alpha' zeta zeta' + beta beta' epsilon epsilon' - alpha zeta beta' epsilon' - beta epsilon alpha' zeta' = (alpha zeta... ) is NOT a simple factor as written unless read as (alpha' zeta' - beta' epsilon')(alpha zeta - beta epsilon) with the cross terms, which expands to alpha alpha' zeta zeta' - alpha zeta beta' epsilon' - beta epsilon alpha' zeta' + beta beta' epsilon epsilon'. That identity holds (my reconstruction). So the left-bottom block is the product of two 'determinant-like' quantities alpha' zeta' - beta' epsilon' and alpha zeta - beta epsilon. (f) Scattered numerals: a column of years 1782, 1781, 1784, 1785, 1788 with small numbers 33, 11, 8 (they predate Gauss's birth in 1777 only as dates, so this is probably a tally of something else, e.g. dates of items in a source list; unclear); small additions 4...24, 11...143, 15...167, 11 4/30; columns 82, 149, 167, 316 (82+149+167... = 398, not 316; 149+167 = 316, so 316 is the sum of the lower two); 40, 7, 26, 12. A boxed list 69, 326, 443, 156, 6. Pencil sketch letters a,b,c / a',b',c' / a,a',b+b' / delta,delta'. These are scratch arithmetic whose purpose is unclear. (g) Pen trials: 'Felix mer Frey' with large flourishes, 'Smal', 'E B B Brun', 'Sonnabend[?]' etc. These are not mathematics. The page is evidently a reused scrap carrying an index list and unrelated scratch algebra.",
+  "errors": [
+   "The relations for D cannot be checked as stated because D, d, d', phi are never defined on the page; two of the three phi-equations contradict each other if phi is a single common unknown unless extra conditions hold (0 = 2d'ac phi + phi^2 and 0 = 2da'c' phi + phi^2 imply 2d'ac = 2da'c' for phi nonzero), and 'Dac = d'ac + phi' then gives no information on its own.",
+   "The line '0 = -bb'ac' at the bottom of the D-block is not derivable from the preceding visible lines without a definition of the symbols; it may be a slip, a different relation, or a hypothesis (unclear).",
+   "In the column 82, 149, 167, 316 the last number equals 149 + 167 and not the sum of all three, so it is a partial sum or a different operation (unclear).",
+   "The expression 'b'b' - b'b'' and the 'b'b' zeta' + b' zeta'' lines in the rotated block are internally odd (a difference of identical products) and are probably transcription artefacts of mixed Latin and Greek letters."
+  ],
+  "results": [
+   {
+    "what": "Coefficient relations among two sets of quantities (a,b,c) and (a',b',c') with a determinant-like quantity D, built to combine or compose two binary quadratic forms (suggested by the letters; not stated)",
+    "modern_name": "Composition of binary quadratic forms (Gauss composition) or related determinant bookkeeping; closest reading only, unsure",
+    "usually_credited_to": "Gauss, Disquisitiones Arithmeticae (1801), Section V",
+    "already_credited_to_author": "yes",
+    "routine": true
+   },
+   {
+    "what": "Identity (alpha zeta - beta epsilon)(alpha' zeta' - beta' epsilon') = alpha alpha' zeta zeta' + beta beta' epsilon epsilon' - alpha zeta beta' epsilon' - beta epsilon alpha' zeta' (product of two 2x2 minors)",
+    "modern_name": "Multiplicativity of 2x2 determinants / Cauchy-Binet style expansion",
+    "usually_credited_to": "Standard algebra (Cauchy, Binet 1812); Gauss himself used determinants in Disquisitiones",
+    "already_credited_to_author": "yes",
+    "routine": true
+   },
+   {
+    "what": "Index list of numbers 1003-1099 against row labels 5-22",
+    "modern_name": "No mathematical content; cross-reference or tally list",
+    "usually_credited_to": "n/a",
+    "already_credited_to_author": "unsure",
+    "routine": true
+   }
+  ],
+  "surprise": 1,
+  "surprise_reason": "The page is an assortment of scratch algebra on coefficients of binary forms, minors of 2x4 arrays, arithmetic sums and pen trials. Nothing on it goes beyond material known from Gauss's published work on forms and composition, and the symbols are too undefined to extract any new result. A score of 1 reflects only the mild interest of the unusual notation D, d, d', phi.",
+  "checkable": [
+   {
+    "sympy": "simplify(expand((a*z - b*e)*(a2*z2 - b2*e2) - (a*a2*z*z2 + b*b2*e*e2 - a*z*b2*e2 - b*e*a2*z2))) == 0",
+    "asserts": "The product of the two 2x2 minors expands to alpha alpha' zeta zeta' + beta beta' epsilon epsilon' - alpha zeta beta' epsilon' - beta epsilon alpha' zeta' (a=alpha, b=beta, e=epsilon, z=zeta, primes as 2)."
+   },
+   {
+    "sympy": "simplify(expand((b*b2 + D)**2 - (b**2*b2**2 + 2*b*b2*D + D**2))) == 0",
+    "asserts": "(bb' + Delta)^2 = b^2 b'^2 + 2bb'Delta + Delta^2, as written in the right-hand column."
+   },
+   {
+    "sympy": "simplify((p-1)*(p+1)/p - (p**2-1)/p) == 0",
+    "asserts": "The middle entry (pp-1)/p of the second row equals the product (p-1)(p+1)/p."
+   },
+   {
+    "sympy": "simplify((p-1)/p*(p+1)/p - (p**2-1)/p**2) == 0",
+    "asserts": "The entry (pp-1)/pp equals ((p-1)/p)((p+1)/p)."
+   },
+   {
+    "sympy": "simplify((p**2-1) - (p-1)*(p+1)) == 0",
+    "asserts": "p^2 - 1 = (p-1)(p+1), used implicitly in the p-table."
+   },
+   {
+    "sympy": "149 + 167 == 316",
+    "asserts": "The last entry of the column 82, 149, 167, 316 is the sum of the middle two."
+   },
+   {
+    "sympy": "simplify(2*d2*a*c*f + f**2 - (2*d*a2*c2*f + f**2) - 2*f*(d2*a*c - d*a2*c2)) == 0",
+    "asserts": "Subtracting the two phi-equations leaves 2 phi (d'ac - da'c'), so for phi nonzero they are jointly consistent only if d'ac = da'c' (a consistency condition implied by the page, not stated)."
+   }
+  ],
+  "transcription_corrections": [
+   "Row 18 of the left table reads 1011. 1035. 1067. 1097 in the transcription; in the image the third entry appears overwritten (a '7' written over '1055/1067'), so the entry is uncertain.",
+   "The 'Dreifachen[?]' word at the top is uncertain; in the image it looks like a crossed-out or hastily written word, reading not secure.",
+   "Several lines in the rotated right-hand block mix Latin b and Greek beta, zeta; the transcription's primes are unreliable.",
+   "'0 = -bb'ac' at the bottom of the centre block: in the image a first letter appears overwritten, reading as 'dbb'ac' or 'bb'ac' with a prefixed stroke (unclear).",
+   "The pen-trial text 'Felix mer Frey' with flourishes is correct; a circled '25' (folio number) sits at lower right and 'Math 5' is written vertically at the right edge."
+  ]
  }
 }

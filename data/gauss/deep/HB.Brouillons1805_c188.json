@@ -3,8 +3,93 @@
  "page": "c188",
  "label": "183",
  "image": "https://images.sub.uni-goettingen.de/iiif/image/gdz:DE-611-HS-3351872:00000189/full/1300,/0/default.jpg",
- "stop_reason": "refusal",
+ "stop_reason": "end_turn",
+ "redo": {
+  "date": "2026-11-15",
+  "reader": "Sonnet subagent run from a Claude Code session, same prompt as src/deep.py (not the pipeline model; scores may not be comparable)",
+  "previous_stop_reason": "refusal"
+ },
  "deep": {
-  "raw": ""
+  "reconstruction": "Folio 183 (headed 'Litt. W') is a working-out of a Pallas ephemeris for autumn 1809 from the corrected elements derived on the previous page (perihelion 1803 = 121 deg 5'22.08'', phi = 14 deg 10'4.08'', log daily tropical motion 2.8867426 = 770.4467''/day). Nothing new is derived; it is numerical routine, set out in Gauss's usual logarithmic layout.\n\n(1) Top left: a table of epoch values (mean anomaly or mean longitude, labelled 'Epochen Seeberg / Goettingen +1.73'') for 1802-1810 at the Seeberg meridian, e.g. 1803: 221 34 54.99 (previous page: 221 34 54.97), 1804: 299 54 38.48, ... 1810: 48 48 47.20. Successive differences are about 78 deg 9' (+ one day's motion in leap years), consistent with 770.45''/day. The '+1.73''' is a Goettingen correction (meaning unclear).\n\n(2) 'Zur Berechnung der Constanten' (computing the constants). The epoch is 22 Sept = 2457.6 (the later date work uses 22 Sept as the zero of time). The node of 1803, 172 28 46.80, is corrected by precession (5'37.10'') and nutation (7.69'') to the date; obliquity 23 27 43.68; inclination i = 34 37 31.55. Then Omega-n = 352 34 31.59, i+eps = 58 5 15.23, i-eps = 11 9 47.87 (I verified the sum and difference). These feed the standard Gaussian constants of the Theoria Motus (§§ on equatorial coordinates): x = r a sin(A+v), y = r b sin(B+v), z = r c sin(C+v), with log a = 0.4422276 (a = 2.768, the Pallas semi-major axis), log b = 0.4288126, and the phase angles A = 212 29 21.15, B = 121 40 34.46, C = 323 17.32.46 (the page lists these as 'v+...' with logs 9.9988262, 9.9920813, 9.3074558 - these are the sin/cos factors of the transformation; my reading of which log belongs to which constant is partly inferred). The side columns of logs (cos Omega', cos i, sin Omega', sin i etc., Delta, Omega' = 158 47 36.70) are the intermediate trigonometric products of this transformation.\n\n(3) Rewriting in terms of the eccentric anomaly E. With r cos v = a(cos E - e), r sin v = a cos(phi) sin E, each coordinate becomes K sin(E + A') + const, where const = -a e sin(A) type term. The page gives the final working forms: x = 0.4315951 sin(E+213 17 46.39) + 0.3629835 [the numbers 0.4315951, 0.4306917, 9.7411573 look like log amplitudes, the constants 0.3629835, -0.5662370, +0.0822121 are plain numbers]; y = 0.4306917 sin(E+120 53 27.17) - 0.5662370; z = 9.7411573 sin(E+322 26 26.11) + 0.0822121. (Plausible reading: the first two amplitudes are logs and are applied as 10^log.)\n\n(4) Three dates are worked out in boxes: 1809 Sept 12 (12h51'39.6'' Seeberg time, minus 16'27.0'' equation-of-time/longitude correction = 12h35'12.6'' = Sept 12.5244514), Sept 28 (28.4727373) and Sept 15 (15.5148275). For each: time from epoch = (date - 22 Sept) days (logs 0.9766044, 0.8110880, 0.8119216; I verified 9.47555, 6.47274, 6.48517 days); multiplied by 770.4467''/day (log 2.8867426) gives -7300.41'', +4986.90'', -4996.48''; added to the epoch mean anomaly 266 21 41.00 gives M = 264 20 0.59, 267 44 47.90, 264 58 24.52 (all verified). Kepler's equation E = M + e sin E (e in seconds, log e'' = 4.7031701, which I verified equals log(sin phi * 206265)) is solved by iteration: E = 251 4 5.69, 254 14 57.65, 251 39 42.50 (I verified by solving Kepler: 251.0682, 254.2493, 251.6618 deg). Then E + A' (A' = 213 17 46.39, 120 53 27.17, 322 26 26.11) gives the sines, multiplied by amplitudes and the constants added to give the heliocentric equatorial coordinates of Pallas. Sept 12: x = 2.6169844 + 0.3629835 = 2.9799689, y = 0.5586123 - 0.5662370 = -0.0076247, z = 0.2219801 + 0.0822121 = 0.3041922. Sept 28: x = 2.5757607 + 0.3629835 = 2.9387442, y = 0.7041020 - 0.5662370 = 0.1378650, z = -0.3292282 + 0.0822151 = -0.2470131. Sept 15: x about 2.6099006 + 0.3629835, y 0.5859032 - 0.5662370, z about -0.3089352 + 0.0822121 (partly unclear).\n\n(5) The Earth/Sun side, in the same boxes: 9s 10 12'53.0'' is the Sun's perigee longitude (280 deg 12'53''); the Sun's mean anomaly e.g. 8s 11 20'24.1'' (Sept 12) is combined with perigee to give mean longitude 5s 21 34'43.8'', then the equation of centre (11s 28 10'14'' i.e. -1 49'46'') and small terms give true solar longitude 169 46 11.0 (Sept 12), 185 22 59.7 (Sept 28), 172 41 17.1 (Sept 15). The radius vector is obtained from a short series: R = 1.0053615 + 0.0000670 + 0.0000491 = 1.0054776 (log 0.0023724, verified), similarly 1.0009341 and 1.0046344, with the constants 9.9625225 and 9.6000390 (apparently the logs of the Sun's elliptic coefficients, unclear) and with 9.9.38.20 / 9.9.39.x being the Sun's perigee (9s 9 38'20'') with correction. Corrections like 4 29'12.11'' - 73.5'' = -4 19'21.11'' + 49.3'' and -8 19'43.50'' + 39.9'' are further longitude reductions (I could not identify them with confidence; probably reduction from geocentric to a different reference, or aberration/light-time). Sums like -0.9965195, +0.1378650, -0.0861412 appear to be the Sun's equatorial rectangular coordinates, to be combined with Pallas's heliocentric coordinates to obtain geocentric right ascension and declination; this is carried out on the next page (rows for Sept 29 - Oct 7).\n\nWhat this page serves: computing a daily ephemeris of Pallas around the 1809 opposition (late Sept - Oct 1809), using the elements obtained from the 1803-1808 oppositions.",
+  "errors": [
+   "Sept 28 box: the constant added to z is written 0.0822151, whereas every other occurrence (Sept 12 and the top formula) is 0.0822121; the printed sum -0.3292282 + 0.0822151 = -0.2470131 is consistent with the miswritten 0.0822151, whereas the correct value would be -0.2470161. A transcription/copy slip of 3e-6 in z (about 0.6 arcsec at Pallas's distance); it does carry into later columns.",
+   "Sept 12 box: 2.6169844 + 0.3629835 = 2.9799679, but the page has 2.9799689 (1e-6 slip; the last digit may also be mis-read).",
+   "Sept 12 box: 264 20 0.59 - 13 15 54.80 = 251 4 5.79, written 251 4 5.69 (a 0.1'' difference; the iterated E converges to 251 4 5.7, so the final E is fine).",
+   "The first-line log for the time from epoch in the Sept 12 box reads 0.4766044 (as written/transcribed), but the consistent value is 0.9766044 (log 9.4755486 days; 0.9766044 + 2.8867426 = 3.8633470 = log 7300.41''). Probably a misreading of the image or a slip; the product 7300.41'' is correct.",
+   "Epoch table: 1803 value is 221 34 54.99 here versus 221 34 54.97 on the previous page (0.02'' discrepancy between pages).",
+   "Some overwritten/struck digits (e.g. 9.9998460, 0,0076247 in the Sept 12 columns, and the Sept 15 box) are unclear; I did not verify those columns."
+  ],
+  "results": [
+   {
+    "what": "Daily Pallas ephemeris computation for Sept 1809 (mean anomaly from epoch 22 Sept, Kepler's equation by iteration, heliocentric equatorial coordinates via x = K sin(E+A') + const)",
+    "modern_name": "Orbital propagation / ephemeris computation using Gauss's equatorial constants a,b,c,A,B,C and eccentric-anomaly form",
+    "usually_credited_to": "Gauss (Theoria Motus, 1809; method of constants a,b,c,A,B,C)",
+    "already_credited_to_author": "yes",
+    "routine": true
+   },
+   {
+    "what": "Reduction of elements to date (precession, nutation) and computation of i+epsilon, i-epsilon, constants A,B,C",
+    "modern_name": "Rotation of orbital plane to equatorial frame (Gauss's vector constants)",
+    "usually_credited_to": "Gauss (Theoria Motus 1809, §§ 51-53)",
+    "already_credited_to_author": "yes",
+    "routine": true
+   },
+   {
+    "what": "Solar position and radius vector (log R = 0.0023724) from mean anomaly, equation of centre and perigee 9s 10 12'53''",
+    "modern_name": "Solar ephemeris from Keplerian elements with perturbation terms (as in Gauss's Sun tables, after Delambre/Zach)",
+    "usually_credited_to": "Delambre, Zach, Lindenau tables (early 1800s)",
+    "already_credited_to_author": "unsure",
+    "routine": true
+   }
+  ],
+  "surprise": 1,
+  "surprise_reason": "Straightforward, well-known Gaussian ephemeris arithmetic for Pallas, entirely consistent with the method of Theoria Motus (1809) and his Pallas work of 1803-1809; no new theory, only a few routine copying slips.",
+  "checkable": [
+   {
+    "sympy": "(22 - 12.5244514)*770.4467",
+    "asserts": "Time from epoch (22 Sept) to Sept 12.5244514 in days times 770.4467''/day gives about 7300.41''"
+   },
+   {
+    "sympy": "266 + Rational(21,60) + Rational(41,3600) - 7300.41/3600",
+    "asserts": "Mean anomaly on Sept 12 equals 264 deg 20'0.59'' = 264.33349 deg"
+   },
+   {
+    "sympy": "log(sin(14 + 10/60 + 4.08/3600 degrees converted to rad)*206264.806, 10) == 4.7031701",
+    "asserts": "log of e in arcseconds equals 4.7031701 (e = sin(phi), phi = 14 deg 10'4.08'')"
+   },
+   {
+    "sympy": "nsolve(E - e*sin(E) - M, E, M) with e=sin(14.16780 deg), M=264.33349 deg",
+    "asserts": "Eccentric anomaly on Sept 12 is 251 4'5.7'' (251.0682 deg)"
+   },
+   {
+    "sympy": "(34 + 37/60 + 31.55/3600) + (23 + 27/60 + 43.68/3600) == 58 + 5/60 + 15.23/3600",
+    "asserts": "i + epsilon = 58 deg 5'15.23''"
+   },
+   {
+    "sympy": "(34 + 37/60 + 31.55/3600) - (23 + 27/60 + 43.68/3600) == 11 + 9/60 + 47.87/3600",
+    "asserts": "i - epsilon = 11 deg 9'47.87''"
+   },
+   {
+    "sympy": "log(1.0054776, 10) == 0.0023724",
+    "asserts": "log of Sun's radius vector on Sept 12 equals 0.0023724"
+   },
+   {
+    "sympy": "-0.3292282 + 0.0822121",
+    "asserts": "Correct z on Sept 28 is -0.2470161, not the -0.2470131 on the page (flags the 0.0822151 slip)"
+   },
+   {
+    "sympy": "10**0.4422276",
+    "asserts": "Semi-major axis of Pallas a = 2.7684 AU"
+   }
+  ],
+  "transcription_corrections": [
+   "Sept 12 box: the log at the head of the time-from-epoch column probably reads 0,9766044 rather than 0,4766044 (arithmetic requires 0.9766044).",
+   "Epoch table header reads 'Epochen Seeberg / Goettingen +1\"73' (not clearly a time of day).",
+   "'Zur Berechnung der Constanten': first line is '22 Sept = 2457,6' as transcribed; the following 3,39051 / 9.13725 lines are unclear.",
+   "Sept 28 box constant in z reads +0,0822151 in the image (the transcription gives 0,0822121 in the top formula, which is the value used elsewhere).",
+   "Sept 12 box: 'E+213 17 46.39' etc. transcription of the log 9.9862080 is correct; the transcription '0,9894925' and '9.9930401' columns are partly illegible in the image (overwritten digits).",
+   "Sept 15 box: '1,0045[?]' reads 1.0045.. with the final digits overwritten; final R = 1.0046344.",
+   "Page number 183 at top right has an overwritten earlier number (237/ 277) struck through; marginal '3.4.5.' at left is a later annotation."
+  ]
  }
 }

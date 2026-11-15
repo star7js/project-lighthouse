@@ -3,8 +3,83 @@
  "page": "c227",
  "label": "224",
  "image": "https://images.sub.uni-goettingen.de/iiif/image/gdz:DE-611-HS-3354040:00000228/full/1300,/0/default.jpg",
- "stop_reason": "refusal",
+ "stop_reason": "end_turn",
+ "redo": {
+  "date": "2026-11-15",
+  "reader": "Sonnet subagent run from a Claude Code session, same prompt as src/deep.py (not the pipeline model; scores may not be comparable)",
+  "previous_stop_reason": "refusal"
+ },
  "deep": {
-  "raw": ""
+  "reconstruction": "The page is pure numerical work: Gauss is computing, by seven-place logarithmic and trigonometric tables, the complex roots of the trinomial-type equation x^7 - 3x^2 + C = 0 (the exponent on the heading is written like a 7, matching the previous page, though the machine transcription reads it as 4). The setup is a continuation of the previous page (folio 223), which treats x^7 - 3x^2 + 0.3313537 - 1.66864463 i = 0 and whose modulus has log10 = 0.2307624 (the repeated line 'c 0.2307624'). The right-hand column of this page opens a new equation, x^7 - 3x^2 + 3.6686463 - 1.6686463 i = 0 (the constant differs from the previous one by exactly 3, i.e. the 'x^2' coefficient is absorbed into the real part). Its data: modulus c with log c = 0.6053378 (|3.6686463 - 1.6686463i| about 4.0304, check mine), argument Theta = 335 deg 32' 31.464'' (= -24 deg 27' 28.536''), log c^5 = 3.0266890 (this looks like 5 log c plus a characteristic shift, i.e. 5 x 0.6053378 = 3.026689, so the logs are ordinary log10 with the leading figure kept), log b^7 = 3.3398488 (a fixed constant of the method for exponent 7 with the middle term 3x^2; the same number appears on the previous and next pages), and lambda = 0.3131598 (log of an auxiliary quantity, presumably log(c^5/b^7) = 3.0266890 - 3.3398488 + shifts; I do not verify this). The label 'sin 7R + 24.27.28.536' and 'sin 5R . sin 2R + 24.27.28.536' show the governing relation: an angle R is sought such that sin(5R) sin(2R)/sin(7R) (up to the +/- Theta shift 24 deg 27' 28.536'') equals a quantity built from lambda, i.e. the classical trigonometric reduction of a trinomial x^n + a x^m + c = 0 with complex data. For each of the seven roots the pattern is the same: choose a trial angle R (e.g. 12 deg 20' 27'', 4 deg 1' 14'', ...), compute log sin of R, of 2R, 5R, 7R-type combinations with their tabular second-difference corrections written after each log (the '+ 18.2', '- 6.4' etc. columns are the small corrections in units of the seventh decimal for the angle offsets), combine them into a residual ('+ 9', '- 292', '- 197', ...), Newton-correct the angle (e.g. 12.20.27 -> 12.20.27,012; 4.1.14 -> 4.1.13,834; 41.59.7 -> 41.59.7.432; 72.48.59 -> 72.48.58.792; 78.46.6.793; 103.40.13.6 -> 103.40.13.664 marked with a star; 70.6.57 -> 70.6.57.040; 141.4.50.6 -> 141.4.50.6603), and then finish with log-multiplications giving the modulus and the two components of the root.\n\nResults written at the bottom of each block (my reading of the image): first column, root of the previous page's equation: +1.2533130 + 0.0880910 i; then +0.2923368 - 1.2019061 i (angle 70.6.57.040 block... actually this block is in the second column and its result is +0.4447852 + 1.2297677 i; the 0.2923368 - 1.2019061 i result sits at the end of the column of the block headed 103.40.13.664). Then +0.5672997 - 0.4580682 i inside the boxed middle block (141.4.50.6603), and, below the dividing line, -0.9943177 - 0.8948292 i. The new equation (heading 'Gleichung') then yields +1.1665145 + 0.2552124 i (angle 12.20.27,012) and, in the lower right, +0.4089901 + 1.3225680 i. A cancelled entry (9.8734304 - 14.7) and several overwritten digits (e.g. 664 over 536, 85, 12, 60/61 corrections) show Gauss correcting arithmetic as he went. So the page records the completion of the seven roots of the first equation and the first two or three roots of the second (-0.9943177 - 0.8948292 i may belong to either; the checks below show it is a root of the SECOND equation).\n\nOverall: this is a hand computation of all complex roots of a seven-degree trinomial using Gauss's logarithmic-trigonometric method (a solution of the 'trinomial equation' by an auxiliary angle), most likely part of the 1816 Lagrange-bundle work on solving equations numerically. Which problem it serves is not stated on this page; unclear whether it is a test of a general method for trinomials or part of root-location experiments.",
+  "errors": [
+   "I could not detect arithmetic slips: every final root I checked against numpy.roots agrees with Gauss's value to 5-6 decimals (see checkable).",
+   "The page overwrites several digits (664 over 536; 85, 12, 68/60/61 corrections); these are Gauss's own corrections, and the final starred values are the consistent ones.",
+   "In the middle column a log line '9.8734304 - 14.7' is struck out; the remaining lines carry on without it, so it is a cancelled slip, not an error in the result.",
+   "My reconstruction of the angle relation (sin 5R sin 2R / sin 7R) is inferred from the two marginal labels only; the exact form of the relation is not written out on this page and I did not verify it."
+  ],
+  "results": [
+   {
+    "what": "Complex roots of x^7 - 3x^2 + 0.3313537 - 1.66864463 i = 0 completed on this page (1.2533130+0.0880910i, 0.2923368-1.2019061i, 0.4447852+1.2297677i, 0.5672997-0.4580682i) after the others on the previous page",
+    "modern_name": "numerical complex root-finding of a trinomial by logarithmic/trigonometric table iteration (Newton-type correction of an auxiliary angle)",
+    "usually_credited_to": "trigonometric solution of trinomials goes back to Lagrange/Lambert-type series and later to Gauss-style tabular practice; numerical Newton refinement is standard",
+    "already_credited_to_author": "unsure",
+    "routine": true
+   },
+   {
+    "what": "Roots of x^7 - 3x^2 + 3.6686463 - 1.6686463 i = 0 (1.1665145+0.2552124i, -0.9943177-0.8948292i, 0.4089901+1.3225680i, plus others on following page: 0.97565-0.39315i, -0.87275+0.90102i, -1.0064+0.13141i, 0.32231-1.32223i)",
+    "modern_name": "complex roots of a degree-7 polynomial",
+    "usually_credited_to": "no particular credit; routine numerical solution",
+    "already_credited_to_author": "unsure",
+    "routine": true
+   },
+   {
+    "what": "Method: auxiliary-angle reduction with logs of sines and tabular difference corrections, converged to about 1e-7 in the angle",
+    "modern_name": "trigonometric solution of the trinomial equation with Newton/secant correction",
+    "usually_credited_to": "Lambert, Euler, Lagrange (series for roots of trinomials); numerical table practice is Gauss's own habit",
+    "already_credited_to_author": "yes",
+    "routine": true
+   }
+  ],
+  "surprise": 1,
+  "surprise_reason": "It is a careful, correct, routine numerical computation of complex roots of a degree-7 trinomial; the method (angle plus log tables with difference corrections) is characteristic of Gauss and nothing on the page is a new result. I could not identify the source problem it serves.",
+  "checkable": [
+   {
+    "sympy": "import numpy as np; r=np.roots([1,0,0,0,0,-3,0,3.6686463-1.6686463j]); assert any(abs(z-(1.1665145+0.2552124j))<1e-5 for z in r)",
+    "asserts": "1.1665145+0.2552124i is a root of x^7 - 3x^2 + 3.6686463 - 1.6686463 i"
+   },
+   {
+    "sympy": "import numpy as np; r=np.roots([1,0,0,0,0,-3,0,3.6686463-1.6686463j]); assert any(abs(z-(-0.9943177-0.8948292j))<1e-5 for z in r)",
+    "asserts": "-0.9943177-0.8948292i is a root of the second equation"
+   },
+   {
+    "sympy": "import numpy as np; r=np.roots([1,0,0,0,0,-3,0,3.6686463-1.6686463j]); assert any(abs(z-(0.4089901+1.3225680j))<1e-5 for z in r)",
+    "asserts": "0.4089901+1.3225680i is a root of the second equation"
+   },
+   {
+    "sympy": "import numpy as np; r=np.roots([1,0,0,0,0,-3,0,0.3313537-1.66864463j]); assert all(any(abs(z-w)<1e-5 for z in r) for w in [1.2533130+0.0880910j,0.2923368-1.2019061j,0.4447852+1.2297677j,0.5672997-0.4580682j])",
+    "asserts": "four roots read from this page satisfy the first equation x^7 - 3x^2 + 0.3313537 - 1.66864463 i"
+   },
+   {
+    "sympy": "import math; assert abs(math.log10(abs(3.6686463-1.6686463j))-0.6053378)<2e-7",
+    "asserts": "log10 of the modulus c is 0.6053378"
+   },
+   {
+    "sympy": "import cmath, math; assert abs(math.degrees(cmath.phase(3.6686463-1.6686463j))%360-(335+32/60+31.464/3600))<1e-3",
+    "asserts": "argument Theta of the constant is 335 deg 32' 31.464''"
+   },
+   {
+    "sympy": "assert abs(5*0.6053378-3.0266890)<1e-7",
+    "asserts": "log c^5 = 5 log c = 3.0266890"
+   }
+  ],
+  "transcription_corrections": [
+   "Heading: image shows x^7 - 3xx + 3.6686463 - 1.6686463 i = ..., not x^4 as in the machine transcription.",
+   "Top margin note reads 78.46.6.793 with folio number 224; a pencil note '141.5' appears near the top of the third column and is not part of the calculation.",
+   "Block 103.40.13.664: the image shows 536 struck out and 664 written above; the transcription's bracket notation is right.",
+   "Several figures carry overwritten digits (e.g. 0.4156961/0.4156969, 0.0923512, 9.3735322, 9.9875193, +0.2923368, -1.2019061 with 60/61 corrections); the legible final forms are as the transcription gives.",
+   "Middle-column title line reads 70.6.57 (not 70.6.57.0); its refined value is 70.6.57.040.",
+   "Last block bottom: the root reads +0.4089901 + 1.3225680 i; the transcription's '0.1263521 n -0.9943177' / '9.8711731 -0.8948292 i' pair is the root -0.9943177 - 0.8948292 i.",
+   "Line 'Θ 335.32.31,464' is the argument of the constant; 'c 0,6053378' is log of the modulus; the transcription's 0,5645059 appears to be the log of a product line, reading unclear."
+  ]
  }
 }
