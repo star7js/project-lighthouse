@@ -3,8 +3,98 @@
  "page": "c236",
  "label": "233",
  "image": "https://images.sub.uni-goettingen.de/iiif/image/gdz:DE-611-HS-3354040:00000237/full/1300,/0/default.jpg",
- "stop_reason": "refusal",
+ "stop_reason": "end_turn",
+ "redo": {
+  "date": "2026-11-15",
+  "reader": "Sonnet subagent run from a Claude Code session, same prompt as src/deep.py (not the pipeline model; scores may not be comparable)",
+  "previous_stop_reason": "refusal"
+ },
  "deep": {
-  "raw": ""
+  "reconstruction": "Folio 233 is a page of pure numerical work: the heading reads 'Die uebrigen Wurzeln der Gleichung 5 der 3ten Parallele' (the remaining roots of equation 5 of the third 'Parallele'; what a 'Parallele' denotes is unclear from this page). The coefficients of the equation are not written here, so the equation itself cannot be reconstructed with certainty. What can be read off the numbers: (a) The trial columns. For a trial argument phi a root is sought in polar form x = r e^{i phi}. Each trial column lists four angles. For phi = 41.51.56, 72.55.7.6, 104.0.26.4, 134.46.44 these are phi, theta, 5 phi (mod 360), 5 phi + theta, with theta = 2 phi + 22.5 degrees (e.g. 2*41.8658+22.5 = 106.2316 = 106.13.52). So the four terms of the equation carry phases phi, 2phi+pi/8, 5phi and 7phi+pi/8, i.e. it looks like a degree-7 polynomial with terms in x, x^2, x^5, x^7 (my inference; the next page, 'vierte Parallele', uses the angles phi, 2phi, 5phi, 7phi with no 22.5 degree offset, which supports this reading). Below the angles stand seven-place logarithms of sines/cosines (e.g. 9.9823355 = log sin 106.13.52, 9.6900234 = log sin 209.19.40), each followed by a small signed number (the tabular difference per unit of the last place, used for interpolation), then logs of products and a Gaussian addition/subtraction logarithm step, ending in a log value (0.5016617 for phi = 41.51.56, 0.5014656 for phi = 41.51.57) that is compared with the target 0.5014721 (written at the top right). Linear interpolation: the two trial values differ by about 1961 units (seventh decimal) per second of arc, and the target lies 65 units above the second trial, so phi = 57 - 65/1961 = 56.967 seconds; hence phi = 41.51.56.967. (b) Third column: 0.2922929 n + 0.5676753 = 0.8599682 = 7 x 0.1228526, so log r = 0.1228526 for this root, i.e. r^7 is obtained from the ratio of two terms times the constant 10^0.5676753. The constant 0.5676753 is the log of the modulus of the product of the seven roots (see (d)). The same procedure is repeated for phi = 72.55.7.6 (target reached at 72.55.7.585), 104.0.26.4 (104.0.26.408) and 134.46.44 (134.46.43.965). (c) The summary table at mid-right lists seven roots (angle, log modulus, real part, imaginary part): 11.50.43.162 / 0.0702724 / +1.1505997 / +0.2413229i; 41.51.56.967 / 0.1228526 / -0.9881884 / -0.8855871i; 72.55.7.585 / 0.1385356 / +0.4040915 / +1.3150527i; 104.0.26.408 / 0.1316980 / +0.3277903 / -1.3139785i; 134.46.43.965 / 0.0967083 / -0.8800568 / +0.8868759i; 159.12.50.767 / 0.0135511 / +0.9645447 / -0.3661245i; 172.52.11.156 / 9.9940573 (=-0.0059427) / -0.9787814 / +0.1224382i. The listed angle is the trial parameter phi taken mod 180 degrees; the sign of (Re, Im) carries the extra 180 degrees (roots 2, 4, 6 are negated). (d) Checks: the three rows below (53.42.40.129, 176.55.33.993, 106.51.45.888) are partial sums: the angle and log entries are sums of the angles and logs of roots (1,2), (3,4), (5,6,7), the Re/Im entries are the sums of the roots themselves (e.g. root1+root2 = 0.1624113 - 0.6442642i). The last row 337.30.0.010 / 0.5676753 gives the sum of all angles (= 337.5 degrees = -22.5 degrees, again the pi/8 phase) and the sum of all logs (product of the root moduli 10^0.5676753 = 3.696), and the residual sums of Re and Im parts (about -4e-7 each, written '-0,4 -0,4' in units of 1e-6). That the seven roots sum to zero shows the polynomial has no x^6 term and that these seven are all its roots. (e) Lower right: an analogous trial/refinement for the root 135.7.48.444 (log 0.0649359; Re -0.8230081, Im +0.8192817) of equation 3 of the same parallel (continuing the previous page, where the roots 7.48.4.518 ... 163.58.51.289 of equation 3 are tabulated), followed by a second summary table of the seven roots of equation 3 (angles 7.48.4.518, 39.44.21.567, 71.27.42.102, 103.13.4.425, 135.7.48.444, 153.40.7.652, 163.58.51.289; target constant 0.4515450 and sum-of-logs 0.4515441). Its Re/Im column sums are +0.0000053 and +0.0000046, again confirming sum of roots = 0. A first version of this table (struck through, with Re 1.313.. etc. and an old 7.48.4,518 row) was cancelled and rewritten; several entries are overwritten (71.27.42,102; Re 0.4301919; 0.0000053 as the corrected residual).",
+  "errors": [
+   "No substantive error found in the roots of equation 5: all seven (angle, log modulus, Re, Im) rows are mutually consistent (recomputed log|Re+iIm| agrees with the tabulated log to 1e-7, Re and Im agree with r cos(phi), r sin(phi) up to sign to 1e-6), and Re and Im both sum to -4e-7.",
+   "Equation 3 table: the second root has tabulated log modulus 0.1231063 whereas log|Re+iIm| computed from its own Re, Im and from phi = 39.44.21.567 is 0.1231052 (difference 1.1e-6, about ten units of the last place); likely a small rounding or copying slip, the Re/Im values agree with each other.",
+   "Equation 3, third root: previous page had Re = 0.4301819 and Im = 1.2830148; here Re is overwritten to 0.4301919 and Im changed to 1.2828571. The corrected values agree with r cos phi, r sin phi (0.430192, 1.282857), so the first-page values were the slips and were corrected here.",
+   "The two entries marked 'n' (e.g. 0.2922929 n) denote negative numbers whose log is tabulated; these are consistent with the final signs.",
+   "Several cells are overwritten or struck through (the cancelled table at lower centre, 0.0810965 n, 0.8976016, 0.8844057 i, the first 7.48.4,518 block), so the exact intended values in those cells are unclear; the final tables are internally consistent."
+  ],
+  "results": [
+   {
+    "what": "Numerical solution of a degree-7 complex polynomial equation (terms x, x^2, x^5, x^7 apparently, with a phase pi/8 on the x^2 and x^7 terms) by trial argument phi, 7-place logarithms with Gaussian addition logarithms, and linear interpolation in phi to hit a target log value; 7 roots found for equation 5 and 7 for equation 3 of the 'third Parallele'",
+    "modern_name": "Root finding for a polynomial with complex coefficients by one-dimensional search in the argument plus linear interpolation (regula falsi / secant) using logarithm tables",
+    "usually_credited_to": "Generic method (secant/regula falsi; Gauss himself used Gaussian logarithms from 1812)",
+    "already_credited_to_author": "yes",
+    "routine": true
+   },
+   {
+    "what": "Verification of the computed roots via sum of roots = 0 (no x^6 term) and product of roots (sum of arguments 337.5 degrees, sum of logs 0.5676753) using partial sums grouped (1,2), (3,4), (5,6,7)",
+    "modern_name": "Vieta relations as checks on a numerical root set",
+    "usually_credited_to": "Vieta / Girard (16th-17th c.)",
+    "already_credited_to_author": "yes",
+    "routine": true
+   }
+  ],
+  "surprise": 1,
+  "surprise_reason": "The page is a routine, carefully checked logarithmic computation of polynomial roots in the style Gauss used throughout his numerical manuscripts; no new theorem, method or result is visible. The only mildly interesting feature is that the roots are used as part of a larger series of tabulations (equations of the 3rd and 4th 'Parallele') whose purpose is not stated on this page.",
+  "checkable": [
+   {
+    "sympy": "abs(complex(1.1505997,0.2413229)) - 10**0.0702724",
+    "asserts": "root 1 modulus equals 10^0.0702724 to about 1e-6 (tabulated log modulus consistent with Re, Im)"
+   },
+   {
+    "sympy": "abs(complex(-0.9881884,-0.8855871)) - 10**0.1228526",
+    "asserts": "root 2 modulus consistent with tabulated log"
+   },
+   {
+    "sympy": "abs(complex(-0.9787814,0.1224382)) - 10**(-0.0059427)",
+    "asserts": "root 7 (log written 9.9940573) modulus consistent"
+   },
+   {
+    "sympy": "1.1505997-0.9881884+0.4040915+0.3277903-0.8800568+0.9645447-0.9787814",
+    "asserts": "sum of real parts of the seven roots of equation 5 is about 0 (-4e-7)"
+   },
+   {
+    "sympy": "0.2413229-0.8855871+1.3150527-1.3139785+0.8868759-0.3661245+0.1224382",
+    "asserts": "sum of imaginary parts is about 0 (-4e-7)"
+   },
+   {
+    "sympy": "0.0702724+0.1228526+0.1385356+0.1316980+0.0967083+0.0135511-0.0059427",
+    "asserts": "sum of log moduli equals 0.5676753"
+   },
+   {
+    "sympy": "11.8453+41.8658+72.9188+104.0073+134.7789+159.2141+172.8698",
+    "asserts": "sum of trial angles in degrees is 697.5, i.e. 337.5 mod 360 (the 337.30.0.010 line)"
+   },
+   {
+    "sympy": "2*(41+51/60+56.967/3600)+22.5 - (106+13/60+52/3600)",
+    "asserts": "theta = 2*phi + 22.5 degrees gives second trial angle 106.13.52 (to about 1 minute precision of rounding of phi 41.51.56)"
+   },
+   {
+    "sympy": "5*(72+55/60+7.6/3600) - 360 - (4+35/60+38/3600)",
+    "asserts": "5*phi reduced mod 360 equals the listed 4.35.38 for phi = 72.55.7.6"
+   },
+   {
+    "sympy": "7*0.1228526 - (0.2922929+0.5676753)",
+    "asserts": "log r^7 = 0.8599682 = 0.2922929 + 0.5676753 for root 2 (consistent to 1e-7)"
+   },
+   {
+    "sympy": "(0.5014656 - 0.5014721) / (-1961.3e-7) ",
+    "asserts": "interpolation: target is 65 units above second trial, with slope -1961.3 units per second, giving phi = 57 - 0.033 = 56.967 arc-seconds"
+   },
+   {
+    "sympy": "1.2040385-1.0209602+0.4301919+0.2995032-0.8230081+0.81285-0.90261",
+    "asserts": "sum of real parts of the equation 3 roots is +5.3e-6 (~0)"
+   }
+  ],
+  "transcription_corrections": [
+   "Header: 'Gleichung 5 der 3ten Parallele' with 0.5014721 at top right and folio number 233; the transcription's '0.5014721' is right.",
+   "Third column of the top block: the cancelled numbers are 0.0810965 n, 0.8976016 and 0.8844057 i; the retained value below is 9.8719871 / 9.8243787 then -0.9881884 and -0.8855871 i; side scribbles '8599682' and '1228526' are visible beside it (log r^7 and log r).",
+   "Top-right column should read 0.4020714,6 - 1514 then + 22.3, then 0.4020737, 0.5676753, 0.9697490, 0.1385356, 9.4679441 (image shows 9.4679441), 9.9804076, +0.4040915, +1.3150527 i.",
+   "Lower-left block: the struck-through header '41.51.5' above 104.0.26.4 is cancelled; the trial column for 134.46.44 contains 9.9669887 - 8.5 first, then 9.8577053 - 20,2; the 7th-row entry 9.7061288 is written '9.7061288 - + 35.7' (overwritten sign).",
+   "In the summary table the last row is '337.30. 0,010  0.5676753  -0, 4  -0, 4' (Re and Im residual -0.4 in units of 1e-6, with the 4 written right-aligned); the transcription's '-0, 4' is fine.",
+   "Bottom-right table: the row 7.48.4,518 / 0.0846786 / +1.2040385 / +0.1649597 i is the retained one; the four rows above it are struck through. Row 71.27.42,102 has overwritten digits (Re read as +0.4301919, Im 1.2828571); row 135.7.48,444 has Re -0.8230081 (overwritten), Im +0.8192817; row 153.40.7,652 shows 9.9575837 with overwritten digits.",
+   "The last lines at bottom: '0,4515441 ... +0,0038987 ... +0.0000046' are residual sums (struck-through entries -0,273, -0,005, +0,0037826, +0,0001723 are cancelled); the retained Re/Im residual is +0.0000053 and +0.0000046 (the transcription lists both cancelled and retained values).",
+   "Equation-5 summary table real/imag columns have heavy overwriting (e.g. 0.4040915, 1.3150527, 0.7318818, 0.6431896, 0.8868759); values as transcribed are internally consistent."
+  ]
  }
 }

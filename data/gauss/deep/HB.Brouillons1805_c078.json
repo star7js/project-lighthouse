@@ -3,8 +3,150 @@
  "page": "c078",
  "label": "73",
  "image": "https://images.sub.uni-goettingen.de/iiif/image/gdz:DE-611-HS-3351872:00000079/full/1300,/0/default.jpg",
- "stop_reason": "refusal",
+ "stop_reason": "end_turn",
+ "redo": {
+  "date": "2026-11-15",
+  "reader": "Sonnet subagent run from a Claude Code session, same prompt as src/deep.py (not the pipeline model; scores may not be comparable)",
+  "previous_stop_reason": "refusal"
+ },
  "deep": {
-  "raw": ""
+  "reconstruction": "Context: folio 73 (old number 95 struck out), heading 'Litt: F.'. It continues a worked example of Gauss's method of determining a planetary orbit from three observations of Ceres (Jan 25, Mar 25, May 23 1802; previous page covers obs. 1 by Mechain and obs. 2 by Maskelyne). This page does obs. 3 (Piazzi, Palermo) and then combines the three observations. 'VII. Elementen' are Gauss's seventh trial elements of Ceres, used only for a rough distance in the light-time and parallax corrections.\n\nA. Obs. 3 reduction (top left). Piazzi's time 1802 May 23, 7h44'43.14s Palermo time. Light time = 10^(0.32108+2.6875) = 1019.95 s = 16'59.95 (log dist 0.32108 from the elements; 2.6875 = log of the old light-time constant per unit distance, about 487 s). The further 10'31 is, on my reading, the meridian difference from Palermo to Gauss's reference meridian (the same reduction on the previous page is +33'35 from Paris); this is an interpretation, not stated on the page. Result 7h17'12.19 = 17.2033 min, i.e. 7.2867222 h, giving day number 143 + 0.3036134 = 143.3036134 (days from Jan 0; obs. 1 and 2 are 25.6893565 and 84.5184803).\n\nB. Observed place: RA 176 deg 50'15.00, declination 14 deg 47'42.50. Parallax in declination = 8.6 sin(phi - delta)/dist, written as logs 0.93450 (log 8.6), 9.67892 (= -log dist), 9.59750 (= log sin 23 deg 19'3, phi = 38 deg 6'45 Palermo latitude minus delta); sum 0.21092 gives +1.63. Corrected declination 14 deg 47'44.13.\n\nC. Sun (left block). Mean longitude from tables: epoch 9s 9 deg 23'57.38 + 3s 28 deg 16'39.63 + 22 deg 40'11.59 + 17'57.32 = 60 deg 38'45.92 (the four columns to the right are small periodic terms, not decoded). Equation of centre +1 deg 51'18.00, small corrections -0.28, -7.42, -9.77, -6.72 (perturbations), +20 (constant) and nutation +4.08, then aberration -19.66, giving 61 deg 49'40.17. Radius vector 1.0131812 + small corrections = 1.0131919 (log 0.0056917). Obliquity 23 deg 27'55.41 + nutation 9.30 = 23 deg 28'4.71.\n\nD. Equatorial to ecliptic (middle). Auxiliary angle with tan(phi) = tan(delta)/sin(alpha), phi = 101 deg 47'51.48 (obtuse branch as written); phi + eps = 125 deg 15'56.19; then sin(beta) = sin(delta) sin(phi+eps)/sin(phi), tan(lambda) = tan(alpha) cos(phi+eps)/cos(phi). Result: latitude beta = 12 deg 17'54.88 (tan beta = 9.3384750 in logs), longitude A = 171 deg 7'54.32 (nutation affected). I recomputed both from the given RA/Dec and obliquity and agree to better than 0.05 arcsec.\n\nE. Plane quantities. V (heliocentric longitude of the Earth) = Sun longitude + 180 deg = 241 deg 50'3.91; A - V = 70 deg 42'9.59. Then tan(eta) = tan(beta)/sin(A-V) (log 9.3635875 n) giving eta = 166 deg 59'36.74, the inclination to the ecliptic of the plane through Sun, Earth and planet, which meets the ecliptic at longitude V. Also cos p = cos(beta) cos(A-V) and sin p = sin(beta)/sin(eta), p = 71 deg 9'44.71, the angle at the Earth between the prolonged Sun-Earth line and the line of sight. (Values for obs. 1 and 2 from the previous page: V = 125 deg 33'35.38, eta = 16 deg 48'48.08, p = 58 deg 23'57.04; V' = 184 deg 37'8.30, eta' = 120 deg 0'50.23, p' = 19 deg 42'20.47.) Note the V used in the combinations is the aberration-corrected value 241 deg 49'40.17, not the nutation-affected 241 deg 50'3.91.\n\nF. Three great circles. Each observation gives a great circle on the celestial sphere (as seen from the Sun) through the ecliptic point V_i with inclination eta_i. The pair circles meet at P'' (obs 1,2), P (obs 2,3) and P' (obs 1,3, the 'mittlere Combination'). The small sketches show the three circles rising from V'', V', V on the ecliptic and forming a small triangle P P' P''. For each pair Gauss solves the spherical triangle with base V_j - V_i and base angles eta_i and 180 - eta_j by Napier's analogies (given base c, half-sum and half-difference of the base angles): mid pair c = 116 deg 16'4.79, half(eta''+eta) = 91 deg 54'12.41, half(eta''-eta) = 75 deg 5'24.33, logs sin, cos in three columns; result sides P'V = 47 deg 15'40.57, P'V'' = 70 deg 43'29.67 (half-sum 58 deg 59'35.12, half-difference 11 deg 43'54.55) and apex P' = 164 deg 3'2.22. Pair 1,2: V''-V' = 57 deg 12'31.870, half(eta''+eta') = 143 deg 30'13.485, half(eta''-eta') = 23 deg 29'23.255; PV' = 13 deg 35'19.64, PV'' = 64 deg 41'0.18, P = 53 deg 38'7.47. Pair 0,1: V'-V = 59 deg 3'32.92, half sum 68 deg 24'49.155, half difference 51 deg 36'1.075; P''V = 52 deg 27'8.47, P''V' = 15 deg 21'29.01, P'' = 110 deg 29'24.89. The ratios sin P/sin P' (log 0.4669385) and sin P''/sin P' (log 0.5326172) are formed for later use.\n\nG. Arcs on the circle of obs. 2: p' - PV' = 19 deg 42'20.47 - 13 deg 35'19.64 = 6 deg 7'0.83 (written 6.7.0.87 then altered) and p' - P''V' = 4 deg 20'51.46. These feed the next page.\n\nH. Bottom right: q = +11 deg 8'16.47, q'' = +0 deg 26'15.04, omega P'' = 5 deg 56'48.57, and a half-finished proportion of sines, roughly sin P' sin q'' / (sin P'' sin omega*P'') = sin q''/sin omega*P'' = (sin P / sin P'') x ..., with several crossed-out attempts. I cannot tell what q, q'' and omega are defined as, and the derivation is unfinished here; the next page picks up with sin P''/sin P, cos x, tan x and the time intervals (58.829 and 58.785 days).",
+  "errors": [
+   "No substantive arithmetic error found in the checkable chain: I recomputed light time (1019.95 s), day number, solar mean longitude sum, obliquity, log R, ecliptic longitude and latitude (agree to ~0.04 arcsec), eta, p, the Napier-analogy solutions for all three pairs, and the sine ratios; all agree within rounding of 7-figure logs.",
+   "The difference p' - PV' is first written 6.7.0.87 and then overwritten; the correct value from the page's own numbers is 6 deg 7'0.83 (the next page uses 6.7.0.83).",
+   "Small decimal slip: 7h17'12.19 is 17.20317 min, written 17.2033 (and 7.2867222 h rather than 7.286719 h); effect about 1e-7 day, negligible.",
+   "Numerous overwritten and struck logarithms in the combination columns (for example 9.9288138 replaced by 9.9290535 for sin half(V''-V)); the final values are correct, the struck ones were slips.",
+   "The 'ratio of sines' relation at the bottom right is unfinished and partly crossed out; I could not check it."
+  ],
+  "results": [
+   {
+    "what": "Reduction of the observation time to a common meridian and subtraction of light time (dist from trial elements times about 487 s)",
+    "modern_name": "Light-time and longitude correction (planetary aberration)",
+    "usually_credited_to": "Standard 18th century practice (Bradley, Delambre)",
+    "already_credited_to_author": "yes",
+    "routine": true
+   },
+   {
+    "what": "Solar position from tables with equation of centre, perturbations, nutation, aberration; Sun distance 1.0131919",
+    "modern_name": "Ephemeris of the Sun (Delambre-type tables)",
+    "usually_credited_to": "Delambre, Lalande",
+    "already_credited_to_author": "yes",
+    "routine": true
+   },
+   {
+    "what": "Parallax in declination from horizontal solar parallax 8.6, latitude and distance",
+    "modern_name": "Diurnal parallax correction",
+    "usually_credited_to": "Standard",
+    "already_credited_to_author": "yes",
+    "routine": true
+   },
+   {
+    "what": "RA/Dec to ecliptic longitude/latitude by an auxiliary angle with logarithms",
+    "modern_name": "Equatorial-to-ecliptic transformation (Gauss/Delambre auxiliary-angle form)",
+    "usually_credited_to": "Standard spherical astronomy",
+    "already_credited_to_author": "yes",
+    "routine": true
+   },
+   {
+    "what": "Per-observation plane inclination eta (tan eta = tan beta / sin(A-V)) and angle p (cos p = cos beta cos(A-V))",
+    "modern_name": "Spherical-trigonometric decomposition of the line of sight relative to the Sun-Earth direction; a preliminary of Gauss's orbit method",
+    "usually_credited_to": "Gauss (this line of method appears in his early orbit determination around 1802-1809)",
+    "already_credited_to_author": "unsure",
+    "routine": false
+   },
+   {
+    "what": "Intersections of three great circles solved with Napier's analogies for each pair",
+    "modern_name": "Solution of oblique spherical triangles by Napier's analogies / Delambre-Mollweide formulas",
+    "usually_credited_to": "Napier 1614, Delambre",
+    "already_credited_to_author": "yes",
+    "routine": true
+   },
+   {
+    "what": "Whole page as a worked trial of an orbit-determination scheme from three geocentric places using sine ratios on the circles P, P', P'' and time intervals",
+    "modern_name": "Early variant of Gauss's method of orbit determination from three observations (precursor of Theoria Motus, 1809)",
+    "usually_credited_to": "Gauss",
+    "already_credited_to_author": "yes",
+    "routine": false
+   }
+  ],
+  "surprise": 1,
+  "surprise_reason": "This is a careful numerical example of Gauss's own orbit-determination work on Ceres, which is well documented as his; the techniques on this page (light-time, parallax, solar tables, coordinate transformation, Napier analogies) are standard. The only mildly interesting item is the spherical great-circle formulation (planes of observation, points P, P', P'') that seems to differ from the area-ratio method printed in Theoria Motus, and its final proportion is unfinished here, so nothing new can be claimed from this page alone.",
+  "checkable": [
+   {
+    "sympy": "N(10**(0.32108+2.6875))",
+    "asserts": "light time is about 1019.95 s = 16 min 59.95 s"
+   },
+   {
+    "sympy": "N(143 + (7 + 17/60 + 12.19/3600)/24)",
+    "asserts": "day number about 143.30361 (page 143.3036134)"
+   },
+   {
+    "sympy": "N((9*30+9+23/60+57.38/3600)+(3*30+28+16/60+39.63/3600)+(22+40/60+11.59/3600)+(17/60+57.32/3600)-360)",
+    "asserts": "solar mean longitude sum = 60.646089 deg = 60 deg 38'45.92"
+   },
+   {
+    "sympy": "N(23+27/60+55.41/3600+9.30/3600)",
+    "asserts": "obliquity with nutation = 23 deg 28'4.71 = 23.468 deg"
+   },
+   {
+    "sympy": "N(log(1.0131919,10))",
+    "asserts": "log of Sun distance = 0.0056917"
+   },
+   {
+    "sympy": "N(deg(atan2(sin(rad(176+50/60+15/3600))*cos(rad(23+28/60+4.71/3600))+tan(rad(14+47/60+44.13/3600))*sin(rad(23+28/60+4.71/3600)),cos(rad(176+50/60+15/3600)))))",
+    "asserts": "ecliptic longitude of the observed place = 171.13176 deg (page 171 deg 7'54.32 = 171.131756)"
+   },
+   {
+    "sympy": "N(deg(asin(sin(rad(14+47/60+44.13/3600))*cos(rad(23+28/60+4.71/3600))-cos(rad(14+47/60+44.13/3600))*sin(rad(23+28/60+4.71/3600))*sin(rad(176+50/60+15/3600)))))",
+    "asserts": "ecliptic latitude = 12.29859 deg (page 12 deg 17'54.88 = 12.298578)"
+   },
+   {
+    "sympy": "N(180-deg(atan(tan(rad(12+17/60+54.88/3600))/sin(rad(70+42/60+9.59/3600)))))",
+    "asserts": "eta = 166.99354 deg = 166 deg 59'36.74"
+   },
+   {
+    "sympy": "N(deg(acos(cos(rad(12+17/60+54.88/3600))*cos(rad(70+42/60+9.59/3600)))))",
+    "asserts": "p = 71.16242 deg = 71 deg 9'44.71"
+   },
+   {
+    "sympy": "N(deg(atan2(cos(rad(((16+48/60+48.08/3600)-(180-(166+59/60+36.74/3600)))/2))*tan(rad((116+16/60+4.79/3600)/2)),cos(rad(((16+48/60+48.08/3600)+(180-(166+59/60+36.74/3600)))/2)))))",
+    "asserts": "Napier: half-sum of sides P'V and P'V'' = 58.99309 deg = 58 deg 59'35.12"
+   },
+   {
+    "sympy": "N(log(sin(rad(164+3/60+2.22/3600)),10)+10)",
+    "asserts": "log sin P' = 9.4389978"
+   },
+   {
+    "sympy": "N(log(sin(rad(110+29/60+24.89/3600)),10)-log(sin(rad(164+3/60+2.22/3600)),10))",
+    "asserts": "log(sin P''/sin P') = 0.5326172"
+   },
+   {
+    "sympy": "N(log(sin(rad(53+38/60+7.47/3600)),10)-log(sin(rad(164+3/60+2.22/3600)),10))",
+    "asserts": "log(sin P/sin P') = 0.4669385"
+   },
+   {
+    "sympy": "N((19+42/60+20.47/3600)-(13+35/60+19.64/3600))",
+    "asserts": "p' - PV' = 6.11690 deg = 6 deg 7'0.83 (page first wrote .87)"
+   },
+   {
+    "sympy": "N((19+42/60+20.47/3600)-(15+21/60+29.01/3600))",
+    "asserts": "p' - P''V' = 4.34763 deg = 4 deg 20'51.46"
+   },
+   {
+    "sympy": "N(84.5184803-25.6893565)",
+    "asserts": "interval between obs. 1 and 2 = 58.8291238 days"
+   }
+  ],
+  "transcription_corrections": [
+   "The page number reads '73' with the old number '95' struck through in red.",
+   "'cos 6', 'tang 6', 'sin 6' and '12 deg 17 min 54.88 6' should read beta (latitude); the symbol looks like a digit 6.",
+   "'- 10 31' in the time reduction is 10 min 31 s, not 10.31 s (16'59.95 + 10'31 = 27'30.95, and 7h44'43.14 - 27'30.95 = 7h17'12.19).",
+   "'7h 17'12 19 = 17'2033' means 17.2033 minutes; '7h 2867222' means 7.2867222 hours.",
+   "'P'V' and 'P'V''' in the 0,1 column should be P''V and P''V' (apex P''); the primes are lost or ambiguous in the scan.",
+   "Struck-out values such as 9.9288138, P'V 30.57.41,00 and 0,6049436 / 0,6449426 are cancelled entries, not results; the live values are 9.9290535, P'V 47.15.40,57 and 0,4669385 / 0,5326172.",
+   "The last digits of 6.7.0.87 are overwritten (likely .83).",
+   "The scan shows 'Piazzi' (transcription 'Piazzi' fine) and 'Palermer Zeit'; 'M.C.' means Monatliche Correspondenz.",
+   "The transcription's '9.9.23.57,38 4996,68 874 376 879 15' line and similar are the solar table rows; the trailing numbers are the small-term columns, partly hard to read."
+  ]
  }
 }

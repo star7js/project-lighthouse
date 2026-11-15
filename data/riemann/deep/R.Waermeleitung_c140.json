@@ -3,8 +3,115 @@
  "page": "c140",
  "label": "71r",
  "image": "https://images.sub.uni-goettingen.de/iiif/image/gdz:DE-611-HS-3205052:00000141/full/1300,/0/default.jpg",
- "stop_reason": "refusal",
+ "stop_reason": "end_turn",
+ "redo": {
+  "date": "2026-11-15",
+  "reader": "Sonnet subagent run from a Claude Code session, same prompt as src/deep.py (not the pipeline model; scores may not be comparable)",
+  "previous_stop_reason": "refusal"
+ },
  "deep": {
-  "raw": "```json\n{\"reconstruction\": \"CONTEXT. The sheet is a list of corrections and supplementary calculations for Riemann's Paris prize essay of 1861 ('Commentatio mathematica, qua respondere tentatur quaestioni ab Ill.ma Academia Parisiensi propositae'). The prize question asked: in a homogeneous infinite body, which temperature states keep a given system of isothermal curves isothermal for all time? The headings 'p. 8', 'p. 12', 'p. 13' refer to pages of that essay. One sentence is in an editor's voice: 'In sequentibus calculos ad confirmandas has propositiones necessarios, e quibus quae supersunt quoad facere potuimus, in integrum restituere conati sumus' ('In what follows we have tried, as far as we could, to restore in full the calculations needed to confirm these propositions from what survives'). The German 'in der Linie' points the same way. So the sheet is most likely an editorial reconstruction sheet (Weber/Dedekind) for the Werke edition of 1876, not a primary Riemann text. The previous page treats related cases (spherical isothermal surfaces); the next page continues the case analysis below.\\n\\n(A) Correction to p. 8. The heat equation Δu = ∂u/∂t is written in the form (a): Σ_ν p_ν(α) ∂q_ν(β,t)/∂t = Σ T(α,β) Q(β,t), which I read as arising from an ansatz u = Σ_ν p_ν q_ν (my reading). The μ particular solutions p_ν are assumed to satisfy no identity Σ g_ν p_ν = 0.\\n- Hence there are points α_1,…,α_μ with det[p_ν(α_i)] ≠ 0. This is the standard lemma: functions are linearly independent iff some evaluation matrix at μ points is nonsingular"
+  "reconstruction": "Context: this is the Latin working material around Riemann's Paris prize memoir (Commentatio mathematica, 1861) on heat conduction: when can a family of isothermal surfaces stay isothermal in time in a homogeneous body, and what does that force on the metric ds^2 = sum b_{ii'} ds_i ds_i'. The page consists of four blocks. (1) Top, 'p. 8': the heat equation Delta u = du/dt is to be brought into the form (a): sum_nu p_nu dq_nu/dt = sum T(alpha,beta) Q(beta,t), where p_1..p_mu are mu particular solutions of 'equation 1' (not on this page) chosen with no identical linear relation sum g_nu p_nu = 0. Riemann then says that mu special values alpha_1..alpha_mu can be given to alpha so that the determinant sum +- p_1(alpha_1)...p_mu(alpha_mu) is nonzero (the standard fact that linearly independent functions admit a nonvanishing evaluation determinant). Substituting these values into (a) lets one express dq_nu/dt through derivatives of the q with respect to beta, free of alpha. This step is correct (my gloss: solve a linear system with an invertible matrix). (2) 'p. 12', formula I: the vanishing of the curvature tensor of the form with coefficients b: d2 b_{i i''}/ds_i' ds_i''' + d2 b_{i' i'''}/ds_i ds_i'' - d2 b_{i i'''}/ds_i' ds_i'' - d2 b_{i' i''}/ds_i ds_i''' + (1/2B) sum_{lambda,kappa} beta_{lambda kappa}(p_{lambda,i' i'''} p_{kappa,i i''} - p_{lambda,i' i''} p_{kappa,i i'''}) = 0, with B = det b, beta_{lambda kappa} the cofactors (so beta/B is the inverse metric) and p_{nu,i i'} = d b_{nu i}/ds_i' + d b_{nu i'}/ds_i - d b_{i i'}/ds_nu = 2 x (Christoffel symbol of the first kind). This is the condition that ds^2 is flat (twice the Riemann tensor R_{i i' i'' i'''} up to sign convention). (3) 'p. 12 in der Linie': three polarised relations for a geodesic (line): 2 sum b_{i nu} d^2 s_i = - sum p_{nu i i'} ds_i ds_i', and the same with d d s -> d delta s and delta delta s, i.e. the geodesic equation written with p. The left column (variations d, delta, delta' of the quadratic form) is hard to read and I do not reconstruct it. (4) 'p. 13': a note (in the first person plural, 'we have tried to restore in full the calculations needed to confirm these propositions') introduces Case I, m = 1, of the three-variable problem. The data is a 2 x 3 array (0 0 c / a' b' c'), which I read as the coefficients of a ternary quadratic form with diagonal (0,0,c) and cross coefficients (a', b', c'), i.e. 2a' dbeta dgamma + 2b' dalpha dgamma + 2c' dalpha dbeta + c dgamma^2 (my interpretation; a', b' are linear in gamma, c' independent of gamma). Its symmetric 3x3 determinant is 2a'b'c' - c c'^2 and must be constant. The adjoint form is -(a' dalpha + b' dbeta - c' dgamma)^2 + 2(2a'b' - c c') dalpha dbeta, and 2a'b' - cc' is then independent of gamma (since c' is and the determinant is constant). Riemann claims that a linear substitution in gamma brings this to (a dalpha + c dgamma)^2 + 2m dalpha dbeta with a linear in gamma and c, m independent of gamma ('facile perspicitur'; note the letters c, a are reused with new meaning). Next the conditions for this form to be equivalent to dx^2+dy^2+dz^2 (flatness) are derived. Metric coefficients: b_11 = a^2, b_13 = ac, b_33 = c^2, b_12 = m, b_22 = b_23 = 0. The list of p_{nu,i i'} (p_{1,11} = d(a^2)/dalpha, p_{1,22} = 2 dm/dbeta, p_{1,33} = 2 d(ac)/dgamma - d(c^2)/dalpha, p_{1,23} = d(ac)/dbeta, p_{1,31} = d(a^2)/dgamma, p_{1,12} = d(a^2)/dbeta; p_{2,11} = 2 dm/dalpha - d(a^2)/dbeta, p_{2,22} = 0, p_{2,33} = - d(c^2)/dbeta, p_{2,23} = 0, p_{2,31} = - d(ac)/dbeta, p_{2,12} = 0; p_{3,11} = 2 d(ac)/dalpha - d(a^2)/dgamma, p_{3,22} = p_{3,33} = 0, p_{3,23} = d(c^2)/dbeta, p_{3,31} = d(c^2)/dalpha, p_{3,12} = d(ac)/dbeta) is correct throughout (I recomputed it). Then the six flatness equations (ii', i''i''') = 0 are listed: (11) m c_bb - c_b m_b = 0; (22) mc(c_aa - a_ag) + (a_g - c_a)(c m_a + m a_g) = 0; (33), (23), (13) 2mc (ac)_bb - 2c (ac)_b m_b - 2m c_b (ac)_b = 0; (12) 2m(2c c_ab - (ac)_bg) + (c a_b - a c_b)^2 = 0. Below them are scratch lines: d/dbeta log((ac)_beta) = (c m_b + m c_b)/(mc) = d log(mc)/dbeta (follows from (13)), and the start of the case c = f(alpha+beta), m = f' treated on the next page: c_ab = f'', giving f f'' + 4 psi(alpha)^2 f'^2/f^2 ... and f^3 f''/f' = -psi(alpha)^2 (the final scratch line is garbled in the transcription: the image reads minus an alpha-function squared, presumably psi^2). I verified that (12) with a = psi/c, c = f(alpha+beta), m = f' does yield f^3 f''/f' = -psi^2. The page is thus an unpublished-in-this-form working sheet for the n = 3 classification of flat metrics admitting isothermal families, continued on the next folio.",
+  "errors": [
+   "Equation (11), (22), (13) and (12) as written agree (up to a nonzero factor) with the sympy-computed components R_{23,23}, R_{13,13}, R_{12,23}, R_{13,23} of the curvature tensor of the metric a=a1+gamma*a2, c, m independent of gamma. So these four are correct.",
+   "Equations (33) and (23) as transcribed do NOT match the corresponding curvature components R_{12,12} and R_{12,13} in my sympy check (with either d2a/dbeta2 or d2(a^2)/dbeta2 in (33)). Since the hand is hard to read at the superscripts and the (ac)_beta terms, I cannot tell whether this is a transcription problem or a slip by the writer. Treat as unresolved.",
+   "The step 'facile perspicitur' (a linear change of gamma turns -(a' dalpha + b' dbeta - c' dgamma)^2 + 2(2a'b'-cc')dalpha dbeta into (a dalpha + c dgamma)^2 + 2m dalpha dbeta) is not justified on the page: a' and b' both depend on gamma and a change of gamma alone cannot remove the b' dbeta term; it also changes the overall sign of the square. Possibly more substitutions (in alpha, beta) or complex scaling are implied. Unverified.",
+   "Notation clash: the letters a, b, c appear first as a', b', c' (matrix entries), then c and a with new meaning in the reduced form, and in (11)-(13) 'a' stands for the reduced a; also gamma-derivatives are written d/dgamma inside equations in which c and m do not depend on gamma.",
+   "The first column of 'p. 12 in der Linie' relations (variations delta', delta, d) cannot be checked from the transcription; the signs in the first column look inconsistent between the three lines as transcribed.",
+   "The scratch line 'f^3 f''/f' = -4c' is presumably -psi(alpha)^2 (the next page has f'' f^3/f' = -psi(alpha)^2), so the '4' is probably a reading of the superscript."
+  ],
+  "results": [
+   {
+    "what": "Existence of mu values alpha_1..alpha_mu making the evaluation determinant of mu linearly independent functions nonzero, used to eliminate alpha from (a)",
+    "modern_name": "Linear independence implies a nonvanishing generalised Wronskian/alternant determinant at suitable points (Gram/Haar-type lemma)",
+    "usually_credited_to": "Standard linear algebra lemma, no single credit (19th century)",
+    "already_credited_to_author": "unsure",
+    "routine": true
+   },
+   {
+    "what": "Formula I: vanishing of the Riemann curvature tensor of a quadratic differential form in terms of b_{ii'} and Christoffel symbols of the first kind p_{nu,ii'}",
+    "modern_name": "Riemann curvature tensor / flatness condition R_{ijkl}=0",
+    "usually_credited_to": "Riemann (Commentatio 1861, published 1876), also Christoffel and Lipschitz 1869",
+    "already_credited_to_author": "yes",
+    "routine": false
+   },
+   {
+    "what": "Geodesic equation 2 sum b_{i nu} d^2 s_i = - sum p_{nu ii'} ds_i ds_i' and its polarised forms",
+    "modern_name": "Geodesic equation with Christoffel symbols",
+    "usually_credited_to": "Christoffel 1869; Riemann's Commentatio contains it",
+    "already_credited_to_author": "yes",
+    "routine": true
+   },
+   {
+    "what": "Case m=1 of the n=3 problem: reduction of the form to (a dalpha + c dgamma)^2 + 2m dalpha dbeta and computation of the first-kind Christoffel symbols p for it",
+    "modern_name": "Classification of flat 3-metrics (Euclidean) with a one-parameter isothermal-type family; computation of Christoffel symbols for a metric in null-type coordinates",
+    "usually_credited_to": "Riemann's Commentatio (Paris prize) sketches the result; the detailed calculations are in the Nachlass edited by Weber/Dedekind",
+    "already_credited_to_author": "yes",
+    "routine": false
+   },
+   {
+    "what": "Flatness equations (11)-(12) for the metric (a dalpha + c dgamma)^2 + 2m dalpha dbeta with a linear in gamma, c and m independent of gamma",
+    "modern_name": "Component equations of R_{ijkl}=0 for a specific ansatz",
+    "usually_credited_to": "Riemann (Commentatio and its calculations)",
+    "already_credited_to_author": "yes",
+    "routine": true
+   },
+   {
+    "what": "From (13): d log((ac)_beta)/dbeta = d log(mc)/dbeta, and from (12) with c=f(alpha+beta), m=f', a=psi/c the ODE f^3 f''/f' = -psi(alpha)^2",
+    "modern_name": "Separation of variables in the flatness PDE system",
+    "usually_credited_to": "Riemann (Nachlass working)",
+    "already_credited_to_author": "unsure",
+    "routine": true
+   }
+  ],
+  "surprise": 1,
+  "surprise_reason": "The page is a working sheet for the n=3 (m=1) case of the Commentatio mathematica: the curvature formula and geodesic equations are the known Riemannian content, and the rest is a detailed calculation whose results are already in the literature as part of the Nachlass edition. Nothing here suggests a result not already attributed to Riemann; the only mildly notable features are the explicit working of the Christoffel list and the unresolved inconsistent equations (33), (23).",
+  "checkable": [
+   {
+    "sympy": "Matrix([[0,c1,b1],[c1,0,a1],[b1,a1,c0]]).det() - (2*a1*b1*c1 - c0*c1**2) == 0 after simplify",
+    "asserts": "The determinant of the symmetric matrix with diagonal (0,0,c) and cross entries c', b', a' is 2a'b'c' - c c'^2 (a1=a', b1=b', c1=c', c0=c)."
+   },
+   {
+    "sympy": "Matrix([[0,c1,b1],[c1,0,a1],[b1,a1,c0]]).adjugate() equals Matrix([[-a1**2, a1*b1-c0*c1, a1*c1],[a1*b1-c0*c1, -b1**2, b1*c1],[a1*c1, b1*c1, -c1**2]])",
+    "asserts": "The adjoint form is -(a' dalpha + b' dbeta - c' dgamma)^2 + 2(2a'b' - cc') dalpha dbeta."
+   },
+   {
+    "sympy": "with al,be,ga symbols, a=a1(al,be)+ga*a2(al,be), c=c(al,be), m=m(al,be), b=Matrix([[a**2,m,a*c],[m,0,0],[a*c,0,c**2]]), p(n,i,j)=diff(b[n,i],X[j])+diff(b[n,j],X[i])-diff(b[i,j],X[n]); check p(0,0,0)==diff(a**2,al), p(0,1,1)==2*diff(m,be), p(0,2,2)==2*diff(a*c,ga)-diff(c**2,al), p(1,0,0)==2*diff(m,al)-diff(a**2,be), p(2,0,0)==2*diff(a*c,al)-diff(a**2,ga), p(2,1,2)==diff(c**2,be)",
+    "asserts": "The listed p_{nu,ii'} (first-kind Christoffel symbols times 2) are correct for the metric (a dalpha + c dgamma)^2 + 2m dalpha dbeta."
+   },
+   {
+    "sympy": "simplify(R2323 + c*(m*diff(c,be,2)-diff(c,be)*diff(m,be))/m) == 0 where R2323 is the lowered curvature component R_{2323} of b above",
+    "asserts": "Equation (11) is exactly the component (23,23)=0 of the flatness condition."
+   },
+   {
+    "sympy": "simplify(R1313*m - (a2**2*m + a2*c*diff(m,al) - a2*m*diff(c,al) - c*m*diff(a2,al) + c*m*diff(c,al,2) - c*diff(c,al)*diff(m,al))*(-1)) == 0 with R1313 the lowered component R_{1313} (a2 = da/dgamma)",
+    "asserts": "Equation (22) is (up to sign) the component (13,13)=0."
+   },
+   {
+    "sympy": "simplify((2*m*(2*c*diff(c,al,be)-diff(a*c,be,ga))+(c*diff(a,be)-a*diff(c,be))**2)/R1323) == -4*m",
+    "asserts": "Equation (12) is exactly -4m times the component R_{1323} (shown by my check)."
+   },
+   {
+    "sympy": "simplify(2*m*c*diff(a*c,be,2)-2*c*diff(a*c,be)*diff(m,be)-2*m*diff(c,be)*diff(a*c,be) - 2*c*m*R1223*2) == 0 (up to a constant factor; confirm the factor)",
+    "asserts": "Equation (13) is proportional to the component R_{1223}; my check found the two have identical non-gamma terms."
+   },
+   {
+    "sympy": "R1212 (lowered component (12,12)) compared with equation (33): 2*m*c*(diff(a**2,be,2)-2*diff(m,al,be))+2*c*diff(m,be)*(diff(m,al)-a*diff(a,be))-m/c*diff(a*c,be)**2",
+    "asserts": "Test whether (33) as transcribed is proportional to R_{1212}; my check indicates it is NOT, so either a transcription problem or an error in the source."
+   },
+   {
+    "sympy": "f=Function('f'); psi=Function('psi'); c=f(al+be); m=diff(f(al+be),be); a=psi(al)/c; simplify((2*m*(2*c*diff(c,al,be)-diff(a*c,be,ga))+(c*diff(a,be)-a*diff(c,be))**2)/(4*m*f(al+be)**-2)) with u=al+be: should give f(u)**3*f''(u)/f'(u) + psi(al)**2 up to a factor",
+    "asserts": "Equation (12) with a*c = psi(alpha), c=f(alpha+beta), m=f' reduces to f^3 f''/f' = -psi(alpha)^2."
+   }
+  ],
+  "transcription_corrections": [
+   "Line 'e(a) prodeuntibus' is probably 'ex aequationibus (a) prodeuntibus'.",
+   "Eq (33): '2mc(d^2 a/dbeta^2 ...)' - the image shows a square on the a (d^2 a^2 / dbeta^2) or possibly ac; check against the image, the transcription drops the superscript.",
+   "Matrix line 'a b' c' ... c' a gamma independens': the struck word is 'non' / 'liber'; sense 'c' independent of gamma' is right.",
+   "Last scratch line 'f^3 f''/f' = -4c' should be '-psi(alpha)^2' (cf. next page).",
+   "Scratch lines under (12): 'd d ac/dbeta / dbeta = (c dm/dbeta + m dc/dbeta)/(mc)' means d/dbeta log(d(ac)/dbeta) = (c m_beta + m c_beta)/(mc); 'd l mc/dbeta' means d log(mc)/dbeta.",
+   "Second line of the p.12 block: the first two Sigma lines read 'delta' Sigma b ds ds - 2 d Sigma b ds delta s' etc.; the apostrophes on delta and the signs are uncertain in the transcription.",
+   "Margin at the right: 'd ac/dbeta - 2a dc/dbeta' (the transcription has an extra 'gamma' derivative mix-up); also stray '1\"' lines are second derivatives f''.",
+   "p. 13 note: the struck words are 'quam aptius[?]' replaced by the inserted 'quoad facere'."
+  ]
  }
 }

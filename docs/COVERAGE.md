@@ -2,17 +2,18 @@
 
 What has been transcribed and deep-read. "Done" means every page has a transcript JSON and every
 non-trivial page has a deep read; it does **not** mean a human has read it.
-Deep-read counts are those of `src/validate.py`, which excludes failed outputs. 23 pages (18 Gauss, 4 Riemann,
-1 Euler) have a deep-read file that failed (18 refused by the model's safety filter, 5 unparsed or cut off); they
-show up as `WARN` lines and are open for anyone to redo.
+Deep-read counts are those of `src/validate.py`, which excludes failed outputs. Of the 23 deep reads that had failed
+(18 refused by the model's safety filter, 5 unparsed or cut off), the 22 Gauss and Riemann pages were redone on
+2026-11-15 by a Sonnet subagent with the `src/deep.py` prompt (not the pipeline model; each file has a `redo` field; all
+score 0–2). Still open: Euler `E557_p009` (refused).
 
-## Gauss — SUB Göttingen, Nachlass Gauss (GDZ IIIF) — 3,623 pp transcribed, 2,686 deep reads
+## Gauss — SUB Göttingen, Nachlass Gauss (GDZ IIIF) — 3,623 pp transcribed, 2,704 deep reads
 Handbücher: Aufsätze 1813 (280), Brouillons 1805 (233), Kleine Aufsätze 1809 (585), Lagrange 1816 (323),
 Leiste (263), Opuscula 1800 (261). Math. 1–6, 11–14, 16, 17, 19–22, 25–30, 32–34, 48. Physik: Dioptrik (78),
 Grundformel (21), Induktion (93), Memorandum (111), Varia (11).
 Candidates: L-006–L-017 (best 5/10: isothermal gas sphere c.1810–16, 10-adic logarithms — the latter published 2025).
 
-## Riemann — SUB Göttingen, Cod. Ms. B. Riemann (GDZ IIIF) — 3,312 pp transcribed, 2,523 deep reads
+## Riemann — SUB Göttingen, Cod. Ms. B. Riemann (GDZ IIIF) — 3,312 pp transcribed, 2,527 deep reads
 Abel/Theta (389), Aether (51), Elektr. Cylinder (63), Ellipsoid (167), Int./Diff. (59), Konzepte (215),
 Lin. DGL (60), Luftwellen (167), Math. Notizen 1850 (166), Math. Notizen 1853 (495), Minimalflächen (143),
 Modulfunctionen (103), Naturphilosophie (394), Ohr (89), P-Functionen (69), Primzahlen (167), Trig. Reihen (148),
